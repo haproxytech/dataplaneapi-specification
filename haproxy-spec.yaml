@@ -1,0 +1,369 @@
+---
+swagger: "2.0"
+info:
+  title: HAProxy API
+  description: |
+    API for editing and managing haproxy instances. Provides process information, configuration management,
+    haproxy stats and logs.
+  version: '1.0'
+  contact:
+    name: HAProxy Support
+    url: https://my.haproxy.com/portal/cust/login
+    email: support@haproxy.com
+externalDocs:
+  url: https://cbonte.github.io/haproxy-dconv/
+  description: Offical HAProxy documentation
+definitions:
+  site:
+    $ref: "models/simple.yaml#/site"
+  sites:
+    title: Sites
+    description: |
+      Sites array. Sites are considered as one service and all farms connected to that service.
+      Farms are connected to service using use-backend and default_backend directives. Sites let you
+      configure simple HAProxy configurations, for more advanced options use /haproxy/configuration 
+      endpoints.
+    type: array
+    items:
+      $ref: "#/definitions/site"
+  global:
+    $ref: "models/haproxy.yaml#/global"
+  frontend:
+    $ref: "models/haproxy.yaml#/frontend"
+  frontends:
+    title: Frontends
+    description: HAProxy frontends array
+    type: array
+    items:
+      $ref: '#/definitions/frontend'
+  backend:
+    $ref: "models/haproxy.yaml#/backend"
+  backends:
+    title: Backends
+    description: HAProxy backends array
+    type: array
+    items:
+      $ref: '#/definitions/backend'
+  bind:
+    $ref: "models/haproxy.yaml#/bind"
+  binds:
+    title: Binds
+    description: HAProxy frontend binds array (corresponds to bind directives)
+    type: array
+    items:
+      $ref: '#/definitions/bind'
+  server:
+    $ref: "models/haproxy.yaml#/server"
+  servers:
+    title: Servers
+    description: HAProxy backend servers array
+    type: array
+    items:
+      $ref: '#/definitions/server'
+  http_request_rule:
+    $ref: "models/haproxy.yaml#/http_request_rule"
+  http_request_rules:
+    title: HTTP Request Rules Array
+    description: HAProxy HTTP request rules array (corresponds to http-request directives)
+    type: array
+    items:
+      $ref: '#/definitions/http_request_rule'
+  http_response_rule:
+    $ref: "models/haproxy.yaml#/http_response_rule"
+  http_response_rules:
+    title: HTTP Response Rules Array
+    description: HAProxy HTTP response rules array (corresponds to http-response directives)
+    type: array
+    items:
+      $ref: '#/definitions/http_response_rule'
+  tcp_request_rule:
+    $ref: "models/haproxy.yaml#/tcp_request_rule"
+  tcp_request_rules:
+    title: TCP Request Rules Array
+    description: HAProxy TCP request rules array (corresponds to tcp-request directive)
+    type: array
+    items:
+      $ref: '#/definitions/tcp_request_rule'
+  tcp_response_rule:
+    $ref: "models/haproxy.yaml#/tcp_response_rule"
+  tcp_response_rules:
+    title: TCP Response Rules Array
+    description: HAProxy TCP response rules array (corresponds to tcp-response directive)
+    type: array
+    items:
+      $ref: '#/definitions/tcp_response_rule'
+  backend_switching_rule:
+    $ref: "models/haproxy.yaml#/backend_switching_rule"
+  backend_switching_rules:
+    title: Backend Switching Rules Array
+    description: HAProxy backend switching rules array (corresponds to use_backend directives)
+    type: array
+    items:
+      $ref: '#/definitions/backend_switching_rule'
+  server_switching_rule:
+    $ref: "models/haproxy.yaml#/server_switching_rule"
+  server_switching_rules:
+    title: Server Switching Rules Array
+    description: HAProxy backend server switching rules array (corresponds to use-server directives)
+    type: array
+    items:
+      $ref: '#/definitions/server_switching_rule'
+  filter:
+    $ref: "models/haproxy.yaml#/filter"
+  filters:
+    title: Filters Array
+    description: HAProxy filters array (corresponds to filter directive)
+    type: array
+    items:
+      $ref: '#/definitions/filter'
+  stick_rule:
+    $ref: "models/haproxy.yaml#/stick_rule"
+  stick_rules:
+    title: Stick Rules Array
+    description: HAProxy backend stick rules array (corresponds to stick store-request, stick match, stick on, stick store-response)
+    type: array
+    items:
+      $ref: '#/definitions/stick_rule'
+  log_target:
+    $ref: "models/haproxy.yaml#/log_target"
+  log_targets:
+    title: Log Target Array
+    description: HAProxy log target array (corresponds to log directives)
+    type: array
+    items:
+      $ref: '#/definitions/log_target'
+  acl:
+    $ref: "models/haproxy.yaml#/acl"
+  acls:
+    title: ACL Lines Array
+    description: HAProxy ACL lines array (corresponds to acl directives)
+    type: array
+    items:
+      $ref: '#/definitions/acl'
+  native_stats:
+    title: Stats Array
+    description: HAProxy stats array
+    type: array
+    items:
+      $ref: "models/stats.yaml#/native"
+  error:
+    $ref: "models/errors.yaml#/error"
+  endpoint:
+    $ref: "models/general.yaml#/endpoint"
+  endpoints:
+    title: Endpoints Array
+    description: Collection of endpoints
+    type: array
+    items:
+      $ref: '#/definitions/endpoint'
+  process_info:
+    $ref: "models/general.yaml#/process_info"
+  transaction:
+    $ref: "models/general.yaml#/transaction"
+  transactions:
+    title: Transactions array
+    description: Configuration transactions array
+    type: array
+    items:
+      $ref: "#/definitions/transaction"
+  reload:
+    $ref: "models/general.yaml#/reload"
+  reloads:
+    title: HAProxy Reloads Array
+    description: HAProxy reloads array
+    type: array
+    items:
+      $ref: "#/definitions/reload"
+responses:
+  BadRequest:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/error'
+  NotFound:
+    description: The specified resource was not found
+    schema:
+      $ref: '#/definitions/error'
+  AlreadyExists:
+    description: The specified resource already exists
+    schema:
+      $ref: '#/definitions/error'
+  DefaultError:
+    description: General Error
+    schema:
+      $ref: '#/definitions/error'
+parameters: 
+  transaction_id:
+    name: transaction_id
+    in: query
+    description: ID of the transaction where we want to add the operation. Cannot be used when version is specified.
+    type: string
+    required: false
+    x-nullable: false
+  version:
+    name: version
+    in: query
+    description: Version used for checking configuration version. Cannot be used when transaction is specified, transaction has it's own version.
+    type: integer
+    required: false
+    x-nullable: false
+  force_reload:
+    name: force_reload
+    in: query
+    description: If set, do a force reload, do not wait for the configured reload-delay. Cannot be used when transaction is specified, as changes in transaction are not applied directly to configuration.
+    type: boolean
+    required: false
+    default: false
+securityDefinitions:
+  basic_auth:
+    type: basic
+basePath: /v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Discovery
+    description: API autodiscover endpoints
+  - name: Information
+  - name: Specification
+  - name: Transactions
+    description: |
+      Managing transactions. Configuration changes can be grouped in the transaction. You start the 
+      transaction with trasactions POST, and call the configuration changes you need with parameter 
+      transaction_id. When you want to commit the transaction, you call the transactions PUT and all changes
+      in that transaction is commited. If you call a configuration change without the transaction_id, 
+      transaction mechanism is implicitly called with one operation in transaction.
+  - name: Reloads
+    description: |
+      Checking reload success. To avoid constant reloading we reload in intervals that are configurable when
+      with reload-delay option. When a change to configuration is made and force_reload url query string 
+      parameter is false we issue a request for reload, and return the reload ID in response header. You can
+      then use reloads endpoints to check the status of that reload ID. If force_reload is true, we override all
+      of this and reload immediately.
+  - name: Sites
+    description: |
+      Managing sites (simple configuration mode). Sites are considered as one frontend with multiple backends 
+      connected to it via default_backend or use-backend directives.
+  - name: Stats
+    description: Stats container
+  - name: Global
+    description: Managing global configuration (advanced mode)
+  - name: Frontend
+    description: Managing frontend configuration (advanced mode)
+  - name: Backend
+    description: Managing backend configurations (advanced mode)
+  - name: Bind
+    description: Managing frontend bind configurations (advanced mode)
+  - name: Server
+    description: Managing backend server configurations (advanced mode)
+  - name: Frontend options
+    description: Various frontend options (advanced mode)
+  - name: Backend options
+    description: Various backend options (advanced mode)
+  - name: Configuration
+    description: Raw HAProxy configuration management (advanced mode)
+  - name: HAProxy configuration management
+    description: Managing advanced haproxy configuration (advanced mode)
+  - name: TCPRequestRule
+  - name: HTTPRequestRule
+  - name: HTTPResponseRule
+  - name: BackendSwitchingRule
+  - name: ServerSwitchingRule
+  - name: TCPResponseRule
+  - name: Filter
+  - name: StickRule
+  - name: LogTarget
+  - name: ACL
+security:
+  - basic_auth: []
+paths:
+  /:
+    $ref: "paths/general.yaml#/root"
+  /specification:
+    $ref: "paths/general.yaml#/specification"
+  /services:
+    $ref: "paths/general.yaml#/services"
+  /services/haproxy:
+    $ref: "paths/general.yaml#/haproxy"
+  /services/haproxy/info:
+    $ref: "paths/general.yaml#/process_info"
+  /services/haproxy/sites:
+    $ref: "paths/simple.yaml#/sites"
+  /services/haproxy/sites/{name}:
+    $ref: "paths/simple.yaml#/sites_one"
+  /services/haproxy/stats:
+    $ref: "paths/general.yaml#/stats"
+  /services/haproxy/stats/native:
+    $ref: "paths/stats.yaml#/native"
+  /services/haproxy/transactions:
+    $ref: "paths/general.yaml#/transactions"
+  /services/haproxy/transactions/{id}:
+    $ref: "paths/general.yaml#/transactions_one"
+  /services/haproxy/reloads:
+    $ref: "paths/general.yaml#/reloads"
+  /services/haproxy/reloads/{id}:
+    $ref: "paths/general.yaml#/reloads_one"
+  /services/haproxy/configuration:
+    $ref: "paths/general.yaml#/configuration"    
+  /services/haproxy/configuration/global:
+    $ref: "paths/haproxy.yaml#/global"
+  /services/haproxy/configuration/frontends:
+    $ref: "paths/haproxy.yaml#/frontends"
+  /services/haproxy/configuration/frontends/{name}:
+    $ref: "paths/haproxy.yaml#/frontends_one"
+  /services/haproxy/configuration/backends:
+    $ref: "paths/haproxy.yaml#/backends"
+  /services/haproxy/configuration/backends/{name}:
+    $ref: "paths/haproxy.yaml#/backends_one"
+  /services/haproxy/configuration/binds:
+    $ref: "paths/haproxy.yaml#/binds"
+  /services/haproxy/configuration/binds/{name}:
+    $ref: "paths/haproxy.yaml#/binds_one"
+  /services/haproxy/configuration/servers:
+    $ref: "paths/haproxy.yaml#/servers"
+  /services/haproxy/configuration/servers/{name}:
+    $ref: "paths/haproxy.yaml#/servers_one"
+  /services/haproxy/configuration/http_request_rules:
+    $ref: "paths/haproxy.yaml#/http_request_rules"
+  /services/haproxy/configuration/http_request_rules/{id}:
+    $ref: "paths/haproxy.yaml#/http_request_rules_one"
+  /services/haproxy/configuration/http_response_rules:
+    $ref: "paths/haproxy.yaml#/http_response_rules"
+  /services/haproxy/configuration/http_response_rules/{id}:
+    $ref: "paths/haproxy.yaml#/http_response_rules_one"
+  /services/haproxy/configuration/tcp_request_rules:
+    $ref: "paths/haproxy.yaml#/tcp_request_rules"
+  /services/haproxy/configuration/tcp_request_rules/{id}:
+    $ref: "paths/haproxy.yaml#/tcp_request_rules_one"
+  /services/haproxy/configuration/tcp_response_rules:
+    $ref: "paths/haproxy.yaml#/tcp_response_rules"
+  /services/haproxy/configuration/tcp_response_rules/{id}:
+    $ref: "paths/haproxy.yaml#/tcp_response_rules_one"
+  /services/haproxy/configuration/backend_switching_rules:
+    $ref: "paths/haproxy.yaml#/backend_switching_rules"
+  /services/haproxy/configuration/backend_switching_rules/{id}:
+    $ref: "paths/haproxy.yaml#/backend_switching_rules_one"
+  /services/haproxy/configuration/server_switching_rules:
+    $ref: "paths/haproxy.yaml#/server_switching_rules"
+  /services/haproxy/configuration/server_switching_rules/{id}:
+    $ref: "paths/haproxy.yaml#/server_switching_rules_one"
+  /services/haproxy/configuration/filters:
+    $ref: "paths/haproxy.yaml#/filters"
+  /services/haproxy/configuration/filters/{id}:
+    $ref: "paths/haproxy.yaml#/filters_one"
+  /services/haproxy/configuration/stick_rules:
+    $ref: "paths/haproxy.yaml#/stick_rules"
+  /services/haproxy/configuration/stick_rules/{id}:
+    $ref: "paths/haproxy.yaml#/stick_rules_one"
+  /services/haproxy/configuration/log_targets:
+    $ref: "paths/haproxy.yaml#/log_targets"
+  /services/haproxy/configuration/log_targets/{id}:
+    $ref: "paths/haproxy.yaml#/log_targets_one"
+  /services/haproxy/configuration/acls:
+    $ref: "paths/haproxy.yaml#/acls"
+  /services/haproxy/configuration/acls/{id}:
+    $ref: "paths/haproxy.yaml#/acls_one"
+  /services/haproxy/configuration/raw:
+    $ref: "paths/haproxy.yaml#/configuration"
