@@ -32,7 +32,6 @@ site:
           x-nullable: true
         listeners:
           type: array
-          x-go-name: SiteListeners
           items:
             type: object
             x-go-name: SiteListener
@@ -64,7 +63,6 @@ site:
                     value: true
     farms:
       type: array
-      x-go-name: SiteFarms
       items:
         type: object
         x-go-name: SiteFarm
@@ -130,7 +128,6 @@ site:
                 type: boolean        
           servers: 
             type: array
-            x-go-name: SiteServers
             items: 
               type: object
               x-go-name: SiteServer

@@ -155,7 +155,6 @@ definitions:
                   type: object
                   x-go-name: SiteServer
                 type: array
-                x-go-name: SiteServers
               use_as:
                 enum:
                 - default
@@ -168,7 +167,6 @@ definitions:
             type: object
             x-go-name: SiteFarm
           type: array
-          x-go-name: SiteFarms
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
@@ -218,7 +216,6 @@ definitions:
                 type: object
                 x-go-name: SiteListener
               type: array
-              x-go-name: SiteListeners
             maxconn:
               type: integer
               x-display-name: Max Connections
@@ -260,9 +257,10 @@ definitions:
             - process
             - cpu_set
             type: object
+            x-go-name: CPUMap
           type: array
           x-display-name: CPU Maps
-          x-go-name: CPUMap
+          x-go-name: CPUMaps
         daemon:
           enum:
           - enabled
@@ -307,9 +305,10 @@ definitions:
             required:
             - address
             type: object
+            x-go-name: RuntimeAPI
           type: array
           x-display-name: Runtime APIs
-          x-go-name: RuntimeAPI
+          x-go-name: RuntimeAPIs
         ssl_default_bind_ciphers:
           type: string
           x-display-name: SSL Default Bind Ciphers

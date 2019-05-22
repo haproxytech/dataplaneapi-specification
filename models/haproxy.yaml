@@ -31,11 +31,12 @@ global:
       type: string
       x-display-name: SSL Default Bind Ciphers
     cpu_maps:
-      x-go-name: CPUMap
+      x-go-name: CPUMaps
       type: array
       x-display-name: CPU Maps
       items:
         type: object
+        x-go-name: CPUMap
         required:
           - process
           - cpu_set
@@ -49,9 +50,10 @@ global:
     runtime_apis:
       type: array
       x-display-name: Runtime APIs
-      x-go-name: RuntimeAPI
+      x-go-name: RuntimeAPIs
       items: 
         type: object
+        x-go-name: RuntimeAPI
         required:
           - address
         properties:
