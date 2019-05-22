@@ -5,7 +5,7 @@ info:
   description: |
     API for editing and managing haproxy instances. Provides process information, configuration management,
     haproxy stats and logs.
-  version: '0.1'
+  version: '1.0'
   contact:
     name: HAProxy Support
     url: https://my.haproxy.com/portal/cust/login
@@ -71,6 +71,7 @@ definitions:
                       type: string
                     type: array
                 type: object
+                x-go-name: SiteFarmBalance
               cond:
                 enum:
                 - if
@@ -107,6 +108,7 @@ definitions:
                 - enabled
                 type: object
                 x-display-name: ForwardFor
+                x-go-name: SiteFarmForwardFor
               mode:
                 enum:
                 - http
@@ -151,7 +153,9 @@ definitions:
                   - address
                   - port
                   type: object
+                  x-go-name: SiteServer
                 type: array
+                x-go-name: SiteServers
               use_as:
                 enum:
                 - default
@@ -162,7 +166,9 @@ definitions:
             - name
             - use_as
             type: object
+            x-go-name: SiteFarm
           type: array
+          x-go-name: SiteFarms
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
@@ -210,7 +216,9 @@ definitions:
                 - address
                 - port
                 type: object
+                x-go-name: SiteListener
               type: array
+              x-go-name: SiteListeners
             maxconn:
               type: integer
               x-display-name: Max Connections
@@ -254,6 +262,7 @@ definitions:
             type: object
           type: array
           x-display-name: CPU Maps
+          x-go-name: CPUMap
         daemon:
           enum:
           - enabled
@@ -300,6 +309,7 @@ definitions:
             type: object
           type: array
           x-display-name: Runtime APIs
+          x-go-name: RuntimeAPI
         ssl_default_bind_ciphers:
           type: string
           x-display-name: SSL Default Bind Ciphers
@@ -2246,6 +2256,7 @@ definitions:
                   - backend
                 x-nullable: true
             type: object
+            x-go-name: NativeStatStats
           type:
             enum:
             - backend
@@ -2254,6 +2265,7 @@ definitions:
             type: string
         title: Stats
         type: object
+        x-go-name: NativeStat
   error:
       additionalProperties:
         type: string

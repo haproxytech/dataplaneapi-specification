@@ -1,5 +1,6 @@
 native:
   title: Stats
+  x-go-name: NativeStat
   description: Current stats for one object.
   type: object
   properties:
@@ -16,6 +17,7 @@ native:
         type: server
     stats:
       type: object
+      x-go-name: NativeStatStats
       properties:
         qcur:
           type: integer

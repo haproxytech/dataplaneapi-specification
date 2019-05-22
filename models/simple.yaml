@@ -32,8 +32,10 @@ site:
           x-nullable: true
         listeners:
           type: array
+          x-go-name: SiteListeners
           items:
             type: object
+            x-go-name: SiteListener
             required:
                 - name
                 - address
@@ -62,8 +64,10 @@ site:
                     value: true
     farms:
       type: array
+      x-go-name: SiteFarms
       items:
         type: object
+        x-go-name: SiteFarm
         required:
           - name
           - use_as
@@ -93,6 +97,7 @@ site:
                 required: true
           balance:
             type: object
+            x-go-name: SiteFarmBalance
             properties:
               algorithm:
                 type: string
@@ -108,6 +113,7 @@ site:
           forwardfor:
             type: object
             x-display-name: ForwardFor
+            x-go-name: SiteFarmForwardFor
             required:
               - enabled
             properties:
@@ -124,8 +130,10 @@ site:
                 type: boolean        
           servers: 
             type: array
+            x-go-name: SiteServers
             items: 
               type: object
+              x-go-name: SiteServer
               required:
                 - name
                 - address
