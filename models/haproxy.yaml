@@ -847,6 +847,9 @@ tcp_request_rule:
       x-dependency: 
         cond: 
           required: true
+        type:
+          value: inspect-delay
+          required: true
   additionalProperties: false
   example:
     id: 0
@@ -900,6 +903,8 @@ tcp_response_rule:
       x-dependency: 
         cond:
           required: true
+        type: 
+          value: content
   additionalProperties: false
   example:
     id: 0
@@ -924,6 +929,7 @@ backend_switching_rule:
       x-dynamic-enum:
         operation: getBackends
         property: name
+      x-display-name: Backend Name
     cond:
       type: string
       x-display-name: Condition

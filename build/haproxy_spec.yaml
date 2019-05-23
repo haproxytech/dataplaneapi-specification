@@ -1291,6 +1291,9 @@ definitions:
           x-dependency:
             cond:
               required: true
+            type:
+              required: true
+              value: inspect-delay
           x-display-name: Condition Test
           x-dynamic-enum:
             freeFormat: true
@@ -1358,6 +1361,8 @@ definitions:
           x-dependency:
             cond:
               required: true
+            type:
+              value: content
           x-display-name: Condition Test
           x-dynamic-enum:
             freeFormat: true
@@ -1422,6 +1427,7 @@ definitions:
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
+          x-display-name: Backend Name
           x-dynamic-enum:
             operation: getBackends
             property: name
