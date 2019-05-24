@@ -1958,6 +1958,8 @@ configuration:
     summary: Return HAProxy configuration
     description: Returns HAProxy configuration file in plain text
     operationId: getHAProxyConfiguration
+    parameters:
+      - $ref: "#/parameters/transaction_id"
     produces:
       - text/plain
     tags:
