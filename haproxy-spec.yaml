@@ -28,6 +28,8 @@ definitions:
       $ref: "#/definitions/site"
   global:
     $ref: "models/haproxy.yaml#/global"
+  defaults:
+    $ref: "models/haproxy.yaml#/defaults"
   frontend:
     $ref: "models/haproxy.yaml#/frontend"
   frontends:
@@ -174,6 +176,14 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/reload"
+  balance:
+    $ref: "models/haproxy.yaml#/balance"
+  forwardfor:
+    $ref: "models/haproxy.yaml#/forwardfor"
+  default_server:
+    $ref: "models/haproxy.yaml#/default_server"
+  errorfile:
+    $ref: "models/haproxy.yaml#/errorfile"
 responses:
   BadRequest:
     description: Bad request
@@ -250,6 +260,8 @@ tags:
     description: Stats container
   - name: Global
     description: Managing global configuration (advanced mode)
+  - name: Defaults
+    description: Managing defaults configuration (advanced mode)
   - name: Frontend
     description: Managing frontend configuration (advanced mode)
   - name: Backend
@@ -309,6 +321,8 @@ paths:
     $ref: "paths/general.yaml#/configuration"    
   /services/haproxy/configuration/global:
     $ref: "paths/haproxy.yaml#/global"
+  /services/haproxy/configuration/defaults:
+    $ref: "paths/haproxy.yaml#/defaults"
   /services/haproxy/configuration/frontends:
     $ref: "paths/haproxy.yaml#/frontends"
   /services/haproxy/configuration/frontends/{name}:

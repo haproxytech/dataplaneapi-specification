@@ -53,25 +53,7 @@ definitions:
           items:
             properties:
               balance:
-                properties:
-                  algorithm:
-                    enum:
-                    - roundrobin
-                    - static-rr
-                    - leastconn
-                    - first
-                    - source
-                    - uri
-                    - url_param
-                    - random
-                    type: string
-                  arguments:
-                    items:
-                      pattern: ^[^\s]+$
-                      type: string
-                    type: array
-                type: object
-                x-go-name: SiteFarmBalance
+                $ref: '#/definitions/balance'
               cond:
                 enum:
                 - if
@@ -90,25 +72,7 @@ definitions:
                     value: conditional
                 x-display-name: Condition Test
               forwardfor:
-                properties:
-                  enabled:
-                    enum:
-                    - enabled
-                    - disabled
-                    type: string
-                  except:
-                    pattern: ^[^\s]+$
-                    type: string
-                  header:
-                    pattern: ^[^\s]+$
-                    type: string
-                  ifnone:
-                    type: boolean
-                required:
-                - enabled
-                type: object
-                x-display-name: ForwardFor
-                x-go-name: SiteFarmForwardFor
+                $ref: '#/definitions/forwardfor'
               mode:
                 enum:
                 - http
@@ -120,40 +84,7 @@ definitions:
                 x-nullable: false
               servers:
                 items:
-                  properties:
-                    address:
-                      pattern: ^[^\s]+$
-                      type: string
-                      x-nullable: false
-                    name:
-                      pattern: ^[^\s]+$
-                      type: string
-                      x-nullable: false
-                    port:
-                      maximum: 65535
-                      minimum: 0
-                      type: integer
-                      x-nullable: true
-                    ssl:
-                      enum:
-                      - enabled
-                      - disabled
-                      type: string
-                    ssl_certificate:
-                      pattern: ^[^\s]+$
-                      type: string
-                      x-dependency:
-                        ssl:
-                          value: enabled
-                    weight:
-                      type: integer
-                      x-nullable: true
-                  required:
-                  - name
-                  - address
-                  - port
-                  type: object
-                  x-go-name: SiteServer
+                  $ref: '#/definitions/server'
                 type: array
               use_as:
                 enum:
@@ -187,34 +118,7 @@ definitions:
               x-display-name: HTTP Connection Mode
             listeners:
               items:
-                properties:
-                  address:
-                    pattern: ^[^\s]+$
-                    type: string
-                    x-nullable: false
-                  name:
-                    pattern: ^[^\s]+$
-                    type: string
-                    x-nullable: false
-                  port:
-                    maximum: 65535
-                    minimum: 0
-                    type: integer
-                    x-nullable: true
-                  ssl:
-                    type: boolean
-                  ssl_certificate:
-                    pattern: ^[^\s]+$
-                    type: string
-                    x-dependency:
-                      ssl:
-                        value: true
-                required:
-                - name
-                - address
-                - port
-                type: object
-                x-go-name: SiteListener
+                $ref: '#/definitions/bind'
               type: array
             maxconn:
               type: integer
@@ -323,6 +227,90 @@ definitions:
           x-display-name: SSL Default DH Parameter Size
       title: Global
       type: object
+  defaults:
+      additionalProperties: false
+      description: HAProxy defaults configuration
+      properties:
+        balance:
+          $ref: '#/definitions/balance'
+        check_timeout:
+          type: integer
+          x-nullable: true
+        clflog:
+          type: boolean
+          x-display-name: CLF Log
+        client_timeout:
+          type: integer
+          x-nullable: true
+        clitcpka:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-display-name: Client TCP Keep Alive
+        connect_timeout:
+          type: integer
+          x-nullable: true
+        default_backend:
+          pattern: ^[A-Za-z0-9-_.:]+$
+          type: string
+          x-dynamic-enum:
+            operation: getBackends
+            property: name
+        default_server:
+          $ref: '#/definitions/default_server'
+        dontlognull:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-display-name: Don't Log Null
+        error_files:
+          items:
+            $ref: '#/definitions/errorfile'
+          type: array
+          x-go-name: ErrorFiles
+        forwardfor:
+          $ref: '#/definitions/forwardfor'
+        http-use-htx:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-display-name: HTTP Use HTX
+        http_connection_mode:
+          enum:
+          - httpclose
+          - http-server-close
+          - http-keep-alive
+          type: string
+        http_keep_alive_timeout:
+          type: integer
+          x-nullable: true
+        http_request_timeout:
+          type: integer
+          x-nullable: true
+        httplog:
+          type: boolean
+          x-display-name: HTTP Log
+        maxconn:
+          type: integer
+          x-display-name: Max Connections
+          x-nullable: true
+        mode:
+          enum:
+          - tcp
+          - http
+          - health
+          type: string
+        queue_timeout:
+          type: integer
+          x-nullable: true
+        server_timeout:
+          type: integer
+          x-nullable: true
+      title: Defaults
+      type: object
   frontend:
       additionalProperties: false
       description: HAProxy frontend configuration
@@ -382,7 +370,6 @@ definitions:
           enum:
           - http-tunnel
           - httpclose
-          - forceclose
           - http-server-close
           - http-keep-alive
           type: string
@@ -436,6 +423,7 @@ definitions:
           enum:
           - http
           - tcp
+          - health
           type: string
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
@@ -484,29 +472,7 @@ definitions:
           type: string
           x-display-name: Advanced Check
         balance:
-          properties:
-            algorithm:
-              enum:
-              - roundrobin
-              - static-rr
-              - leastconn
-              - first
-              - source
-              - uri
-              - url_param
-              - random
-              type: string
-            arguments:
-              items:
-                pattern: ^[^\s]+$
-                type: string
-              type: array
-              x-dependency:
-                algorithm:
-                  value:
-                  - uri
-                  - url_param
-          type: object
+          $ref: '#/definitions/balance'
         check_timeout:
           type: integer
           x-nullable: true
@@ -526,44 +492,12 @@ definitions:
             mode:
               value: http
         default_server:
-          properties:
-            fall:
-              type: integer
-              x-nullable: true
-            inter:
-              type: integer
-              x-nullable: true
-            port:
-              maximum: 65535
-              minimum: 0
-              type: integer
-              x-nullable: true
-            rise:
-              type: integer
-              x-nullable: true
-          type: object
+          $ref: '#/definitions/default_server'
         forwardfor:
-          properties:
-            enabled:
-              enum:
-              - enabled
-              - disabled
-              type: string
-            except:
-              pattern: ^[^\s]+$
-              type: string
-            header:
-              pattern: ^[^\s]+$
-              type: string
-            ifnone:
-              type: boolean
-          required:
-          - enabled
-          type: object
+          $ref: '#/definitions/forwardfor'
           x-dependency:
             mode:
               value: http
-          x-display-name: ForwardFor
         http-use-htx:
           enum:
           - enabled
@@ -576,7 +510,6 @@ definitions:
           enum:
           - http-tunnel
           - httpclose
-          - forceclose
           - http-server-close
           - http-keep-alive
           type: string
@@ -612,6 +545,7 @@ definitions:
           enum:
           - http
           - tcp
+          - health
           type: string
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
@@ -760,6 +694,9 @@ definitions:
         cookie:
           pattern: ^[^\s]+$
           type: string
+        inter:
+          type: integer
+          x-nullable: true
         maintenance:
           enum:
           - enabled
@@ -2407,6 +2344,86 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/reload"
+  balance:
+      properties:
+        algorithm:
+          enum:
+          - roundrobin
+          - static-rr
+          - leastconn
+          - first
+          - source
+          - uri
+          - url_param
+          - random
+          type: string
+        arguments:
+          items:
+            pattern: ^[^\s]+$
+            type: string
+          type: array
+          x-dependency:
+            algorithm:
+              value:
+              - uri
+              - url_param
+      type: object
+  forwardfor:
+      properties:
+        enabled:
+          enum:
+          - enabled
+          - disabled
+          type: string
+        except:
+          pattern: ^[^\s]+$
+          type: string
+        header:
+          pattern: ^[^\s]+$
+          type: string
+        ifnone:
+          type: boolean
+      required:
+      - enabled
+      type: object
+      x-display-name: ForwardFor
+  default_server:
+      properties:
+        fall:
+          type: integer
+          x-nullable: true
+        inter:
+          type: integer
+          x-nullable: true
+        port:
+          maximum: 65535
+          minimum: 0
+          type: integer
+          x-nullable: true
+        rise:
+          type: integer
+          x-nullable: true
+      type: object
+  errorfile:
+      properties:
+        code:
+          enum:
+          - 200
+          - 400
+          - 403
+          - 405
+          - 408
+          - 425
+          - 429
+          - 500
+          - 502
+          - 503
+          - 504
+          type: integer
+        file:
+          type: string
+      type: object
+      x-display-name: Error File
 responses:
   BadRequest:
     description: Bad request
@@ -2483,6 +2500,8 @@ tags:
     description: Stats container
   - name: Global
     description: Managing global configuration (advanced mode)
+  - name: Defaults
+    description: Managing defaults configuration (advanced mode)
   - name: Frontend
     description: Managing frontend configuration (advanced mode)
   - name: Backend
@@ -3029,6 +3048,61 @@ paths:
         summary: Replace global
         tags:
         - Global
+        - HAProxy configuration management
+  /services/haproxy/configuration/defaults:
+      get:
+        description: Returns defaults part of configuration.
+        operationId: getDefaults
+        parameters:
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/defaults'
+              type: object
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return defaults part of configuration
+        tags:
+        - Defaults
+        - HAProxy configuration management
+      put:
+        description: Replace defaults part of config
+        operationId: replaceDefaults
+        parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/defaults'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "200":
+            description: Defaults replaced
+            schema:
+              $ref: '#/definitions/defaults'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/defaults'
+          "400":
+            $ref: '#/responses/BadRequest'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace defaults
+        tags:
+        - Defaults
         - HAProxy configuration management
   /services/haproxy/configuration/frontends:
       get:

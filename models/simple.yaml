@@ -33,34 +33,7 @@ site:
         listeners:
           type: array
           items:
-            type: object
-            x-go-name: SiteListener
-            required:
-                - name
-                - address
-                - port
-            properties:
-              name:
-                type: string
-                pattern: '^[^\s]+$'
-                x-nullable: false
-              address:
-                type: string
-                pattern: '^[^\s]+$'
-                x-nullable: false
-              port:
-                type: integer
-                x-nullable: true
-                minimum: 0
-                maximum: 65535
-              ssl:
-                type: boolean
-              ssl_certificate:
-                type: string
-                pattern: '^[^\s]+$'
-                x-dependency:
-                  ssl: 
-                    value: true
+            $ref: "#/definitions/bind"
     farms:
       type: array
       items:
@@ -94,73 +67,16 @@ site:
                 value: conditional
                 required: true
           balance:
-            type: object
-            x-go-name: SiteFarmBalance
-            properties:
-              algorithm:
-                type: string
-                enum: [roundrobin, static-rr, leastconn, first, source, uri, url_param, random]
-              arguments:
-                type: array
-                items:
-                  type: string
-                  pattern: '^[^\s]+$'
+            $ref: "#/definitions/balance"
           mode:
             type: string
             enum: [http, tcp]
           forwardfor:
-            type: object
-            x-display-name: ForwardFor
-            x-go-name: SiteFarmForwardFor
-            required:
-              - enabled
-            properties:
-              enabled:
-                type: string
-                enum: [enabled, disabled]
-              except:
-                type: string
-                pattern: '^[^\s]+$'
-              header:
-                type: string
-                pattern: '^[^\s]+$'
-              ifnone:
-                type: boolean        
+            $ref: "#/definitions/forwardfor"
           servers: 
             type: array
             items: 
-              type: object
-              x-go-name: SiteServer
-              required:
-                - name
-                - address
-                - port
-              properties:
-                name:
-                  type: string
-                  pattern: '^[^\s]+$'
-                  x-nullable: false
-                address:
-                  type: string
-                  pattern: '^[^\s]+$'
-                  x-nullable: false
-                port:
-                  type: integer
-                  x-nullable: true
-                  minimum: 0
-                  maximum: 65535
-                ssl:
-                  type: string
-                  enum: [enabled, disabled]
-                ssl_certificate:
-                  type: string
-                  pattern: '^[^\s]+$'
-                  x-dependency:
-                    ssl: 
-                      value: enabled
-                weight:
-                  type: integer
-                  x-nullable: true
+              $ref: "#/definitions/server"
   additionalProperties: false
   example:
     name: test_site

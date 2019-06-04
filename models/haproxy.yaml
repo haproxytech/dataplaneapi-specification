@@ -76,6 +76,78 @@ global:
       type: integer
       x-nullable: true
   additionalProperties: false
+defaults:
+  title: Defaults
+  description: HAProxy defaults configuration
+  type: object
+  properties:
+    mode: 
+      type: string
+      enum: [tcp, http, health]
+    balance:
+      $ref: "#/definitions/balance"
+    maxconn:
+      type: integer
+      x-nullable: true
+      x-display-name: Max Connections
+    http_connection_mode:
+      type: string
+      enum: [httpclose, http-server-close, http-keep-alive]
+    http-use-htx:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: HTTP Use HTX
+    dontlognull:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: Don't Log Null
+    httplog:
+      type: boolean
+      x-display-name: HTTP Log
+    clflog:
+      type: boolean
+      x-display-name: CLF Log
+    clitcpka: 
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: Client TCP Keep Alive
+    forwardfor:
+      $ref: "#/definitions/forwardfor"
+    check_timeout:
+      type: integer
+      x-nullable: true
+    connect_timeout:
+      type: integer
+      x-nullable: true
+    client_timeout:
+      type: integer
+      x-nullable: true
+    http_request_timeout:
+      type: integer
+      x-nullable: true
+    http_keep_alive_timeout:
+      type: integer
+      x-nullable: true
+    server_timeout:
+      type: integer
+      x-nullable: true
+    queue_timeout:
+      type: integer
+      x-nullable: true
+    default_backend:
+      type: string
+      pattern: '^[A-Za-z0-9-_.:]+$'
+      x-dynamic-enum: 
+        operation: getBackends
+        property: name
+    default_server:
+        $ref: "#/definitions/default_server"
+    error_files:
+      type: array
+      x-go-name: ErrorFiles
+      items:
+        $ref: "#/definitions/errorfile"
+  additionalProperties: false
 frontend:
   title: Frontend
   description: HAProxy frontend configuration
@@ -89,7 +161,7 @@ frontend:
       x-nullable: false
     mode:
       type: string
-      enum: [http, tcp]
+      enum: [http, tcp, health]
     httplog:
       type: boolean
       x-display-name: HTTP Log
@@ -125,7 +197,7 @@ frontend:
       x-display-name: Don't Log Null
     http_connection_mode:
       type: string
-      enum: [http-tunnel, httpclose, forceclose, http-server-close, http-keep-alive]
+      enum: [http-tunnel, httpclose, http-server-close, http-keep-alive]
       x-dependency: 
         mode: 
           value: http
@@ -197,51 +269,24 @@ backend:
       pattern: '^[A-Za-z0-9-_.:]+$'
       x-nullable: false
     balance:
-      type: object
-      properties:
-        algorithm:
-          type: string
-          enum: [roundrobin, static-rr, leastconn, first, source, uri, url_param, random]
-        arguments:
-          type: array
-          items:
-            type: string
-            pattern: '^[^\s]+$'
-          x-dependency: 
-            algorithm: 
-              value: [uri, url_param]
+      $ref: "#/definitions/balance"
     mode:
       type: string
-      enum: [http, tcp]
+      enum: [http, tcp, health]
     log_tag:
       type: string
       pattern: '^[^\s]+$'
     http_connection_mode:
       type: string
-      enum: [http-tunnel, httpclose, forceclose, http-server-close, http-keep-alive]
+      enum: [http-tunnel, httpclose, http-server-close, http-keep-alive]
       x-dependency: 
         mode: 
           value: http
     forwardfor:
-      type: object
-      x-display-name: ForwardFor
-      x-dependency: 
-        mode: 
+      $ref: "#/definitions/forwardfor"
+      x-dependency:
+        mode:
           value: http
-      required:
-        - enabled
-      properties:
-        enabled:
-          type: string
-          enum: [enabled, disabled]
-        except:
-          type: string
-          pattern: '^[^\s]+$'
-        header:
-          type: string
-          pattern: '^[^\s]+$'
-        ifnone:
-          type: boolean    
     cookie:
       type: string
       pattern: '^[^\s]+$'   
@@ -249,22 +294,7 @@ backend:
         mode: 
           value: http 
     default_server:
-      type: object
-      properties:
-        inter:
-          type: integer
-          x-nullable: true
-        rise:
-          type: integer
-          x-nullable: true
-        fall:
-          type: integer
-          x-nullable: true
-        port:
-          type: integer
-          minimum: 0
-          maximum: 65535
-          x-nullable: true
+        $ref: "#/definitions/default_server"
     check_timeout:
       type: integer
       x-nullable: true
@@ -430,6 +460,9 @@ server:
       x-display-name: Max Connections
       x-nullable: true
     weight:
+      type: integer
+      x-nullable: true
+    inter:
       type: integer
       x-nullable: true
     cookie:
@@ -1191,7 +1224,60 @@ acl:
       type: string
       x-nullable: false
   additionalProperties: false
-
-
-
-
+default_server:
+  type: object
+  properties:
+    inter:
+      type: integer
+      x-nullable: true
+    rise:
+      type: integer
+      x-nullable: true
+    fall:
+      type: integer
+      x-nullable: true
+    port:
+      type: integer
+      minimum: 0
+      maximum: 65535
+      x-nullable: true
+forwardfor:
+  type: object
+  x-display-name: ForwardFor
+  required:
+    - enabled
+  properties:
+    enabled:
+      type: string
+      enum: [enabled, disabled]
+    except:
+      type: string
+      pattern: '^[^\s]+$'
+    header:
+      type: string
+      pattern: '^[^\s]+$'
+    ifnone:
+      type: boolean    
+balance:
+  type: object
+  properties:
+    algorithm:
+      type: string
+      enum: [roundrobin, static-rr, leastconn, first, source, uri, url_param, random]
+    arguments:
+      type: array
+      items:
+        type: string
+        pattern: '^[^\s]+$'
+      x-dependency: 
+        algorithm: 
+          value: [uri, url_param]
+errorfile:
+  type: object
+  x-display-name: Error File
+  properties:
+    code: 
+      type: integer
+      enum: [200, 400, 403, 405, 408, 425, 429, 500, 502, 503, 504]
+    file:
+      type: string
