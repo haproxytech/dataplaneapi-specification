@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  title: HAProxy API
+  title: HAProxy Data Plane API
   description: |
     API for editing and managing haproxy instances. Provides process information, configuration management,
     haproxy stats and logs.
@@ -12,7 +12,7 @@ info:
     email: support@haproxy.com
 externalDocs:
   url: https://cbonte.github.io/haproxy-dconv/
-  description: Offical HAProxy documentation
+  description: HAProxy Documentation
 definitions:
   site:
     $ref: "models/simple.yaml#/site"
