@@ -123,6 +123,8 @@ frontends:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/frontends"
@@ -278,6 +280,8 @@ backends:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/backends"
@@ -439,6 +443,8 @@ binds:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/binds"
@@ -624,6 +630,8 @@ servers:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/servers"
@@ -810,6 +818,8 @@ tcp_response_rules:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/tcp_response_rules"
@@ -1006,6 +1016,8 @@ tcp_request_rules:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/tcp_request_rules"
@@ -1226,6 +1238,8 @@ http_request_rules:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/http_request_rules"
@@ -1446,6 +1460,8 @@ http_response_rules:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/http_response_rules"
@@ -1659,6 +1675,8 @@ backend_switching_rules:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/backend_switching_rules"
@@ -1844,6 +1862,8 @@ server_switching_rules:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/server_switching_rules"
@@ -2025,6 +2045,8 @@ configuration:
         description: Operation successful
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               type: string
@@ -2096,6 +2118,8 @@ filters:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/filters"
@@ -2309,6 +2333,8 @@ stick_rules:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/stick_rules"
@@ -2501,6 +2527,8 @@ log_targets:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/log_targets"
@@ -2721,6 +2749,8 @@ acls:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/acls"

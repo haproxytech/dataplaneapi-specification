@@ -12,6 +12,8 @@ sites:
         description: Successful operation
         schema:
           type: object
+          required:
+            - data
           properties:
             data:
               $ref: "#/definitions/sites"

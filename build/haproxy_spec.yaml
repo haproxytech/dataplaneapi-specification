@@ -2626,6 +2626,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/sites'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -3119,6 +3121,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/frontends'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -3274,6 +3278,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/backends'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -3434,6 +3440,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/binds'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -3619,6 +3627,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/servers'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -3812,6 +3822,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/http_request_rules'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -4046,6 +4058,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/http_response_rules'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -4281,6 +4295,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/tcp_request_rules'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -4507,6 +4523,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/tcp_response_rules'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -4702,6 +4720,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/backend_switching_rules'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -4892,6 +4912,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/server_switching_rules'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -5089,6 +5111,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/filters'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -5311,6 +5335,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/stick_rules'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -5504,6 +5530,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/log_targets'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -5734,6 +5762,8 @@ paths:
                   type: integer
                 data:
                   $ref: '#/definitions/acls'
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
@@ -5953,6 +5983,8 @@ paths:
                   type: integer
                 data:
                   type: string
+              required:
+              - data
               type: object
           default:
             $ref: '#/responses/DefaultError'
