@@ -6,7 +6,7 @@ This is the [OpenAPI 2.0 (fka Swagger)](https://github.com/OAI/OpenAPI-Specifica
 
 ## Contributing 
 
-When contriuting change files located it paths/ and models/ directories and the haproxy-spec.yaml, and then build the resulting one-file spec using the build binary in build directory:
+When contributing change files located it paths/ and models/ directories and the haproxy-spec.yaml, and then build the resulting one-file spec using the build binary in build directory:
 
 ```
 ./build -file ../haproxy-spec.yaml > haproxy_spec.yaml
