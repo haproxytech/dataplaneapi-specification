@@ -1,6 +1,6 @@
 # ![HAProxy](assets/images/haproxy-weblogo-210x49.png "HAProxy")
 
-## HAProxy Dataplane API Specification
+## HAProxy Data Plane API Specification
 
 This is the [OpenAPI 2.0 (fka Swagger)](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) specification for the [HAProxy Data Plane API project](https://github.com/haproxytech/dataplaneapi)
 

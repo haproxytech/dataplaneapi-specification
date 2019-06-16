@@ -215,8 +215,8 @@ specification:
   get:
     tags:
       - Specification
-    summary: Dataplane API Specification
-    description: Return Dataplane API OpenAPI specification
+    summary: Data Plane API Specification
+    description: Return Data Plane API OpenAPI specification
     operationId: getSpecification
     produces:
       - application/json

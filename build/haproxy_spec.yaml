@@ -2549,7 +2549,7 @@ paths:
         - Discovery
   /specification:
       get:
-        description: Return Dataplane API OpenAPI specification
+        description: Return Data Plane API OpenAPI specification
         operationId: getSpecification
         produces:
         - application/json
@@ -2560,7 +2560,7 @@ paths:
               type: object
           default:
             $ref: '#/responses/DefaultError'
-        summary: Dataplane API Specification
+        summary: Data Plane API Specification
         tags:
         - Specification
   /services:
