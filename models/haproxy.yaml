@@ -881,7 +881,7 @@ tcp_request_rule:
         cond: 
           required: true
         type:
-          value: inspect-delay
+          value: [connection, content, session]
           required: true
   additionalProperties: false
   example:

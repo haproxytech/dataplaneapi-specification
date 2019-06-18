@@ -1230,7 +1230,10 @@ definitions:
               required: true
             type:
               required: true
-              value: inspect-delay
+              value:
+              - connection
+              - content
+              - session
           x-display-name: Condition Test
           x-dynamic-enum:
             freeFormat: true
