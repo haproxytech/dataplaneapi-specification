@@ -477,6 +477,18 @@ server:
     maintenance:
       type: string
       enum: [enabled, disabled]
+    on-error:
+      type: string
+      enum: [fastinter, fail-check, sudden-death, mark-down]
+      x-nullable: true
+    on-marked-down:
+      type: string
+      enum: [shutdown-sessions]
+      x-nullable: true
+    on-marked-up:
+      type: string
+      enum: [shutdown-backup-sessions]
+      x-nullable: true
     ssl:
       type: string
       enum: [enabled, disabled]
