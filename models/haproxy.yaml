@@ -15,6 +15,9 @@ global:
     master-worker:
       type: boolean
       x-display-name: Master Worker Mode
+    external_check:
+      type: boolean
+      x-display-name: External Check
     pidfile:
       type: string
       x-display-name: PID File
@@ -134,6 +137,17 @@ defaults:
     queue_timeout:
       type: integer
       x-nullable: true
+    external_check:
+      type: boolean
+      x-display-name: External Check
+    external_check_path:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: External Check Path
+    external_check_command:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: External Check Command
     default_backend:
       type: string
       pattern: '^[A-Za-z0-9-_.:]+$'
@@ -318,6 +332,17 @@ backend:
         version:
           type: string
           pattern: '^[^\s]+$'
+    external_check:
+      type: boolean
+      x-display-name: External Check
+    external_check_path:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: External Check Path
+    external_check_command:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: External Check Command
     queue_timeout:
       type: integer
       x-nullable: true
@@ -1283,7 +1308,7 @@ forwardfor:
       type: string
       pattern: '^[^\s]+$'
     ifnone:
-      type: boolean    
+      type: boolean
 balance:
   type: object
   properties:

@@ -170,6 +170,9 @@ definitions:
           - enabled
           - disabled
           type: string
+        external_check:
+          type: boolean
+          x-display-name: External Check
         master-worker:
           type: boolean
           x-display-name: Master Worker Mode
@@ -270,6 +273,17 @@ definitions:
             $ref: '#/definitions/errorfile'
           type: array
           x-go-name: ErrorFiles
+        external_check:
+          type: boolean
+          x-display-name: External Check
+        external_check_command:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: External Check Command
+        external_check_path:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: External Check Path
         forwardfor:
           $ref: '#/definitions/forwardfor'
         http-use-htx:
@@ -493,6 +507,17 @@ definitions:
               value: http
         default_server:
           $ref: '#/definitions/default_server'
+        external_check:
+          type: boolean
+          x-display-name: External Check
+        external_check_command:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: External Check Command
+        external_check_path:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: External Check Path
         forwardfor:
           $ref: '#/definitions/forwardfor'
           x-dependency:
