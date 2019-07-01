@@ -399,6 +399,8 @@ bind:
       type: string
       pattern: '^[^\s]+$'
       x-nullable: false
+    accept_proxy:
+      type: boolean
     address:
       type: string
       pattern: '^[^\s]+$'
