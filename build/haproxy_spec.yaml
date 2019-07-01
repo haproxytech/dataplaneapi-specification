@@ -656,6 +656,15 @@ definitions:
           x-nullable: true
         transparent:
           type: boolean
+        verify:
+          enum:
+          - none
+          - optional
+          - required
+          type: string
+          x-dependency:
+            ssl:
+              value: enabled
       required:
       - name
       title: Bind
@@ -755,6 +764,14 @@ definitions:
           enum:
           - enabled
           - disabled
+          type: string
+          x-dependency:
+            ssl:
+              value: enabled
+        verify:
+          enum:
+          - none
+          - required
           type: string
           x-dependency:
             ssl:

@@ -425,6 +425,12 @@ bind:
       x-dependency: 
         ssl: 
           value: true
+    verify:
+      type: string
+      enum: [none, optional, required]
+      x-dependency:
+        ssl:
+          value: enabled
     transparent:
       type: boolean
     tcp_user_timeout:
@@ -510,6 +516,12 @@ server:
       enum: [enabled, disabled]
       x-dependency: 
         ssl: 
+          value: enabled
+    verify:
+      type: string
+      enum: [none, required]
+      x-dependency:
+        ssl:
           value: enabled
   additionalProperties: false
   example:
