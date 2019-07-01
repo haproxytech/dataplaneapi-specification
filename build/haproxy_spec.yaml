@@ -621,6 +621,8 @@ definitions:
         name: http
         port: 80
       properties:
+        accept_proxy:
+          type: boolean
         address:
           pattern: ^[^\s]+$
           type: string
