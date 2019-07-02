@@ -274,7 +274,10 @@ definitions:
           type: array
           x-go-name: ErrorFiles
         external_check:
-          type: boolean
+          enum:
+          - enabled
+          - disabled
+          type: string
           x-display-name: External Check
         external_check_command:
           pattern: ^[^\s]+$
@@ -508,7 +511,10 @@ definitions:
         default_server:
           $ref: '#/definitions/default_server'
         external_check:
-          type: boolean
+          enum:
+          - enabled
+          - disabled
+          type: string
           x-display-name: External Check
         external_check_command:
           pattern: ^[^\s]+$

@@ -138,7 +138,8 @@ defaults:
       type: integer
       x-nullable: true
     external_check:
-      type: boolean
+      type: string
+      enum: [enabled, disabled]
       x-display-name: External Check
     external_check_path:
       type: string
@@ -333,7 +334,8 @@ backend:
           type: string
           pattern: '^[^\s]+$'
     external_check:
-      type: boolean
+      type: string
+      enum: [enabled, disabled]
       x-display-name: External Check
     external_check_path:
       type: string
