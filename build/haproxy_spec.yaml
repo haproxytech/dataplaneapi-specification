@@ -759,17 +759,14 @@ definitions:
           - sudden-death
           - mark-down
           type: string
-          x-nullable: true
         on-marked-down:
           enum:
           - shutdown-sessions
           type: string
-          x-nullable: true
         on-marked-up:
           enum:
           - shutdown-backup-sessions
           type: string
-          x-nullable: true
         port:
           maximum: 65535
           minimum: 0
