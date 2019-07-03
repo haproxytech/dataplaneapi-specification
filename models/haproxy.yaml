@@ -439,6 +439,8 @@ bind:
     process:
       type: string
       pattern: '^[^\s]+$'
+    v4v6:
+      type: boolean
     ssl:
       type: boolean
     ssl_certificate:
@@ -1203,7 +1205,6 @@ log_target:
           required: true
     length:
       type: integer
-      x-dependency: 
       x-dependency: 
         global: 
           value: false
