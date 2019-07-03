@@ -689,6 +689,8 @@ definitions:
           x-nullable: true
         transparent:
           type: boolean
+        v4v6:
+          type: boolean
         verify:
           enum:
           - none
