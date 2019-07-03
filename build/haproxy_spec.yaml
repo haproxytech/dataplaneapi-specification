@@ -2296,10 +2296,6 @@ definitions:
       type: object
   endpoint:
       description: Endpoint definition
-      example:
-        description: Collection of all backends
-        title: Backends
-        url: /haproxy/backends
       properties:
         description:
           description: Endpoint description

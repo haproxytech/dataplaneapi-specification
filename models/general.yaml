@@ -12,10 +12,6 @@ endpoint:
     description:
       type: string
       description: Endpoint description
-  example:
-    url: /haproxy/backends
-    title: Backends
-    description: Collection of all backends
 process_info:
   title: HAProxy Information
   description: General HAProxy process information
