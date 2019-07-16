@@ -5,7 +5,7 @@ info:
   description: |
     API for editing and managing haproxy instances. Provides process information, configuration management,
     haproxy stats and logs.
-  version: '1.0'
+  version: '1.1'
   contact:
     name: HAProxy Support
     url: https://my.haproxy.com/portal/cust/login
@@ -234,6 +234,17 @@ definitions:
       additionalProperties: false
       description: HAProxy defaults configuration
       properties:
+        adv_check:
+          enum:
+          - ssl-hello-chk
+          - smtpchk
+          - ldap-check
+          - mysql-check
+          - pgsql-check
+          - tcp-check
+          - redis-check
+          type: string
+          x-display-name: Advanced Check
         balance:
           $ref: '#/definitions/balance'
         check_timeout:
@@ -254,6 +265,14 @@ definitions:
         connect_timeout:
           type: integer
           x-nullable: true
+        contstats:
+          enum:
+          - enabled
+          type: string
+          x-display-name: Continous Statistics
+        cookie:
+          pattern: ^[^\s]+$
+          type: string
         default_backend:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
@@ -304,12 +323,32 @@ definitions:
         http_keep_alive_timeout:
           type: integer
           x-nullable: true
+        http_pretend_keepalive:
+          enum:
+          - enabled
+          - disabled
+          type: string
         http_request_timeout:
           type: integer
           x-nullable: true
+        httpchk:
+          $ref: '#/definitions/httpchk'
         httplog:
           type: boolean
           x-display-name: HTTP Log
+        log_format:
+          type: string
+        log_format_sd:
+          type: string
+          x-display-name: Log Format SD
+        log_separate_errors:
+          enum:
+          - enabled
+          - disabled
+          type: string
+        log_tag:
+          pattern: ^[^\s]+$
+          type: string
         maxconn:
           type: integer
           x-display-name: Max Connections
@@ -318,14 +357,21 @@ definitions:
           enum:
           - tcp
           - http
-          - health
           type: string
         queue_timeout:
+          type: integer
+          x-nullable: true
+        redispatch:
+          $ref: '#/definitions/redispatch'
+        retries:
           type: integer
           x-nullable: true
         server_timeout:
           type: integer
           x-nullable: true
+        tcplog:
+          type: boolean
+          x-display-name: TCP Log
       title: Defaults
       type: object
   frontend:
@@ -359,7 +405,6 @@ definitions:
         contstats:
           enum:
           - enabled
-          - disabled
           type: string
           x-display-name: Continous Statistics
         default_backend:
@@ -374,6 +419,11 @@ definitions:
           - disabled
           type: string
           x-display-name: Don't Log Null
+        forwardfor:
+          $ref: '#/definitions/forwardfor'
+          x-dependency:
+            mode:
+              value: http
         http-use-htx:
           enum:
           - enabled
@@ -385,7 +435,6 @@ definitions:
           x-display-name: HTTP Use HTX
         http_connection_mode:
           enum:
-          - http-tunnel
           - httpclose
           - http-server-close
           - http-keep-alive
@@ -399,14 +448,6 @@ definitions:
             mode:
               value: http
           x-nullable: true
-        http_pretend_keepalive:
-          enum:
-          - enabled
-          - disabled
-          type: string
-          x-dependency:
-            mode:
-              value: http
         http_request_timeout:
           type: integer
           x-dependency:
@@ -440,7 +481,6 @@ definitions:
           enum:
           - http
           - tcp
-          - health
           type: string
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
@@ -496,12 +536,6 @@ definitions:
         connect_timeout:
           type: integer
           x-nullable: true
-        contstats:
-          enum:
-          - enabled
-          - disabled
-          type: string
-          x-display-name: Continous Statistics
         cookie:
           pattern: ^[^\s]+$
           type: string
@@ -539,7 +573,6 @@ definitions:
               value: http
         http_connection_mode:
           enum:
-          - http-tunnel
           - httpclose
           - http-server-close
           - http-keep-alive
@@ -547,28 +580,31 @@ definitions:
           x-dependency:
             mode:
               value: http
-        httpchk:
-          properties:
-            method:
-              enum:
-              - HEAD
-              - PUT
-              - POST
-              - GET
-              - TRACE
-              - PATCH
-              type: string
-            uri:
-              pattern: ^[^\s]+$
-              type: string
-            version:
-              pattern: ^[^\s]+$
-              type: string
-          type: object
+        http_keep_alive_timeout:
+          type: integer
           x-dependency:
             mode:
               value: http
-          x-display-name: HTTP Check
+          x-nullable: true
+        http_pretend_keepalive:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-dependency:
+            mode:
+              value: http
+        http_request_timeout:
+          type: integer
+          x-dependency:
+            mode:
+              value: http
+          x-nullable: true
+        httpchk:
+          $ref: '#/definitions/httpchk'
+          x-dependency:
+            mode:
+              value: http
         log_tag:
           pattern: ^[^\s]+$
           type: string
@@ -576,7 +612,6 @@ definitions:
           enum:
           - http
           - tcp
-          - health
           type: string
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
@@ -586,18 +621,7 @@ definitions:
           type: integer
           x-nullable: true
         redispatch:
-          properties:
-            enabled:
-              enum:
-              - enabled
-              - disabled
-              type: string
-            interval:
-              type: integer
-              x-nullable: false
-          required:
-          - enabled
-          type: object
+          $ref: '#/definitions/redispatch'
         retries:
           type: integer
           x-nullable: true
@@ -2468,6 +2492,38 @@ definitions:
         rise:
           type: integer
           x-nullable: true
+      type: object
+  httpchk:
+      properties:
+        method:
+          enum:
+          - HEAD
+          - PUT
+          - POST
+          - GET
+          - TRACE
+          - PATCH
+          type: string
+        uri:
+          pattern: ^[^\s]+$
+          type: string
+        version:
+          pattern: ^[^\s]+$
+          type: string
+      type: object
+      x-display-name: HTTP Check
+  redispatch:
+      properties:
+        enabled:
+          enum:
+          - enabled
+          - disabled
+          type: string
+        interval:
+          type: integer
+          x-nullable: false
+      required:
+      - enabled
       type: object
   errorfile:
       properties:
