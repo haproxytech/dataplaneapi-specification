@@ -1300,7 +1300,7 @@ forwardfor:
   properties:
     enabled:
       type: string
-      enum: [enabled, disabled]
+      enum: [enabled]
     except:
       type: string
       pattern: '^[^\s]+$'

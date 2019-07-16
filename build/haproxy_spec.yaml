@@ -2439,7 +2439,6 @@ definitions:
         enabled:
           enum:
           - enabled
-          - disabled
           type: string
         except:
           pattern: ^[^\s]+$
