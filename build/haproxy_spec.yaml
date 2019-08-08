@@ -681,6 +681,10 @@ definitions:
         address:
           pattern: ^[^\s]+$
           type: string
+        alpn:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: ALPN Protocols
         name:
           pattern: ^[^\s]+$
           type: string

@@ -486,6 +486,10 @@ bind:
       x-dependency: 
         ssl: 
           value: true
+    alpn:
+      type: string
+      x-display-name: ALPN Protocols
+      pattern: '^[^\s]+$'
     verify:
       type: string
       enum: [none, optional, required]
