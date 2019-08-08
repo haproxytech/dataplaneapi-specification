@@ -143,11 +143,9 @@ definitions:
     items:
       $ref: '#/definitions/acl'
   native_stats:
-    title: Stats Array
-    description: HAProxy stats array
-    type: array
-    items:
-      $ref: "models/stats.yaml#/native"
+    $ref: "models/stats.yaml#/native_stats"
+  native_stat:
+    $ref: "models/stats.yaml#/native"
   error:
     $ref: "models/errors.yaml#/error"
   endpoint:

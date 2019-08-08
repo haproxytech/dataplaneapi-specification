@@ -1,11 +1,28 @@
+native_stats:
+  x-go-name: NativeStats
+  title: Stats Array
+  description: HAProxy stats array
+  type: array
+  items:
+    type: object
+    title: Stats collection
+    description: Stats from one runtime API
+    x-go-name: NativeStatsCollection
+    properties:
+      runtimeAPI:
+        type: string
+      stats:
+        type: array
+        items:
+          $ref: "#/definitions/native_stat"
+      error:
+        type: string
 native:
   title: Stats
   x-go-name: NativeStat
   description: Current stats for one object.
   type: object
   properties:
-    runtimeApi:
-      type: string
     type:
       type: string
       enum: [backend, server, frontend]

@@ -31,5 +31,9 @@ native:
         description: Success
         schema:
           $ref: '#/definitions/native_stats'
+      '500':
+        description: Internal Server Error
+        schema:
+          $ref: '#/definitions/native_stats'
       'default':
         $ref: '#/responses/DefaultError'
