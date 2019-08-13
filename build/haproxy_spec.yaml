@@ -563,6 +563,25 @@ definitions:
           x-dependency:
             mode:
               value: http
+        hash_type:
+          properties:
+            function:
+              enum:
+              - sdbm
+              - djb2
+              - wt6
+              - crc32
+              type: string
+            method:
+              enum:
+              - map-based
+              - consistent
+              type: string
+            modifier:
+              enum:
+              - avalanche
+              type: string
+          type: object
         http-use-htx:
           enum:
           - enabled
