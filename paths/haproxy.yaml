@@ -2035,6 +2035,7 @@ configuration:
     operationId: getHAProxyConfiguration
     parameters:
       - $ref: "#/parameters/transaction_id"
+      - $ref: "#/parameters/version"
     produces:
       - text/plain
     tags:
