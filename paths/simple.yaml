@@ -10,6 +10,11 @@ sites:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -72,6 +77,11 @@ sites_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:

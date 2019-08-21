@@ -11,6 +11,11 @@ global:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -66,6 +71,11 @@ defaults:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -121,6 +131,11 @@ frontends:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -185,6 +200,11 @@ frontends_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -278,6 +298,11 @@ backends:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -342,6 +367,11 @@ backends_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -441,6 +471,11 @@ binds:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -517,6 +552,11 @@ binds_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -628,6 +668,11 @@ servers:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -704,6 +749,11 @@ servers_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -816,6 +866,11 @@ tcp_response_rules:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -894,6 +949,11 @@ tcp_response_rules_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -1014,6 +1074,11 @@ tcp_request_rules:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -1104,6 +1169,11 @@ tcp_request_rules_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -1236,6 +1306,11 @@ http_request_rules:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -1326,6 +1401,11 @@ http_request_rules_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -1458,6 +1538,11 @@ http_response_rules:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -1548,6 +1633,11 @@ http_response_rules_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -1673,6 +1763,11 @@ backend_switching_rules:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -1749,6 +1844,11 @@ backend_switching_rules_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -1860,6 +1960,11 @@ server_switching_rules:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -1936,6 +2041,11 @@ server_switching_rules_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -2044,6 +2154,11 @@ configuration:
     responses:
       '200':
         description: Operation successful
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -2117,6 +2232,11 @@ filters:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -2207,6 +2327,11 @@ filters_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -2332,6 +2457,11 @@ stick_rules:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -2408,6 +2538,11 @@ stick_rules_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -2526,6 +2661,11 @@ log_targets:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -2616,6 +2756,11 @@ log_targets_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:
@@ -2748,6 +2893,11 @@ acls:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           required:
@@ -2838,6 +2988,11 @@ acls_one:
     responses:
       '200':
         description: Successful operation
+        headers:
+          Configuration-Version:
+            description: Configuration file version
+            type: integer
+            x-nullable: false
         schema:
           type: object
           properties:

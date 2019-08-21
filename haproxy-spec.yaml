@@ -189,18 +189,38 @@ definitions:
 responses:
   BadRequest:
     description: Bad request
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
   NotFound:
     description: The specified resource was not found
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
   AlreadyExists:
     description: The specified resource already exists
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
   DefaultError:
     description: General Error
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
 parameters: 

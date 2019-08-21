@@ -2584,18 +2584,38 @@ definitions:
 responses:
   BadRequest:
     description: Bad request
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
   NotFound:
     description: The specified resource was not found
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
   AlreadyExists:
     description: The specified resource already exists
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
   DefaultError:
     description: General Error
+    headers:
+      Configuration-Version:
+        description: Configuration file version
+        type: integer
+        x-nullable: false
     schema:
       $ref: '#/definitions/error'
 parameters: 
@@ -2777,6 +2797,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -2867,6 +2892,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3164,6 +3194,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3219,6 +3254,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3274,6 +3314,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3367,6 +3412,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3431,6 +3481,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3524,6 +3579,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3593,6 +3653,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3704,6 +3769,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3780,6 +3850,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3891,6 +3966,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -3975,6 +4055,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4116,6 +4201,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4211,6 +4301,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4352,6 +4447,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4448,6 +4548,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4589,6 +4694,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4676,6 +4786,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4793,6 +4908,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4873,6 +4993,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -4987,6 +5112,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5065,6 +5195,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5179,6 +5314,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5264,6 +5404,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5402,6 +5547,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5488,6 +5638,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5599,6 +5754,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5683,6 +5843,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5821,6 +5986,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -5915,6 +6085,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -6053,6 +6228,11 @@ paths:
         responses:
           "200":
             description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
@@ -6137,6 +6317,11 @@ paths:
         responses:
           "200":
             description: Operation successful
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
             schema:
               properties:
                 _version:
