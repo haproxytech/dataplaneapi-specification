@@ -2388,9 +2388,6 @@ definitions:
       properties:
         haproxy:
           properties:
-            address:
-              description: The address of the replying server
-              type: string
             pid:
               description: Process id of the replying worker process
               type: integer
@@ -2402,10 +2399,6 @@ definitions:
             release_date:
               description: HAProxy version release date
               format: date
-              type: string
-            time:
-              description: Current time in milliseconds since Epoch.
-              format: date-time
               type: string
             uptime:
               description: HAProxy uptime in s
@@ -2443,6 +2436,54 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/transaction"
+  info:
+      description: General API, OS and hardware information
+      properties:
+        api:
+          properties:
+            build_date:
+              description: HAProxy Dataplane API build date
+              format: date-time
+              type: string
+            version:
+              description: HAProxy Dataplane API version string
+              type: string
+          type: object
+        system:
+          properties:
+            cpu_info:
+              properties:
+                model:
+                  type: string
+                num_cpus:
+                  description: Number of logical CPUs
+                  type: integer
+              type: object
+            hostname:
+              description: Hostname where the HAProxy is running
+              type: string
+            mem_info:
+              properties:
+                dataplaneapi_memory:
+                  type: integer
+                free_memory:
+                  type: integer
+                total_memory:
+                  type: integer
+              type: object
+            os_string:
+              description: OS string
+              type: string
+            time:
+              description: Current time in milliseconds since Epoch.
+              type: integer
+            uptime:
+              description: System uptime
+              type: integer
+              x-nullable: true
+          type: object
+      title: Information
+      type: object
   reload:
       description: HAProxy reload
       example:
@@ -2740,6 +2781,22 @@ paths:
         summary: Data Plane API Specification
         tags:
         - Specification
+  /info:
+      get:
+        description: Return API, hardware and OS information
+        operationId: getInfo
+        produces:
+        - application/json
+        responses:
+          "200":
+            description: Success
+            schema:
+              $ref: '#/definitions/info'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return API, hardware and OS information
+        tags:
+        - Information
   /services:
       get:
         description: Returns a list of API managed services endpoints.

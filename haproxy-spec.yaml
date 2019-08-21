@@ -166,6 +166,8 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/transaction"
+  info:
+    $ref: "models/general.yaml#/info"
   reload:
     $ref: "models/general.yaml#/reload"
   reloads:
@@ -317,6 +319,8 @@ paths:
     $ref: "paths/general.yaml#/root"
   /specification:
     $ref: "paths/general.yaml#/specification"
+  /info:
+    $ref: "paths/general.yaml#/info"
   /services:
     $ref: "paths/general.yaml#/services"
   /services/haproxy:

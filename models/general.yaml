@@ -12,6 +12,70 @@ endpoint:
     description:
       type: string
       description: Endpoint description
+info:
+  title: Information
+  description: General API, OS and hardware information
+  type: object
+  properties:
+    api:
+      type: object
+      properties:
+        version:
+          type: string
+          description: HAProxy Dataplane API version string
+        build_date:
+          type: string
+          format: date-time
+          description: HAProxy Dataplane API build date
+    system:
+      type: object
+      properties:
+        hostname:
+          type: string
+          description: Hostname where the HAProxy is running
+        cpu_info:
+          type: object
+          properties:
+            model:
+              type: string
+            num_cpus:
+              type: integer
+              description: Number of logical CPUs
+        os_string:
+          type: string
+          description: OS string
+        mem_info:
+          type: object
+          properties:
+            total_memory:
+              type: integer
+            free_memory:
+              type: integer
+            dataplaneapi_memory:
+              type: integer
+        time:
+          type: integer
+          description: Current time in milliseconds since Epoch.
+        uptime:
+          type: integer
+          description: System uptime
+          x-nullable: true
+  example:
+    api:
+      build_date: "2019-08-21T17:31:56.000Z"
+      version: v1.2.1 45a3288.dev
+    system:
+      hostname: test
+      os_string: "Linux 4.15.0-58-generic #64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019"
+      time: 1566401525
+      uptime: 87340
+      cpu_info:
+        model: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
+        num_cpus: 4
+      mem_info:
+        total_memory: 16681517056
+        free_memory: 5790642176
+        dataplaneapi_memory: 44755536
 process_info:
   title: HAProxy Information
   description: General HAProxy process information
@@ -27,13 +91,6 @@ process_info:
           type: string
           format: date
           description: HAProxy version release date
-        address:
-          type: string
-          description: The address of the replying server
-        time:
-          type: string
-          format: date-time
-          description: Current time in milliseconds since Epoch.
         processes:
           type: integer
           description: Number of spawned processes
