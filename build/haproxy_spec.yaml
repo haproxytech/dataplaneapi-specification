@@ -271,7 +271,6 @@ definitions:
           type: string
           x-display-name: Continous Statistics
         cookie:
-          pattern: ^[^\s]+$
           type: string
         default_backend:
           pattern: ^[A-Za-z0-9-_.:]+$
@@ -537,7 +536,6 @@ definitions:
           type: integer
           x-nullable: true
         cookie:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             mode:
@@ -1479,7 +1477,7 @@ definitions:
           type: integer
           x-nullable: true
         name:
-          pattern: ^[A-Za-z0-9-_.:]+$
+          pattern: ^[^\s]+$
           type: string
           x-display-name: Backend Name
           x-dynamic-enum:
@@ -2438,6 +2436,22 @@ definitions:
       $ref: "#/definitions/transaction"
   info:
       description: General API, OS and hardware information
+      example:
+        api:
+          build_date: "2019-08-21T17:31:56.000Z"
+          version: v1.2.1 45a3288.dev
+        system:
+          cpu_info:
+            model: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
+            num_cpus: 4
+          hostname: test
+          mem_info:
+            dataplaneapi_memory: 44755536
+            free_memory: 5790642176
+            total_memory: 16681517056
+          os_string: 'Linux 4.15.0-58-generic #64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019'
+          time: 1566401525
+          uptime: 87340
       properties:
         api:
           properties:

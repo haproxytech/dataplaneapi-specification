@@ -151,7 +151,6 @@ defaults:
       x-display-name: Continous Statistics
     cookie:
       type: string
-      pattern: '^[^\s]+$'
     client_timeout:
       type: integer
       x-nullable: true
@@ -358,7 +357,6 @@ backend:
           value: http
     cookie:
       type: string
-      pattern: '^[^\s]+$'   
       x-dependency: 
         mode: 
           value: http 
@@ -1055,7 +1053,7 @@ backend_switching_rule:
       x-nullable: true
     name:
       type: string
-      pattern: '^[A-Za-z0-9-_.:]+$'
+      pattern: '^[^\s]+$'
       x-nullable: false
       x-dynamic-enum:
         operation: getBackends
