@@ -78,6 +78,22 @@ configuration:
           $ref: '#/definitions/endpoints'
       'default':
         $ref: '#/responses/DefaultError'
+runtime:
+  get:
+    tags:
+      - Discovery
+    summary: Return list of HAProxy advanced runtime endpoints
+    description: Returns a list of endpoints to be used for advanced runtime settings of HAProxy objects.
+    operationId: getRuntimeEndpoints
+    produces:
+      - application/json
+    responses:
+      '200':
+        description: Success
+        schema:
+          $ref: '#/definitions/endpoints'
+      'default':
+        $ref: '#/responses/DefaultError'
 info:
   get:
     tags:
@@ -92,22 +108,6 @@ info:
         description: Success
         schema:
           $ref: '#/definitions/info'
-      'default':
-        $ref: '#/responses/DefaultError'
-process_info:
-  get:
-    tags:
-      - Information
-    summary: Return HAProxy process information
-    description: Return HAProxy process information
-    operationId: getHaproxyProcessInfo
-    produces:
-      - application/json
-    responses:
-      '200':
-        description: Success
-        schema:
-          $ref: '#/definitions/process_info'
       'default':
         $ref: '#/responses/DefaultError'
 transactions:

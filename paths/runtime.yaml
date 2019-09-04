@@ -1,0 +1,188 @@
+process_info:
+  get:
+    tags:
+      - Information
+    summary: Return HAProxy process information
+    description: Return HAProxy process information
+    operationId: getHaproxyProcessInfo
+    produces:
+      - application/json
+    responses:
+      '200':
+        description: Success
+        schema:
+          $ref: '#/definitions/process_infos'
+      'default':
+        $ref: '#/responses/DefaultError'
+servers_one:
+  get:
+    summary: Return one server runtime settings
+    description: Returns one server runtime settings by it's name in the specified backend.
+    operationId: getRuntimeServer
+    tags:
+      - Server
+      - Backend options
+    parameters:
+      - name: name
+        in: path
+        description: Server name
+        required: true
+        type: string
+      - name: backend
+        in: query
+        description: Parent backend name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: "#/definitions/runtime_server"
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  put:
+    summary: Replace server transient settings
+    description: Replaces a server transient settings by it's name in the specified backend.
+    operationId: replaceRuntimeServer
+    tags:
+      - Server
+      - Backend options
+    parameters:
+      - name: name
+        in: path
+        description: Server name
+        required: true
+        type: string
+      - name: backend
+        in: query
+        description: Parent backend name
+        required: true
+        type: string
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/runtime_server'
+    responses:
+      '200':
+        description: Server transient settings replaced
+        schema:
+          $ref: "#/definitions/runtime_server"
+      '400':
+        $ref: '#/responses/BadRequest'
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+commands:
+  post:
+    summary: Send Command
+    description: Send a command and execute it to the Runtime API
+    operationId: sendRuntimeCommand
+    tags:
+      - RuntimeCommand
+    parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/runtime_command'
+    responses:
+      '200':
+        description: Command executed successfully
+        schema:
+          $ref: '#/definitions/runtime_command'
+      'default':
+        $ref: '#/responses/DefaultError'
+stick_tables:
+  get:
+    summary: Return Stick Tables
+    description: Returns an array of all stick tables.
+    operationId: getStickTables
+    tags:
+      - StickTable
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/stick_tables"
+      'default':
+        $ref: '#/responses/DefaultError'
+stick_tables_one:
+  get:
+    summary: Return Stick Table
+    description: Returns one stick table from runtime.
+    operationId: getStickTable
+    tags:
+      - StickTable
+    parameters:
+      - name: name
+        in: path
+        description: Stick table name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/stick_table"
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+stick_table_entries:
+  get:
+    summary: Return Stick Table Entries
+    description: Returns an array of all entries in a given stick tables.
+    operationId: getStickTableEntries
+    tags:
+      - StickTable
+    parameters:
+      - name: stick_table
+        in: query
+        description: Stick table name
+        required: true
+        type: string
+      - name: filter
+        in: query
+        description: A list of filters in format data.<type> <operator> <value> separated by comma
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/stick_table_entries"
+      'default':
+        $ref: '#/responses/DefaultError'
+stick_table_entries_one:
+  get:
+    summary: Return Stick Table Entry
+    description: Returns one stick table entry from stick table.
+    operationId: getStickTableEntry
+    tags:
+      - StickTable
+    parameters:
+      - name: stick_table
+        in: query
+        description: Stick table name
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: Stick table name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/stick_table_entry"
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'

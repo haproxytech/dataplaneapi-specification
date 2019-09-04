@@ -5,7 +5,7 @@ info:
   description: |
     API for editing and managing haproxy instances. Provides process information, configuration management,
     haproxy stats and logs.
-  version: '1.2'
+  version: '2.0'
   contact:
     name: HAProxy Support
     url: https://my.haproxy.com/portal/cust/login
@@ -770,6 +770,11 @@ definitions:
           pattern: ^[^\s]+$
           type: string
           x-nullable: false
+        agent-check:
+          enum:
+          - enabled
+          - disabled
+          type: string
         backup:
           enum:
           - enabled
@@ -2393,7 +2398,7 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/endpoint'
-  process_info:
+  process_infos:
       description: General HAProxy process information
       example:
         haproxy:
@@ -2404,31 +2409,205 @@ definitions:
           time: "2018-07-02T12:00:00.124Z"
           uptime: 8
           version: 1.7-dev1-868ab3-148
-      properties:
-        haproxy:
-          properties:
-            pid:
-              description: Process id of the replying worker process
-              type: integer
-              x-nullable: true
-            processes:
-              description: Number of spawned processes
-              type: integer
-              x-nullable: true
-            release_date:
-              description: HAProxy version release date
-              format: date
-              type: string
-            uptime:
-              description: HAProxy uptime in s
-              type: integer
-              x-nullable: true
-            version:
-              description: HAProxy version string
-              type: string
-          type: object
+      items:
+        properties:
+          error:
+            type: string
+          info:
+            properties:
+              active_peers:
+                type: integer
+                x-nullable: true
+              busy_polling:
+                type: integer
+                x-nullable: true
+              bytes_out_rate:
+                type: integer
+                x-nullable: true
+              compress_bps_in:
+                type: integer
+                x-nullable: true
+              compress_bps_out:
+                type: integer
+                x-nullable: true
+              compress_bps_rate_lim:
+                type: integer
+                x-nullable: true
+              conn_rate:
+                type: integer
+                x-nullable: true
+              conn_rate_limit:
+                type: integer
+                x-nullable: true
+              connected_peers:
+                type: integer
+                x-nullable: true
+              cum_conns:
+                type: integer
+                x-nullable: true
+              cum_req:
+                type: integer
+                x-nullable: true
+              curr_conns:
+                type: integer
+                x-nullable: true
+              curr_ssl_conns:
+                type: integer
+                x-nullable: true
+              dropped_logs:
+                type: integer
+                x-nullable: true
+              failed_resolutions:
+                type: integer
+                x-nullable: true
+              hard_max_conn:
+                type: integer
+                x-nullable: true
+              idle_pct:
+                type: integer
+                x-nullable: true
+              jobs:
+                type: integer
+                x-nullable: true
+              listeners:
+                type: integer
+                x-nullable: true
+              max_conn:
+                type: integer
+                x-nullable: true
+              max_conn_rate:
+                type: integer
+                x-nullable: true
+              max_pipes:
+                type: integer
+                x-nullable: true
+              max_sess_rate:
+                type: integer
+                x-nullable: true
+              max_sock:
+                type: integer
+                x-nullable: true
+              max_ssl_conns:
+                type: integer
+                x-nullable: true
+              max_ssl_rate:
+                type: integer
+                x-nullable: true
+              max_zlib_mem_usage:
+                type: integer
+                x-nullable: true
+              mem_max_mb:
+                type: integer
+                x-nullable: true
+              nbthread:
+                description: Number of threads
+                type: integer
+                x-display-name: Number of Threads
+                x-nullable: true
+              node:
+                type: string
+              pid:
+                description: Process id of the replying worker process
+                type: integer
+                x-display-name: PID
+                x-nullable: true
+              pipes_free:
+                type: integer
+                x-nullable: true
+              pipes_used:
+                type: integer
+                x-nullable: true
+              pool_alloc_mb:
+                type: integer
+                x-nullable: true
+              pool_failed:
+                type: integer
+                x-nullable: true
+              pool_used_mb:
+                type: integer
+                x-nullable: true
+              process_num:
+                description: Process number
+                type: integer
+                x-display-name: Process Number
+                x-nullable: true
+              processes:
+                description: Number of spawned processes
+                type: integer
+                x-display-name: Number of processes
+                x-nullable: true
+              release_date:
+                description: HAProxy version release date
+                format: date
+                type: string
+              run_queue:
+                type: integer
+                x-nullable: true
+              sess_rate:
+                type: integer
+                x-nullable: true
+              sess_rate_limit:
+                type: integer
+                x-nullable: true
+              ssl_backend_key_rate:
+                type: integer
+                x-nullable: true
+              ssl_backend_max_key_rate:
+                type: integer
+                x-nullable: true
+              ssl_cache_lookups:
+                type: integer
+                x-nullable: true
+              ssl_cache_misses:
+                type: integer
+                x-nullable: true
+              ssl_frontend_key_rate:
+                type: integer
+                x-nullable: true
+              ssl_frontend_max_key_rate:
+                type: integer
+                x-nullable: true
+              ssl_frontend_session_reuse:
+                type: integer
+                x-nullable: true
+              ssl_rate:
+                type: integer
+                x-nullable: true
+              ssl_rate_limit:
+                type: integer
+                x-nullable: true
+              stopping:
+                type: integer
+                x-nullable: true
+              tasks:
+                type: integer
+                x-nullable: true
+              total_bytes_out:
+                type: integer
+                x-nullable: true
+              ulimit_n:
+                type: integer
+                x-nullable: true
+              unstoppable:
+                type: integer
+                x-nullable: true
+              uptime:
+                description: HAProxy uptime in s
+                type: integer
+                x-nullable: true
+              version:
+                description: HAProxy version string
+                type: string
+              zlib_mem_usage:
+                type: integer
+                x-nullable: true
+            type: object
+          runtimeAPI:
+            type: string
+        type: object
+        x-go-name: ProcessInfo
       title: HAProxy Information
-      type: object
+      type: array
   transaction:
       description: HAProxy configuration transaction
       example:
@@ -2546,6 +2725,223 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/reload"
+  runtime_server:
+      description: Runtime transient server properties
+      properties:
+        address:
+          pattern: ^[^\s]+$
+          readOnly: true
+          type: string
+          x-nullable: false
+        admin_state:
+          enum:
+          - up
+          - maint
+          - drain
+          type: string
+        operational_state:
+          enum:
+          - up
+          - down
+          - stopping
+          type: string
+        port:
+          maximum: 65535
+          minimum: 0
+          readOnly: true
+          type: integer
+          x-nullable: true
+        server_id:
+          readOnly: true
+          type: string
+        server_name:
+          readOnly: true
+          type: string
+      title: Runtime Server
+      type: object
+  stick_table:
+      description: Stick Table Information
+      properties:
+        expire:
+          type: integer
+          x-nullable: true
+        fields:
+          items:
+            properties:
+              field:
+                enum:
+                - server_id
+                - gpc0
+                - gpc1
+                - gpc1_rate
+                - conn_cnt
+                - conn_cur
+                - conn_rate
+                - sess_cnt
+                - sess_rate
+                - http_req_cnt
+                - http_req_rate
+                - http_err_cnt
+                - http_err_rate
+                - bytes_in_cnt
+                - bytes_in_rate
+                - bytes_out_cnt
+                - bytes_out_rate
+                type: string
+              period:
+                type: integer
+                x-dependency:
+                  type:
+                    value: rate
+              type:
+                enum:
+                - rate
+                - counter
+                type: string
+            type: object
+          type: array
+        keylen:
+          type: integer
+          x-display-name: Key Length
+          x-nullable: true
+        name:
+          type: string
+        nopurge:
+          type: boolean
+          x-display-name: No Purge
+        peers:
+          pattern: ^[^\s]+$
+          type: string
+        process:
+          description: Process number if master-worker mode
+          type: integer
+          x-nullable: true
+        size:
+          type: integer
+          x-nullable: true
+        store:
+          pattern: ^[^\s]+$
+          type: string
+        type:
+          enum:
+          - ip
+          - ipv6
+          - integer
+          - string
+          - binary
+          type: string
+      title: Stick Table
+      type: object
+  stick_tables:
+    title: Stick Tables Array
+    description: Array of runtime stick tables
+    type: array
+    items:
+      $ref: "#/definitions/stick_table"
+  stick_table_entry:
+      description: One entry in stick table
+      properties:
+        bytes_in_cnt:
+          type: integer
+          x-nullable: true
+        bytes_in_rate:
+          type: integer
+          x-nullable: true
+        bytes_out_cnt:
+          type: integer
+          x-nullable: true
+        bytes_out_rate:
+          type: integer
+          x-nullable: true
+        conn_cnt:
+          type: integer
+          x-nullable: true
+        conn_cur:
+          type: integer
+          x-nullable: true
+        conn_rate:
+          type: integer
+          x-nullable: true
+        exp:
+          type: integer
+          x-nullable: true
+        gpc0:
+          type: integer
+          x-nullable: true
+        gpc0_rate:
+          type: integer
+          x-nullable: true
+        gpc1:
+          type: integer
+          x-nullable: true
+        gpc1_rate:
+          type: integer
+          x-nullable: true
+        http_err_cnt:
+          type: integer
+          x-nullable: true
+        http_err_rate:
+          type: integer
+          x-nullable: true
+        http_req_cnt:
+          type: integer
+          x-nullable: true
+        http_req_rate:
+          type: integer
+          x-nullable: true
+        id:
+          type: string
+        key:
+          type: string
+        sess_cnt:
+          type: integer
+          x-nullable: true
+        sess_rate:
+          type: integer
+          x-nullable: true
+        use:
+          type: boolean
+      title: Stick Table Entry
+      type: object
+  stick_table_entries:
+    title: Stick Tables Entries
+    description: Entries of one runtime stick table
+    type: array
+    items:
+      $ref: "#/definitions/stick_table_entry"
+  runtime_command:
+      description: A command run on the Runtime API
+      properties:
+        all:
+          type: boolean
+          x-dependency:
+            command:
+              value: clear-counters
+        backend:
+          type: string
+          x-dependency:
+            command:
+              value: shutdown-sessions-server
+        command:
+          enum:
+          - shutdown-sessions-server
+          - clear-counters
+          type: string
+        result:
+          enum:
+          - successful
+          - failed
+          readOnly: true
+          type: string
+        server:
+          type: string
+          x-dependency:
+            command:
+              value: shutdown-sessions-server
+      required:
+      - command
+      title: Runtime command
+      type: object
   balance:
       properties:
         algorithm:
@@ -2719,7 +3115,7 @@ parameters:
 securityDefinitions:
   basic_auth:
     type: basic
-basePath: /v1
+basePath: /v2
 schemes:
   - http
 consumes:
@@ -2781,6 +3177,8 @@ tags:
   - name: StickRule
   - name: LogTarget
   - name: ACL
+  - name: RuntimeCommand
+  - name: StickTable
 security:
   - basic_auth: []
 paths:
@@ -2864,22 +3262,6 @@ paths:
         summary: Return list of HAProxy related endpoints
         tags:
         - Discovery
-  /services/haproxy/info:
-      get:
-        description: Return HAProxy process information
-        operationId: getHaproxyProcessInfo
-        produces:
-        - application/json
-        responses:
-          "200":
-            description: Success
-            schema:
-              $ref: '#/definitions/process_info'
-          default:
-            $ref: '#/responses/DefaultError'
-        summary: Return HAProxy process information
-        tags:
-        - Information
   /services/haproxy/sites:
       get:
         description: Returns an array of all configured sites.
@@ -6465,4 +6847,211 @@ paths:
         tags:
         - Configuration
         - HAProxy configuration management
+  /services/haproxy/runtime:
+      get:
+        description: Returns a list of endpoints to be used for advanced runtime settings
+          of HAProxy objects.
+        operationId: getRuntimeEndpoints
+        produces:
+        - application/json
+        responses:
+          "200":
+            description: Success
+            schema:
+              $ref: '#/definitions/endpoints'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return list of HAProxy advanced runtime endpoints
+        tags:
+        - Discovery
+  /services/haproxy/runtime/info:
+      get:
+        description: Return HAProxy process information
+        operationId: getHaproxyProcessInfo
+        produces:
+        - application/json
+        responses:
+          "200":
+            description: Success
+            schema:
+              $ref: '#/definitions/process_infos'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return HAProxy process information
+        tags:
+        - Information
+  /services/haproxy/runtime/servers/{name}:
+      get:
+        description: Returns one server runtime settings by it's name in the specified backend.
+        operationId: getRuntimeServer
+        parameters:
+        - description: Server name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Parent backend name
+          in: query
+          name: backend
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              properties:
+                data:
+                  $ref: '#/definitions/runtime_server'
+              type: object
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one server runtime settings
+        tags:
+        - Server
+        - Backend options
+      put:
+        description: Replaces a server transient settings by it's name in the specified
+          backend.
+        operationId: replaceRuntimeServer
+        parameters:
+        - description: Server name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Parent backend name
+          in: query
+          name: backend
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/runtime_server'
+        responses:
+          "200":
+            description: Server transient settings replaced
+            schema:
+              $ref: '#/definitions/runtime_server'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace server transient settings
+        tags:
+        - Server
+        - Backend options
+  /services/haproxy/runtime/commands:
+      post:
+        description: Send a command and execute it to the Runtime API
+        operationId: sendRuntimeCommand
+        parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/runtime_command'
+        responses:
+          "200":
+            description: Command executed successfully
+            schema:
+              $ref: '#/definitions/runtime_command'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Send Command
+        tags:
+        - RuntimeCommand
+  /services/haproxy/runtime/stick_tables:
+      get:
+        description: Returns an array of all stick tables.
+        operationId: getStickTables
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/stick_tables'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return Stick Tables
+        tags:
+        - StickTable
+  /services/haproxy/runtime/stick_tables/{name}:
+      get:
+        description: Returns one stick table from runtime.
+        operationId: getStickTable
+        parameters:
+        - description: Stick table name
+          in: path
+          name: name
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/stick_table'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return Stick Table
+        tags:
+        - StickTable
+  /services/haproxy/runtime/stick_table_entries:
+      get:
+        description: Returns an array of all entries in a given stick tables.
+        operationId: getStickTableEntries
+        parameters:
+        - description: Stick table name
+          in: query
+          name: stick_table
+          required: true
+          type: string
+        - description: A list of filters in format data.<type> <operator> <value> separated
+            by comma
+          in: query
+          name: filter
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/stick_table_entries'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return Stick Table Entries
+        tags:
+        - StickTable
+  /services/haproxy/runtime/stick_table_entries/{id}:
+      get:
+        description: Returns one stick table entry from stick table.
+        operationId: getStickTableEntry
+        parameters:
+        - description: Stick table name
+          in: query
+          name: stick_table
+          required: true
+          type: string
+        - description: Stick table name
+          in: path
+          name: id
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/stick_table_entry'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return Stick Table Entry
+        tags:
+        - StickTable
 

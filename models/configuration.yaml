@@ -552,6 +552,9 @@ server:
     backup:
       type: string
       enum: [enabled, disabled]
+    agent-check:
+      type: string
+      enum: [enabled, disabled]
     check:
       type: string
       enum: [enabled, disabled]

@@ -76,42 +76,6 @@ info:
         total_memory: 16681517056
         free_memory: 5790642176
         dataplaneapi_memory: 44755536
-process_info:
-  title: HAProxy Information
-  description: General HAProxy process information
-  type: object
-  properties:
-    haproxy:
-      type: object
-      properties:
-        version:
-          type: string
-          description: HAProxy version string
-        release_date:
-          type: string
-          format: date
-          description: HAProxy version release date
-        processes:
-          type: integer
-          description: Number of spawned processes
-          x-nullable: true
-        pid:
-          type: integer
-          description: Process id of the replying worker process
-          x-nullable: true
-        uptime:
-          type: integer
-          description: HAProxy uptime in s
-          x-nullable: true
-  example:
-    haproxy:
-      version: 1.7-dev1-868ab3-148
-      release_date: "2016-03-11"
-      address: 127.0.0.1
-      time: 2018-07-02T12:00:00.124Z
-      processes: 4
-      pid: 1234
-      uptime: 8
 transaction:
   title: Configuration transaction
   description: HAProxy configuration transaction
