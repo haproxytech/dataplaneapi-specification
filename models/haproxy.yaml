@@ -616,7 +616,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-var, send-spoe-group, add-acl, del-acl ]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl ]
       x-nullable: false
     auth_realm:
       type: string
@@ -713,6 +713,18 @@ http_request_rule:
         type: 
           value: set-var
           required: true
+    query-fmt:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-query
+    uri-fmt:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-uri
     spoe_engine:
       type: string
       x-display-name: SPOE Engine
