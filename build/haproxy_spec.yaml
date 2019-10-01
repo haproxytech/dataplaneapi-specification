@@ -983,6 +983,12 @@ definitions:
             type:
               required: true
               value: set-log-level
+        path_fmt:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-path
         query-fmt:
           type: string
           x-dependency:
@@ -1054,6 +1060,7 @@ definitions:
           - del-header
           - set-header
           - set-log-level
+          - set-path
           - set-query
           - set-uri
           - set-var
