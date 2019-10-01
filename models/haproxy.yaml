@@ -148,7 +148,7 @@ defaults:
     contstats:
       type: string
       enum: [enabled]
-      x-display-name: Continous Statistics
+      x-display-name: Continuous Statistics
     cookie:
       type: string
     client_timeout:
