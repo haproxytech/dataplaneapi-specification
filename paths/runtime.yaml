@@ -159,30 +159,3 @@ stick_table_entries:
           $ref: "#/definitions/stick_table_entries"
       'default':
         $ref: '#/responses/DefaultError'
-stick_table_entries_one:
-  get:
-    summary: Return Stick Table Entry
-    description: Returns one stick table entry from stick table.
-    operationId: getStickTableEntry
-    tags:
-      - StickTable
-    parameters:
-      - name: stick_table
-        in: query
-        description: Stick table name
-        required: true
-        type: string
-      - name: id
-        in: path
-        description: Stick table name
-        required: true
-        type: string
-    responses:
-      '200':
-        description: Successful operation
-        schema:
-          $ref: "#/definitions/stick_table_entry"
-      '404':
-        $ref: '#/responses/NotFound'
-      'default':
-        $ref: '#/responses/DefaultError'

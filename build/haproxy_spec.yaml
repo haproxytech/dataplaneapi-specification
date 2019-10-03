@@ -7027,31 +7027,4 @@ paths:
         summary: Return Stick Table Entries
         tags:
         - StickTable
-  /services/haproxy/runtime/stick_table_entries/{id}:
-      get:
-        description: Returns one stick table entry from stick table.
-        operationId: getStickTableEntry
-        parameters:
-        - description: Stick table name
-          in: query
-          name: stick_table
-          required: true
-          type: string
-        - description: Stick table name
-          in: path
-          name: id
-          required: true
-          type: string
-        responses:
-          "200":
-            description: Successful operation
-            schema:
-              $ref: '#/definitions/stick_table_entry'
-          "404":
-            $ref: '#/responses/NotFound'
-          default:
-            $ref: '#/responses/DefaultError'
-        summary: Return Stick Table Entry
-        tags:
-        - StickTable
 

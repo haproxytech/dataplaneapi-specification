@@ -441,5 +441,3 @@ paths:
     $ref: "paths/runtime.yaml#/stick_tables_one"
   /services/haproxy/runtime/stick_table_entries:
     $ref: "paths/runtime.yaml#/stick_table_entries"
-  /services/haproxy/runtime/stick_table_entries/{id}:
-    $ref: "paths/runtime.yaml#/stick_table_entries_one"
