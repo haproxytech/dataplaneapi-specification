@@ -567,6 +567,12 @@ server:
     on-marked-up:
       type: string
       enum: [shutdown-backup-sessions]
+    send-proxy:
+      type: string
+      enum: [enabled, disabled]
+    send-proxy-v2:
+      type: string
+      enum: [enabled, disabled]
     ssl:
       type: string
       enum: [enabled, disabled]
