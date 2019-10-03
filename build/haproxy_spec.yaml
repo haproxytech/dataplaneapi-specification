@@ -819,6 +819,16 @@ definitions:
           minimum: 0
           type: integer
           x-nullable: true
+        send-proxy:
+          enum:
+          - enabled
+          - disabled
+          type: string
+        send-proxy-v2:
+          enum:
+          - enabled
+          - disabled
+          type: string
         ssl:
           enum:
           - enabled
