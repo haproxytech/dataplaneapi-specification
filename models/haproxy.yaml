@@ -468,6 +468,8 @@ bind:
       x-nullable: false
     accept_proxy:
       type: boolean
+    allow_0rtt:
+      type: boolean
     address:
       type: string
       pattern: '^[^\s]+$'
@@ -531,6 +533,8 @@ server:
       type: string
       pattern: '^[^\s]+$'
       x-nullable: false
+    allow_0rtt:
+      type: boolean
     port:
       type: integer
       x-nullable: true
