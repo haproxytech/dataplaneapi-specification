@@ -269,7 +269,7 @@ definitions:
           enum:
           - enabled
           type: string
-          x-display-name: Continous Statistics
+          x-display-name: Continuous Statistics
         cookie:
           type: string
         default_backend:
@@ -698,6 +698,8 @@ definitions:
         address:
           pattern: ^[^\s]+$
           type: string
+        allow_0rtt:
+          type: boolean
         alpn:
           pattern: ^[^\s]+$
           type: string
@@ -770,6 +772,8 @@ definitions:
           pattern: ^[^\s]+$
           type: string
           x-nullable: false
+        allow_0rtt:
+          type: boolean
         backup:
           enum:
           - enabled
