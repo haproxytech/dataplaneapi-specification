@@ -188,6 +188,8 @@ definitions:
     $ref: "models/haproxy.yaml#/redispatch"
   errorfile:
     $ref: "models/haproxy.yaml#/errorfile"
+  cookie:
+    $ref: "models/haproxy.yaml#/cookie"
 responses:
   BadRequest:
     description: Bad request

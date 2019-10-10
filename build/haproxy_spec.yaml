@@ -271,7 +271,7 @@ definitions:
           type: string
           x-display-name: Continuous Statistics
         cookie:
-          type: string
+          $ref: '#/definitions/cookie'
         default_backend:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
@@ -536,7 +536,7 @@ definitions:
           type: integer
           x-nullable: true
         cookie:
-          type: string
+          $ref: '#/definitions/cookie'
           x-dependency:
             mode:
               value: http
@@ -2671,6 +2671,45 @@ definitions:
           type: string
       type: object
       x-display-name: Error File
+  cookie:
+      properties:
+        domain:
+          items:
+            pattern: ^[^\s]+$
+            type: string
+          type: array
+        dynamic:
+          type: boolean
+        httponly:
+          type: boolean
+        indirect:
+          type: boolean
+        maxidle:
+          pattern: ^[^\d+$]
+          type: integer
+        maxlife:
+          pattern: ^[^\d+$]
+          type: integer
+        name:
+          pattern: ^[^\s]+$
+          type: string
+        nocache:
+          type: boolean
+        postonly:
+          type: boolean
+        preserve:
+          type: boolean
+        secure:
+          type: boolean
+        type:
+          enum:
+          - rewrite
+          - insert
+          - prefix
+          type: string
+      required:
+      - name
+      type: object
 responses:
   BadRequest:
     description: Bad request
