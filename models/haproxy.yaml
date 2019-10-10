@@ -476,7 +476,7 @@ bind:
     port:
       type: integer
       x-nullable: true
-      minimum: 0
+      minimum: 1
       maximum: 65535
     process:
       type: string
@@ -538,7 +538,7 @@ server:
     port:
       type: integer
       x-nullable: true
-      minimum: 0
+      minimum: 1
       maximum: 65535
     maxconn:
       type: integer
@@ -1361,7 +1361,7 @@ default_server:
       x-nullable: true
     port:
       type: integer
-      minimum: 0
+      minimum: 1
       maximum: 65535
       x-nullable: true
 forwardfor:
