@@ -150,7 +150,7 @@ defaults:
       enum: [enabled]
       x-display-name: Continuous Statistics
     cookie:
-      type: string
+      $ref: '#/definitions/cookie'
     client_timeout:
       type: integer
       x-nullable: true
@@ -356,7 +356,7 @@ backend:
         mode:
           value: http
     cookie:
-      type: string
+      $ref: '#/definitions/cookie'
       x-dependency: 
         mode: 
           value: http 
@@ -1428,3 +1428,39 @@ errorfile:
       enum: [200, 400, 403, 405, 408, 425, 429, 500, 502, 503, 504]
     file:
       type: string
+cookie:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      pattern: '^[^\s]+$'
+    type:
+      type: string
+      enum: [rewrite, insert, prefix]
+    indirect:
+      type: boolean
+    nocache:
+      type: boolean
+    postonly:
+      type: boolean
+    preserve:
+      type: boolean
+    httponly:
+      type: boolean
+    secure:
+      type: boolean
+    domain:
+      type: array
+      items:
+        type: string
+        pattern: '^[^\s]+$'
+    maxidle:
+      type: integer
+      pattern: '^[^\d+$]'
+    maxlife:
+      type: integer
+      pattern: '^[^\d+$]'
+    dynamic:
+      type: boolean
