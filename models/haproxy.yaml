@@ -559,6 +559,9 @@ server:
     check:
       type: string
       enum: [enabled, disabled]
+    agent-check:
+      type: string
+      enum: [enabled, disabled]
     maintenance:
       type: string
       enum: [enabled, disabled]

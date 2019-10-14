@@ -772,6 +772,11 @@ definitions:
           pattern: ^[^\s]+$
           type: string
           x-nullable: false
+        agent-check:
+          enum:
+          - enabled
+          - disabled
+          type: string
         allow_0rtt:
           type: boolean
         backup:
