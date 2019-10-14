@@ -2478,6 +2478,9 @@ definitions:
               cum_req:
                 type: integer
                 x-nullable: true
+              cum_ssl_conns:
+                type: integer
+                x-nullable: true
               curr_conns:
                 type: integer
                 x-nullable: true

@@ -84,6 +84,9 @@ process_infos:
           curr_ssl_conns:
             type: integer
             x-nullable: true
+          cum_ssl_conns:
+            type: integer
+            x-nullable: true
           max_pipes:
             type: integer
             x-nullable: true
