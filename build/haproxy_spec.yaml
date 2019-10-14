@@ -772,10 +772,26 @@ definitions:
           pattern: ^[^\s]+$
           type: string
           x-nullable: false
+        agent-addr:
+          pattern: ^[^\s]+$
+          type: string
         agent-check:
           enum:
           - enabled
           - disabled
+          type: string
+          x-dependency:
+            agent-port:
+              required: true
+        agent-inter:
+          type: integer
+          x-nullable: true
+        agent-port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          x-nullable: true
+        agent-send:
           type: string
         allow_0rtt:
           type: boolean

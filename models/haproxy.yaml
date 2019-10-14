@@ -562,6 +562,22 @@ server:
     agent-check:
       type: string
       enum: [enabled, disabled]
+      x-dependency:
+        agent-port:
+          required: true
+    agent-addr:
+      type: string
+      pattern: '^[^\s]+$'
+    agent-port:
+      type: integer
+      x-nullable: true
+      minimum: 1
+      maximum: 65535
+    agent-inter:
+      type: integer
+      x-nullable: true
+    agent-send:
+      type: string
     maintenance:
       type: string
       enum: [enabled, disabled]
