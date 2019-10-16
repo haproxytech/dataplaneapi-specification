@@ -176,6 +176,14 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/reload"
+  runtime_server:
+    $ref: "models/runtime.yaml#/server"
+  runtime_servers:
+    title: HAProxy Runtime Servers Array
+    description: HAProxy runtime servers array
+    type: array
+    items:
+      $ref: "#/definitions/runtime_server"
   balance:
     $ref: "models/configuration.yaml#/balance"
   forwardfor:
@@ -411,4 +419,7 @@ paths:
     $ref: "paths/general.yaml#/runtime"
   /services/haproxy/runtime/info:
     $ref: "paths/runtime.yaml#/process_info"
-
+  /services/haproxy/runtime/servers:
+    $ref: "paths/runtime.yaml#/servers"
+  /services/haproxy/runtime/servers/{name}:
+    $ref: "paths/runtime.yaml#/servers_one"

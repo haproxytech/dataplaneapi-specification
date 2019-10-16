@@ -2759,6 +2759,53 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/reload"
+  runtime_server:
+      description: Runtime transient server properties
+      example:
+        address: 127.0.0.5
+        admin_state: up
+        operational_state: up
+        port: 80
+        server_id: 1
+        server_name: web_server
+      properties:
+        address:
+          pattern: ^[^\s]+$
+          readOnly: true
+          type: string
+          x-nullable: false
+        admin_state:
+          enum:
+          - ready
+          - maint
+          - drain
+          type: string
+        id:
+          readOnly: true
+          type: string
+        name:
+          readOnly: true
+          type: string
+        operational_state:
+          enum:
+          - up
+          - down
+          - stopping
+          type: string
+        port:
+          maximum: 65535
+          minimum: 0
+          readOnly: true
+          type: integer
+          x-nullable: true
+      title: Runtime Server
+      type: object
+  runtime_servers:
+    title: HAProxy Runtime Servers Array
+    description: HAProxy runtime servers array
+    type: array
+    items:
+      $ref: "#/definitions/runtime_server"
   balance:
       properties:
         algorithm:
@@ -6734,5 +6781,88 @@ paths:
         summary: Return HAProxy process information
         tags:
         - Information
-
+  /services/haproxy/runtime/servers:
+      get:
+        description: Returns an array of all servers' runtime settings.
+        operationId: getRuntimeServers
+        parameters:
+        - description: Parent backend name
+          in: query
+          name: backend
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/runtime_servers'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return an array of runtime servers' setings
+        tags:
+        - Server
+        - Backend options
+  /services/haproxy/runtime/servers/{name}:
+      get:
+        description: Returns one server runtime settings by it's name in the specified backend.
+        operationId: getRuntimeServer
+        parameters:
+        - description: Server name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Parent backend name
+          in: query
+          name: backend
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/runtime_server'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one server runtime settings
+        tags:
+        - Server
+        - Backend options
+      put:
+        description: Replaces a server transient settings by it's name in the specified
+          backend.
+        operationId: replaceRuntimeServer
+        parameters:
+        - description: Server name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Parent backend name
+          in: query
+          name: backend
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/runtime_server'
+        responses:
+          "200":
+            description: Server transient settings replaced
+            schema:
+              $ref: '#/definitions/runtime_server'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace server transient settings
+        tags:
+        - Server
+        - Backend options
 
