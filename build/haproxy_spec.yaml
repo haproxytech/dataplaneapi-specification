@@ -808,6 +808,11 @@ definitions:
         cookie:
           pattern: ^[^\s]+$
           type: string
+        health_check_port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          x-nullable: true
         inter:
           type: integer
           x-nullable: true
