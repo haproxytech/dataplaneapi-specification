@@ -540,6 +540,11 @@ server:
       x-nullable: true
       minimum: 1
       maximum: 65535
+    health_check_port:
+      type: integer
+      x-nullable: true
+      minimum: 1
+      maximum: 65535
     maxconn:
       type: integer
       x-display-name: Max Connections
