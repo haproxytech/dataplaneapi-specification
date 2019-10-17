@@ -1425,18 +1425,81 @@ forwardfor:
       type: boolean
 balance:
   type: object
+  required:
+    - algorithm
   properties:
     algorithm:
       type: string
-      enum: [roundrobin, static-rr, leastconn, first, source, uri, url_param, random]
-    arguments:
-      type: array
-      items:
-        type: string
-        pattern: '^[^\s]+$'
-      x-dependency: 
-        algorithm: 
-          value: [uri, url_param]
+      enum: [roundrobin, static-rr, leastconn, first, source, uri, url_param, hdr, random, rdp-cookie]
+    uri_whole:
+      type: boolean
+      x-display-name: Uri Whole
+      x-dependency:
+        algorithm:
+          value: uri
+    uri_len:
+      type: integer
+      x-display-name: Uri Len
+      pattern: '^[^\d+$]'
+      x-dependency:
+        algorithm:
+          value: uri
+    uri_depth:
+      type: integer
+      x-display-name: Uri Depth
+      pattern: '^[^\d+$]'
+      x-dependency:
+        algorithm:
+          value: uri
+    url_param:
+      type: string
+      x-display-name: Url Param
+      pattern: '^[^\s]+$'
+      x-dependency:
+        algorithm:
+          value: url_param
+          required: true
+    url_param_check_post:
+      type: integer
+      x-display-name: Url Param Check Post
+      x-dependency:
+        algorithm:
+          value: url_param
+    url_param_max_wait:
+      type: integer
+      x-display-name: Url Param Max Weight
+      pattern: '^[^\d+$]'
+      x-dependency:
+        algorithm:
+          value: url_param
+    hdr_name:
+      type: string
+      x-display-name: Header Name
+      pattern: '^[^\s]+$'
+      x-dependency:
+        algorithm:
+          value: hdr
+          required: true
+    hdr_use_domain_only:
+      type: boolean
+      x-display-name: Header Use Domain Only
+      x-dependency:
+        algorithm:
+          value: hdr
+    random_draws:
+      type: integer
+      x-display-name: Random Draws
+      x-nullable: false
+      x-dependency:
+        algorithm:
+          value: random
+    rdp_cookie_name:
+      type: string
+      x-display-name: Rdp Cookie Name
+      pattern: '^[^\s]+$'
+      x-dependency:
+        algorithm:
+          value: rdp-cookie
 httpchk:
   type: object
   x-display-name: HTTP Check
