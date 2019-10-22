@@ -184,6 +184,22 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/runtime_server"
+  stick_table:
+    $ref: "models/runtime.yaml#/table"
+  stick_tables:
+    title: Stick Tables Array
+    description: Array of runtime stick tables
+    type: array
+    items:
+      $ref: "#/definitions/stick_table"
+  stick_table_entry:
+    $ref: "models/runtime.yaml#/table_entry"
+  stick_table_entries:
+    title: Stick Tables Entries
+    description: Entries of one runtime stick table
+    type: array
+    items:
+      $ref: "#/definitions/stick_table_entry"
   balance:
     $ref: "models/configuration.yaml#/balance"
   forwardfor:
@@ -423,3 +439,9 @@ paths:
     $ref: "paths/runtime.yaml#/servers"
   /services/haproxy/runtime/servers/{name}:
     $ref: "paths/runtime.yaml#/servers_one"
+  /services/haproxy/runtime/stick_tables:
+    $ref: "paths/runtime.yaml#/stick_tables"
+  /services/haproxy/runtime/stick_tables/{name}:
+    $ref: "paths/runtime.yaml#/stick_tables_one"
+  /services/haproxy/runtime/stick_table_entries:
+    $ref: "paths/runtime.yaml#/stick_table_entries"

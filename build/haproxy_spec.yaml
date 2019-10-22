@@ -2811,6 +2811,147 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/runtime_server"
+  stick_table:
+      description: Stick Table Information
+      properties:
+        fields:
+          items:
+            properties:
+              field:
+                enum:
+                - server_id
+                - gpc0
+                - gpc1
+                - gpc1_rate
+                - conn_cnt
+                - conn_cur
+                - conn_rate
+                - sess_cnt
+                - sess_rate
+                - http_req_cnt
+                - http_req_rate
+                - http_err_cnt
+                - http_err_rate
+                - bytes_in_cnt
+                - bytes_in_rate
+                - bytes_out_cnt
+                - bytes_out_rate
+                type: string
+              period:
+                type: integer
+                x-dependency:
+                  type:
+                    value: rate
+              type:
+                enum:
+                - rate
+                - counter
+                type: string
+            type: object
+            x-go-name: StickTableField
+          type: array
+        name:
+          type: string
+        process:
+          description: Process number if master-worker mode
+          type: integer
+          x-nullable: true
+        size:
+          type: integer
+          x-nullable: true
+        type:
+          enum:
+          - ip
+          - ipv6
+          - integer
+          - string
+          - binary
+          type: string
+        used:
+          type: integer
+          x-nullable: true
+      title: Stick Table
+      type: object
+  stick_tables:
+    title: Stick Tables Array
+    description: Array of runtime stick tables
+    type: array
+    items:
+      $ref: "#/definitions/stick_table"
+  stick_table_entry:
+      description: One entry in stick table
+      properties:
+        bytes_in_cnt:
+          type: integer
+          x-nullable: true
+        bytes_in_rate:
+          type: integer
+          x-nullable: true
+        bytes_out_cnt:
+          type: integer
+          x-nullable: true
+        bytes_out_rate:
+          type: integer
+          x-nullable: true
+        conn_cnt:
+          type: integer
+          x-nullable: true
+        conn_cur:
+          type: integer
+          x-nullable: true
+        conn_rate:
+          type: integer
+          x-nullable: true
+        exp:
+          type: integer
+          x-nullable: true
+        gpc0:
+          type: integer
+          x-nullable: true
+        gpc0_rate:
+          type: integer
+          x-nullable: true
+        gpc1:
+          type: integer
+          x-nullable: true
+        gpc1_rate:
+          type: integer
+          x-nullable: true
+        http_err_cnt:
+          type: integer
+          x-nullable: true
+        http_err_rate:
+          type: integer
+          x-nullable: true
+        http_req_cnt:
+          type: integer
+          x-nullable: true
+        http_req_rate:
+          type: integer
+          x-nullable: true
+        id:
+          type: string
+        key:
+          type: string
+        server_id:
+          type: integer
+          x-nullable: true
+        sess_cnt:
+          type: integer
+          x-nullable: true
+        sess_rate:
+          type: integer
+          x-nullable: true
+        use:
+          type: boolean
+      title: Stick Table Entry
+      type: object
+  stick_table_entries:
+    title: Stick Tables Entries
+    description: Entries of one runtime stick table
+    type: array
+    items:
+      $ref: "#/definitions/stick_table_entry"
   balance:
       properties:
         algorithm:
@@ -6870,4 +7011,94 @@ paths:
         tags:
         - Server
         - Backend options
+  /services/haproxy/runtime/stick_tables:
+      get:
+        description: Returns an array of all stick tables.
+        operationId: getStickTables
+        parameters:
+        - description: Process number if master-worker mode, if not all processes are returned
+          in: query
+          name: process
+          type: integer
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/stick_tables'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return Stick Tables
+        tags:
+        - StickTable
+  /services/haproxy/runtime/stick_tables/{name}:
+      get:
+        description: Returns one stick table from runtime.
+        operationId: getStickTable
+        parameters:
+        - description: Stick table name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Process number if master-worker mode, if not only first process is
+            returned
+          in: query
+          name: process
+          required: true
+          type: integer
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/stick_table'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return Stick Table
+        tags:
+        - StickTable
+  /services/haproxy/runtime/stick_table_entries:
+      get:
+        description: Returns an array of all entries in a given stick tables.
+        operationId: getStickTableEntries
+        parameters:
+        - description: Stick table name
+          in: query
+          name: stick_table
+          required: true
+          type: string
+        - description: Process number if master-worker mode, if not only first process is
+            returned
+          in: query
+          name: process
+          required: true
+          type: integer
+        - description: A list of filters in format data.<type> <operator> <value> separated
+            by comma
+          in: query
+          name: filter
+          type: string
+        - description: Key which we want the entries for
+          in: query
+          name: key
+          type: string
+        - description: Max number of entries to be returned for pagination
+          in: query
+          name: count
+          type: integer
+        - description: Offset which indicates how many items we skip in pagination
+          in: query
+          name: offset
+          type: integer
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/stick_table_entries'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return Stick Table Entries
+        tags:
+        - StickTable
 

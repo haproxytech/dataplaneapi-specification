@@ -247,3 +247,108 @@ server:
     port: 80
     operational_state: up
     admin_state: up
+table:
+  title: Stick Table
+  description: Stick Table Information
+  type: object
+  properties:
+    process:
+      type: integer
+      x-nullable: true
+      description: Process number if master-worker mode
+    name:
+      type: string
+    type:
+      type: string
+      enum: [ip, ipv6, integer, string, binary]
+    size:
+      type: integer
+      x-nullable: true
+    used:
+      type: integer
+      x-nullable: true
+    fields:
+      type: array
+      items:
+        x-go-name: StickTableField
+        type: object
+        properties:
+          field:
+            type: string
+            enum: [server_id, gpc0, gpc1, gpc1_rate, conn_cnt, conn_cur, conn_rate, sess_cnt, sess_rate, http_req_cnt, http_req_rate, http_err_cnt, http_err_rate, bytes_in_cnt, bytes_in_rate, bytes_out_cnt, bytes_out_rate]
+          type:
+            type: string
+            enum: [rate, counter]
+          period:
+            type: integer
+            x-dependency:
+              type:
+                value: rate
+table_entry:
+  title: Stick Table Entry
+  description: One entry in stick table
+  type: object
+  properties:
+    id:
+      type: string
+    key:
+      type: string
+    server_id:
+      type: integer
+      x-nullable: true
+    gpc0:
+      type: integer
+      x-nullable: true
+    gpc0_rate:
+      type: integer
+      x-nullable: true
+    gpc1:
+      type: integer
+      x-nullable: true
+    gpc1_rate:
+      type: integer
+      x-nullable: true
+    conn_cnt:
+      type: integer
+      x-nullable: true
+    conn_cur:
+      type: integer
+      x-nullable: true
+    conn_rate:
+      type: integer
+      x-nullable: true
+    sess_cnt:
+      type: integer
+      x-nullable: true
+    sess_rate:
+      type: integer
+      x-nullable: true
+    http_req_cnt:
+      type: integer
+      x-nullable: true
+    http_req_rate:
+      type: integer
+      x-nullable: true
+    http_err_cnt:
+      type: integer
+      x-nullable: true
+    http_err_rate:
+      type: integer
+      x-nullable: true
+    bytes_in_cnt:
+      type: integer
+      x-nullable: true
+    bytes_in_rate:
+      type: integer
+      x-nullable: true
+    bytes_out_cnt:
+      type: integer
+      x-nullable: true
+    bytes_out_rate:
+      type: integer
+      x-nullable: true
+    exp:
+      type: integer
+      x-nullable: true
+    use:
+      type: boolean
