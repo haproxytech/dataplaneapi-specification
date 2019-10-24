@@ -508,7 +508,7 @@ definitions:
         balance:
           algorithm: roundrobin
         forwardfor:
-          enabled: true
+          enabled: enabled
         httpchk:
           method: OPTIONS
           uri: /check
