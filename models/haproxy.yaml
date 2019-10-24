@@ -450,7 +450,7 @@ backend:
     balance: 
       algorithm: roundrobin
     forwardfor: 
-      enabled: true
+      enabled: enabled
     httpchk: 
       uri: "/check"
       method: OPTIONS
