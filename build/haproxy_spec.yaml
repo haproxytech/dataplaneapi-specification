@@ -808,6 +808,12 @@ definitions:
         cookie:
           pattern: ^[^\s]+$
           type: string
+        downinter:
+          type: integer
+          x-nullable: true
+        fastinter:
+          type: integer
+          x-nullable: true
         health_check_port:
           maximum: 65535
           minimum: 1
@@ -2997,7 +3003,13 @@ definitions:
       x-display-name: ForwardFor
   default_server:
       properties:
+        downinter:
+          type: integer
+          x-nullable: true
         fall:
+          type: integer
+          x-nullable: true
+        fastinter:
           type: integer
           x-nullable: true
         inter:
