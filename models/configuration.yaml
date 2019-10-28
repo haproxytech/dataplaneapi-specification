@@ -610,6 +610,9 @@ server:
     ssl:
       type: string
       enum: [enabled, disabled]
+    check-ssl:
+      type: string
+      enum: [enabled, disabled]
     ssl_certificate:
       type: string
       pattern: '^[^\s]+$'
@@ -1395,6 +1398,9 @@ default_server:
     fall:
       type: integer
       x-nullable: true
+    check-ssl:
+      type: string
+      enum: [enabled, disabled]
     port:
       type: integer
       minimum: 1

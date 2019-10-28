@@ -805,6 +805,11 @@ definitions:
           - enabled
           - disabled
           type: string
+        check-ssl:
+          enum:
+          - enabled
+          - disabled
+          type: string
         cookie:
           pattern: ^[^\s]+$
           type: string
@@ -3003,6 +3008,11 @@ definitions:
       x-display-name: ForwardFor
   default_server:
       properties:
+        check-ssl:
+          enum:
+          - enabled
+          - disabled
+          type: string
         downinter:
           type: integer
           x-nullable: true
