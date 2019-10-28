@@ -555,6 +555,12 @@ server:
     inter:
       type: integer
       x-nullable: true
+    fastinter:
+      type: integer
+      x-nullable: true
+    downinter:
+      type: integer
+      x-nullable: true
     cookie:
       type: string
       pattern: '^[^\s]+$'
@@ -1375,6 +1381,12 @@ default_server:
   type: object
   properties:
     inter:
+      type: integer
+      x-nullable: true
+    fastinter:
+      type: integer
+      x-nullable: true
+    downinter:
       type: integer
       x-nullable: true
     rise:
