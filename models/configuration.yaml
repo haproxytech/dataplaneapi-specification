@@ -105,6 +105,9 @@ defaults:
     http_pretend_keepalive:
       type: string
       enum: [enabled, disabled]
+    abortonclose:
+      type: string
+      enum: [enabled, disabled]
     http-use-htx:
       type: string
       enum: [enabled, disabled]
@@ -350,6 +353,9 @@ backend:
       x-dependency: 
         mode: 
           value: http
+    abortonclose:
+      type: string
+      enum: [enabled, disabled]
     forwardfor:
       $ref: "#/definitions/forwardfor"
       x-dependency:

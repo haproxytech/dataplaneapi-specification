@@ -234,6 +234,11 @@ definitions:
       additionalProperties: false
       description: HAProxy defaults configuration
       properties:
+        abortonclose:
+          enum:
+          - enabled
+          - disabled
+          type: string
         adv_check:
           enum:
           - ssl-hello-chk
@@ -516,6 +521,11 @@ definitions:
         mode: http
         name: test_backend
       properties:
+        abortonclose:
+          enum:
+          - enabled
+          - disabled
+          type: string
         adv_check:
           enum:
           - ssl-hello-chk
