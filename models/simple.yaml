@@ -3,13 +3,13 @@ site:
   description: |
     Site configuration. Sites are considered as one service and all farms connected to that service.
     Farms are connected to service using use-backend and default_backend directives. Sites let you
-    configure simple HAProxy configurations, for more advanced options use /haproxy/configuration 
+    configure simple HAProxy configurations, for more advanced options use /haproxy/configuration
     endpoints.
   type: object
   required:
     - name
   properties:
-    name: 
+    name:
       type: string
       pattern: '^[A-Za-z0-9-_.:]+$'
       x-nullable: false
@@ -24,7 +24,7 @@ site:
           x-display-name: HTTP Connection Mode
           enum: [http-tunnel, httpclose, forced-close, http-server-close, http-keep-alive]
           x-dependency:
-            mode: 
+            mode:
               value: http
         maxconn:
           type: integer
@@ -47,7 +47,7 @@ site:
             type: string
             pattern: '^[A-Za-z0-9-_.:]+$'
             x-nullable: false
-          use_as: 
+          use_as:
             type: string
             enum: [default, conditional]
             x-nullable: false
@@ -56,14 +56,14 @@ site:
             x-display-name: Condition
             enum: [if, unless]
             x-dependency:
-              use_as: 
+              use_as:
                 value: conditional
                 required: true
           cond_test:
             type: string
             x-display-name: Condition Test
             x-dependency:
-              use_as: 
+              use_as:
                 value: conditional
                 required: true
           balance:
@@ -73,9 +73,9 @@ site:
             enum: [http, tcp]
           forwardfor:
             $ref: "#/definitions/forwardfor"
-          servers: 
+          servers:
             type: array
-            items: 
+            items:
               $ref: "#/definitions/server"
   additionalProperties: false
   example:
@@ -94,10 +94,10 @@ site:
     farms:
       - name: www_backend
         use_as: default
-        balance: 
+        balance:
           algorithm: roundrobin
         mode: http
-        servers: 
+        servers:
           - name: www_server
             address: 127.0.1.1
             port: 4567
