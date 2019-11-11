@@ -54,7 +54,7 @@ global:
       type: array
       x-display-name: Runtime APIs
       x-go-name: RuntimeAPIs
-      items: 
+      items:
         type: object
         x-go-name: RuntimeAPI
         required:
@@ -84,7 +84,7 @@ defaults:
   description: HAProxy defaults configuration
   type: object
   properties:
-    mode: 
+    mode:
       type: string
       enum: [tcp, http]
     balance:
@@ -133,7 +133,7 @@ defaults:
     log_separate_errors:
       type: string
       enum: [enabled, disabled]
-    clitcpka: 
+    clitcpka:
       type: string
       enum: [enabled, disabled]
       x-display-name: Client TCP Keep Alive
@@ -188,7 +188,7 @@ defaults:
     default_backend:
       type: string
       pattern: '^[A-Za-z0-9-_.:]+$'
-      x-dynamic-enum: 
+      x-dynamic-enum:
         operation: getBackends
         property: name
     default_server:
@@ -216,20 +216,20 @@ frontend:
     httplog:
       type: boolean
       x-display-name: HTTP Log
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     clflog:
       type: boolean
       x-display-name: CLF Log
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     tcplog:
       type: boolean
       x-display-name: TCP Log
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: tcp
     log_format:
       type: string
@@ -249,8 +249,8 @@ frontend:
     http_connection_mode:
       type: string
       enum: [httpclose, http-server-close, http-keep-alive]
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     client_timeout:
       type: integer
@@ -258,14 +258,14 @@ frontend:
     http_request_timeout:
       type: integer
       x-nullable: true
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     http_keep_alive_timeout:
       type: integer
       x-nullable: true
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     maxconn:
       type: integer
@@ -279,26 +279,26 @@ frontend:
     default_backend:
       type: string
       pattern: '^[A-Za-z0-9-_.:]+$'
-      x-dynamic-enum: 
+      x-dynamic-enum:
         operation: getBackends
         property: name
     contstats:
       type: string
       enum: [enabled]
       x-display-name: Continous Statistics
-    clitcpka: 
+    clitcpka:
       type: string
       enum: [enabled, disabled]
       x-display-name: Client TCP Keep Alive
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: tcp
     http-use-htx:
       type: string
       enum: [enabled, disabled]
       x-display-name: HTTP Use HTX
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
   additionalProperties: false
   example:
@@ -341,14 +341,14 @@ backend:
     http_connection_mode:
       type: string
       enum: [httpclose, http-server-close, http-keep-alive]
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     http_pretend_keepalive:
       type: string
       enum: [enabled, disabled]
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     forwardfor:
       $ref: "#/definitions/forwardfor"
@@ -357,9 +357,9 @@ backend:
           value: http
     cookie:
       $ref: '#/definitions/cookie'
-      x-dependency: 
-        mode: 
-          value: http 
+      x-dependency:
+        mode:
+          value: http
     default_server:
         $ref: "#/definitions/default_server"
     check_timeout:
@@ -390,8 +390,8 @@ backend:
     http_request_timeout:
       type: integer
       x-nullable: true
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
     http_keep_alive_timeout:
       type: integer
@@ -440,18 +440,18 @@ backend:
     http-use-htx:
       type: string
       enum: [enabled, disabled]
-      x-dependency: 
-        mode: 
+      x-dependency:
+        mode:
           value: http
   additionalProperties: false
   example:
     name: test_backend
     mode: http
-    balance: 
+    balance:
       algorithm: roundrobin
-    forwardfor: 
+    forwardfor:
       enabled: enabled
-    httpchk: 
+    httpchk:
       uri: "/check"
       method: OPTIONS
       version: HTTP/1.1
@@ -488,15 +488,15 @@ bind:
     ssl_certificate:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        ssl: 
+      x-dependency:
+        ssl:
           value: true
     ssl_cafile:
       type: string
       x-display-name: SSL CA File
       pattern: '^[^\s]+$'
-      x-dependency: 
-        ssl: 
+      x-dependency:
+        ssl:
           value: true
     alpn:
       type: string
@@ -616,21 +616,21 @@ server:
     ssl_certificate:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        ssl: 
+      x-dependency:
+        ssl:
           value: enabled
     ssl_cafile:
       type: string
       x-display-name: SSL CA File
       pattern: '^[^\s]+$'
-      x-dependency: 
-        ssl: 
+      x-dependency:
+        ssl:
           value: enabled
     tls_tickets:
       type: string
       enum: [enabled, disabled]
-      x-dependency: 
-        ssl: 
+      x-dependency:
+        ssl:
           value: enabled
     verify:
       type: string
@@ -665,51 +665,51 @@ http_request_rule:
       type: string
       x-display-name: Authentication Realm
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: auth
     redir_type:
       type: string
       x-display-name: Redirect Type
       enum: [location, prefix, scheme]
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: redirect
           required: true
     redir_value:
       type: string
       x-display-name: Redirect Value
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: redirect
           required: true
     redir_code:
       type: integer
       x-display-name: Redirect Code
       enum: [301, 302, 303]
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: redirect
     redir_option:
       type: string
       x-display-name: Redirect Option
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: redirect
           required: true
     deny_status:
       type: integer
       x-nullable: false
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: [deny, tarpit]
     hdr_name:
       type: string
       x-display-name: Header Name
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [add-header, replace-header, del-header, set-header, replace-value]
           required: true
     hdr_match:
@@ -717,7 +717,7 @@ http_request_rule:
       x-display-name: Header Match
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [replace-header, replace-value]
           required: true
     hdr_format:
@@ -725,14 +725,14 @@ http_request_rule:
       x-display-name: Header Format
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [replace-header, replace-value, set-header, add-header]
           required: true
     log_level:
       type: string
       enum: [emerg, alert, crit, err, warning, notice, info, debug, silent]
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: set-log-level
           required: true
     path_fmt:
@@ -744,22 +744,22 @@ http_request_rule:
     var_name:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: set-var
           required: true
     var_scope:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: set-var
           required: true
     var_expr:
       type: string
       x-display-name: Var Expression
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: set-var
           required: true
     query-fmt:
@@ -778,16 +778,16 @@ http_request_rule:
       type: string
       x-display-name: SPOE Engine
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: send-spoe-group
           required: true
     spoe_group:
       type: string
       x-display-name: SPOE Group
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: send-spoe-group
           required: true
     acl_file:
@@ -795,7 +795,7 @@ http_request_rule:
       x-display-name: ACL File
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [add-acl, del-acl]
           required: true
     acl_keyfmt:
@@ -803,7 +803,7 @@ http_request_rule:
       x-display-name: ACL Key Format
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [add-acl, del-acl]
           required: true
     cond:
@@ -817,8 +817,8 @@ http_request_rule:
         operation: getACLs
         property: acl_name
         freeFormat: true
-      x-dependency: 
-        cond: 
+      x-dependency:
+        cond:
           required: true
   additionalProperties: false
   example:
@@ -847,30 +847,30 @@ http_response_rule:
       type: string
       x-display-name: Redirect Type
       enum: [location, prefix, scheme]
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: redirect
           required: true
     redir_value:
       type: string
       x-display-name: Redirect Value
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: redirect
           required: true
     redir_code:
       type: integer
       x-display-name: Redirect Code
       enum: [301, 302, 303]
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: redirect
     redir_option:
       type: string
       x-display-name: Redirect Option
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: redirect
           required: true
     hdr_name:
@@ -878,7 +878,7 @@ http_response_rule:
       x-display-name: Header Name
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [add-header, replace-header, del-header, set-header, replace-value]
           required: true
     hdr_match:
@@ -886,7 +886,7 @@ http_response_rule:
       x-display-name: Header Match
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [replace-header, replace-value]
           required: true
     hdr_format:
@@ -894,35 +894,35 @@ http_response_rule:
       x-display-name: Header Format
       pattern: '^[^\s]+$'
       x-dependency:
-        type: 
+        type:
           value: [replace-header, replace-value, set-header, add-header]
           required: true
     log_level:
       type: string
       enum: [emerg, alert, crit, err, warning, notice, info, debug, silent]
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: set-log-level
           required: true
     var_name:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: set-var
           required: true
     var_scope:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: set-var
           required: true
     var_expr:
       type: string
       x-display-name: Var Expression
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: set-var
           required: true
     status:
@@ -930,42 +930,42 @@ http_response_rule:
       minimum: 100
       maximum: 999
       x-nullable: false
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: set-status
           required: true
     status_reason:
       type: string
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: set-status
     spoe_engine:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: send-spoe-group
           required: true
     spoe_group:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: send-spoe-group
           required: true
     acl_file:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: [add-acl, del-acl]
           required: true
     acl_keyfmt:
       type: string
       x-display-name: ACK Key Format
       pattern: '^[^\s]+$'
-      x-dependency:  
-        type: 
+      x-dependency:
+        type:
           value: [add-acl, del-acl]
           required: true
     cond:
@@ -979,8 +979,8 @@ http_response_rule:
         operation: getACLs
         property: acl_name
         freeFormat: true
-      x-dependency: 
-        cond: 
+      x-dependency:
+        cond:
           required: true
   additionalProperties: false
   example:
@@ -1005,27 +1005,27 @@ tcp_request_rule:
       type: string
       enum: [connection, content, inspect-delay, session]
       x-nullable: false
-    action: 
+    action:
       type: string
       enum: [accept, reject]
       x-nullable: false
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: [connection, content, session]
           required: true
     timeout:
       type: integer
       x-nullable: true
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: inspect-delay
           required: true
     cond:
       type: string
       x-display-name: Condition
       enum: [if, unless]
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: [connection, content, session]
     cond_test:
       type: string
@@ -1034,8 +1034,8 @@ tcp_request_rule:
         operation: getACLs
         property: acl_name
         freeFormat: true
-      x-dependency: 
-        cond: 
+      x-dependency:
+        cond:
           required: true
         type:
           value: [connection, content, session]
@@ -1061,27 +1061,27 @@ tcp_response_rule:
       type: string
       enum: [content, inspect-delay]
       x-nullable: false
-    action: 
+    action:
       type: string
       enum: [accept, reject]
       x-nullable: false
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: content
           required: true
     timeout:
       type: integer
       x-nullable: true
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: inspect-delay
           required: true
     cond:
       type: string
       x-display-name: Condition
       enum: [if, unless]
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: content
     cond_test:
       type: string
@@ -1090,10 +1090,10 @@ tcp_response_rule:
         operation: getACLs
         property: acl_name
         freeFormat: true
-      x-dependency: 
+      x-dependency:
         cond:
           required: true
-        type: 
+        type:
           value: content
   additionalProperties: false
   example:
@@ -1131,7 +1131,7 @@ backend_switching_rule:
         operation: getACLs
         property: acl_name
         freeFormat: true
-      x-dependency: 
+      x-dependency:
         cond:
           required: true
   additionalProperties: false
@@ -1169,7 +1169,7 @@ server_switching_rule:
         operation: getACLs
         property: acl_name
         freeFormat: true
-      x-dependency: 
+      x-dependency:
         cond:
           required: true
   additionalProperties: false
@@ -1196,44 +1196,44 @@ filter:
     trace_name:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: trace
     trace_rnd_parsing:
       type: boolean
       x-display-name: Trace Random Parsing
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: trace
     trace_rnd_forwarding:
       type: boolean
       x-display-name: Trace Random Forwarding
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: trace
     trace_hexdump:
       type: boolean
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: trace
     spoe_engine:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: spoe
     spoe_config:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: spoe
           required: true
     cache_name:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        type: 
+      x-dependency:
+        type:
           value: cache
           required: true
   additionalProperties: false
@@ -1276,7 +1276,7 @@ stick_rule:
         operation: getACLs
         property: acl_name
         freeFormat: true
-      x-dependency: 
+      x-dependency:
         cond:
           required: true
   additionalProperties: false
@@ -1284,7 +1284,7 @@ stick_rule:
     id: 0
     type: storeonly
     pattern: src
-log_target: 
+log_target:
   title: Log Target
   description: Per-instance logging of events and traffic.
   type: object
@@ -1301,60 +1301,60 @@ log_target:
     address:
       type: string
       pattern: '^[^\s]+$'
-      x-dependency: 
-        global: 
+      x-dependency:
+        global:
           value: false
           required: true
-        nolog: 
+        nolog:
           value: false
           required: true
     length:
       type: integer
-      x-dependency: 
-        global: 
+      x-dependency:
+        global:
           value: false
-        nolog: 
+        nolog:
           value: false
     format:
       type: string
       enum: [rfc3164, rfc5424, short, raw]
-      x-dependency: 
-        global: 
+      x-dependency:
+        global:
           value: false
-        nolog: 
+        nolog:
           value: false
     facility:
       type: string
       enum: [kern, user, mail, daemon, auth, syslog, lpr, news, uucp, cron, auth2, ftp, ntp, audit, alert, cron2, local0,local1, local2, local3, local4, local5, local6, local7]
-      x-dependency: 
-        global: 
+      x-dependency:
+        global:
           value: false
           required: true
-        nolog: 
+        nolog:
           value: false
           required: true
     level:
       type: string
       enum: [emerg, alert, crit, err, warning, notice, info, debug]
-      x-dependency: 
-        global: 
+      x-dependency:
+        global:
           value: false
-        nolog: 
+        nolog:
           value: false
     minlevel:
       type: string
       enum: [emerg, alert, crit, err, warning, notice, info, debug]
-      x-dependency: 
-        global: 
+      x-dependency:
+        global:
           value: false
-        nolog: 
+        nolog:
           value: false
         level:
           required: false
   additionalProperties: false
 acl:
   title: ACL Lines
-  description: | 
+  description: |
     The use of Access Control Lists (ACL) provides a flexible solution to perform
     content switching and generally to take decisions based on content extracted
     from the request, the response or any environmental status.
@@ -1368,7 +1368,7 @@ acl:
     id:
       type: integer
       x-nullable: true
-    acl_name: 
+    acl_name:
       type: string
       pattern: '^[^\s]+$'
       x-nullable: false
@@ -1528,7 +1528,7 @@ errorfile:
   type: object
   x-display-name: Error File
   properties:
-    code: 
+    code:
       type: integer
       enum: [200, 400, 403, 405, 408, 425, 429, 500, 502, 503, 504]
     file:

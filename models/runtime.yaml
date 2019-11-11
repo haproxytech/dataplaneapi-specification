@@ -2,7 +2,7 @@ process_infos:
   title: HAProxy Information
   description: General HAProxy process information
   type: array
-  items: 
+  items:
     type: object
     x-go-name: ProcessInfo
     properties:
@@ -57,7 +57,7 @@ process_infos:
           pool_failed:
             type: integer
             x-nullable: true
-          ulimit_n: 
+          ulimit_n:
             type: integer
             x-nullable: true
           max_sock:
