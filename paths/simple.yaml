@@ -73,7 +73,7 @@ sites_one:
         description: Site frontend name
         required: true
         type: string
-      - $ref: "#/parameters/transaction_id" 
+      - $ref: "#/parameters/transaction_id"
     responses:
       '200':
         description: Successful operation

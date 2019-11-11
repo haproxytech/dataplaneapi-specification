@@ -1,0 +1,7 @@
+# don't look above this dir
+root = true
+
+[**.{yaml,yml}]
+indent_style = space
+indent_style = 2
+trim_trailing_whitespace = true

@@ -120,7 +120,7 @@ transaction:
     id:
       type: string
       pattern: '^[^\s]+$'
-    status: 
+    status:
       type: string
       enum: [failed, in_progress, success]
     _version:
@@ -139,7 +139,7 @@ reload:
       pattern: '^\d{4}-\d{2}-\d{2}-\d+$'
     reload_timestamp:
       type: integer
-    status: 
+    status:
       type: string
       enum: [failed, in_progress, succeeded]
     response:

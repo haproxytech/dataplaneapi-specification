@@ -2516,7 +2516,7 @@ stick_rules:
         $ref: '#/responses/DefaultError'
 stick_rules_one:
   get:
-    summary: Return one Stick Rule 
+    summary: Return one Stick Rule
     description: Returns one Stick Rule configuration by it's ID in the specified backend.
     operationId: getStickRule
     tags:
