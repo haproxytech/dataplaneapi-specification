@@ -178,8 +178,6 @@ defaults:
       type: string
       pattern: '^[^\s]+$'
       x-display-name: External Check Command
-    forwardfor:
-      $ref: "#/definitions/forwardfor"
     redispatch:
       $ref: "#/definitions/redispatch"
     retries:
