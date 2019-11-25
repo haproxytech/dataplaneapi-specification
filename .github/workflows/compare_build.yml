@@ -1,0 +1,13 @@
+name: Compare build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Compare
+        run: |
+          cd build
+          ./build -file ../haproxy-spec.yaml > haproxy_spec_to_compare.yaml
+          diff -u haproxy_spec.yaml haproxy_spec_to_compare.yaml
+

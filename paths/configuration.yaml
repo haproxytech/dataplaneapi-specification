@@ -1,3 +1,4 @@
+---
 global:
   get:
     summary: Return a global part of configuration

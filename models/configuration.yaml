@@ -193,7 +193,7 @@ defaults:
         operation: getBackends
         property: name
     default_server:
-        $ref: "#/definitions/default_server"
+      $ref: "#/definitions/default_server"
     error_files:
       type: array
       x-go-name: ErrorFiles
@@ -365,7 +365,7 @@ backend:
         mode:
           value: http
     default_server:
-        $ref: "#/definitions/default_server"
+      $ref: "#/definitions/default_server"
     check_timeout:
       type: integer
       x-nullable: true
@@ -666,7 +666,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl ]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl]
       x-nullable: false
     auth_realm:
       type: string
@@ -770,17 +770,17 @@ http_request_rule:
           value: set-var
           required: true
     query-fmt:
-          type: string
-          x-dependency:
-            type:
-              required: true
-              value: set-query
+      type: string
+      x-dependency:
+        type:
+          required: true
+          value: set-query
     uri-fmt:
-          type: string
-          x-dependency:
-            type:
-              required: true
-              value: set-uri
+      type: string
+      x-dependency:
+        type:
+          required: true
+          value: set-uri
     spoe_engine:
       type: string
       x-display-name: SPOE Engine
@@ -1332,7 +1332,7 @@ log_target:
           value: false
     facility:
       type: string
-      enum: [kern, user, mail, daemon, auth, syslog, lpr, news, uucp, cron, auth2, ftp, ntp, audit, alert, cron2, local0,local1, local2, local3, local4, local5, local6, local7]
+      enum: [kern, user, mail, daemon, auth, syslog, lpr, news, uucp, cron, auth2, ftp, ntp, audit, alert, cron2, local0, local1, local2, local3, local4, local5, local6, local7]
       x-dependency:
         global:
           value: false

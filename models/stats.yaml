@@ -1,3 +1,4 @@
+---
 native_stats:
   x-go-name: NativeStats
   title: Stats Array
