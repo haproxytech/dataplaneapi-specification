@@ -834,6 +834,9 @@ definitions:
           minimum: 1
           type: integer
           x-nullable: true
+        init-addr:
+          pattern: ^[^\s]+$
+          type: string
         inter:
           type: integer
           x-nullable: true
@@ -3094,6 +3097,9 @@ definitions:
         fastinter:
           type: integer
           x-nullable: true
+        init-addr:
+          pattern: ^[^\s]+$
+          type: string
         inter:
           type: integer
           x-nullable: true

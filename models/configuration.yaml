@@ -556,6 +556,9 @@ server:
     weight:
       type: integer
       x-nullable: true
+    init-addr:
+      pattern: ^[^\s]+$
+      type: string
     inter:
       type: integer
       x-nullable: true
@@ -1387,6 +1390,9 @@ acl:
 default_server:
   type: object
   properties:
+    init-addr:
+      pattern: ^[^\s]+$
+      type: string
     inter:
       type: integer
       x-nullable: true
