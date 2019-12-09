@@ -970,6 +970,28 @@ definitions:
             type:
               value: auth
           x-display-name: Authentication Realm
+        capture_id:
+          type: integer
+          x-dependency:
+            type:
+              required: true
+              value: capture
+          x-display-name: Capture SlotID
+        capture_len:
+          type: integer
+          x-dependency:
+            type:
+              required: true
+              value: capture
+          x-display-name: Capture Len
+        capture_sample:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: capture
+          x-display-name: Capture Sample
         cond:
           enum:
           - if
@@ -1132,6 +1154,7 @@ definitions:
           - send-spoe-group
           - add-acl
           - del-acl
+          - capture
           type: string
           x-nullable: false
         uri-fmt:
@@ -1203,6 +1226,21 @@ definitions:
               - add-acl
               - del-acl
           x-display-name: ACK Key Format
+        capture_id:
+          type: integer
+          x-dependency:
+            type:
+              required: true
+              value: capture
+          x-display-name: Capture SlotID
+        capture_sample:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: capture
+          x-display-name: Capture Sample
         cond:
           enum:
           - if
@@ -1353,6 +1391,7 @@ definitions:
           - replace-value
           - add-acl
           - del-acl
+          - capture
           type: string
           x-nullable: false
         var_expr:

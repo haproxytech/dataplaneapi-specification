@@ -666,8 +666,30 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture]
       x-nullable: false
+    capture_sample:
+      pattern: '^[^\s]+$'
+      x-display-name: Capture Sample
+      type: string
+      x-dependency:
+        type:
+          value: capture
+          required: true
+    capture_len:
+      type: integer
+      x-display-name: Capture Len
+      x-dependency:
+        type:
+          value: capture
+          required: true
+    capture_id:
+      type: integer
+      x-display-name: Capture SlotID
+      x-dependency:
+        type:
+          value: capture
+          required: true
     auth_realm:
       type: string
       x-display-name: Authentication Realm
@@ -848,8 +870,23 @@ http_response_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl]
+      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl, capture]
       x-nullable: false
+    capture_sample:
+      type: string
+      x-display-name: Capture Sample
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: capture
+          required: true
+    capture_id:
+      type: integer
+      x-display-name: Capture SlotID
+      x-dependency:
+        type:
+          value: capture
+          required: true
     redir_type:
       type: string
       x-display-name: Redirect Type
