@@ -977,6 +977,7 @@ definitions:
               required: true
               value: capture
           x-display-name: Capture SlotID
+          x-nullable: true
         capture_len:
           type: integer
           x-dependency:
