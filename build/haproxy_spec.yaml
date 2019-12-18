@@ -1234,6 +1234,7 @@ definitions:
               required: true
               value: capture
           x-display-name: Capture SlotID
+          x-nullable: true
         capture_sample:
           pattern: ^[^\s]+$
           type: string

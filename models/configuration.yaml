@@ -883,6 +883,7 @@ http_response_rule:
           required: true
     capture_id:
       type: integer
+      x-nullable: true
       x-display-name: Capture SlotID
       x-dependency:
         type:
