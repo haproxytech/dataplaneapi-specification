@@ -3537,6 +3537,41 @@ definitions:
           type: string
       title: Cluster Settings
       type: object
+  map:
+      description: Map File
+      properties:
+        description:
+          type: string
+        file:
+          type: string
+        id:
+          type: string
+      title: Map File
+      type: object
+  maps:
+    title: Map Files Array
+    description: Array of runtime map files
+    type: array
+    items:
+      $ref: "#/definitions/map"
+  map_entry:
+      description: One Map Entry
+      properties:
+        id:
+          readOnly: true
+          type: string
+        key:
+          type: string
+        value:
+          type: string
+      title: One Map Entry
+      type: object
+  map_entries:
+    title: Maps Entries
+    description: Entries of one runtime map
+    type: array
+    items:
+      $ref: "#/definitions/map_entry"
   balance:
       properties:
         algorithm:
@@ -4036,6 +4071,7 @@ tags:
   - name: TCPResponseRule
   - name: Filter
   - name: StickRule
+  - name: StickTable
   - name: LogTarget
   - name: ACL
   - name: Resolver
@@ -4043,6 +4079,7 @@ tags:
   - name: Peer
   - name: PeerEntry
   - name: Cluster
+  - name: Maps
 security:
   - basic_auth: []
 paths:
@@ -8666,4 +8703,230 @@ paths:
         summary: Return Stick Table Entries
         tags:
         - StickTable
+  /services/haproxy/runtime/maps:
+      get:
+        description: Returns all available map files.
+        operationId: getAllRuntimeMapFiles
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/maps'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return all available map files
+        tags:
+        - Maps
+      post:
+        consumes:
+        - multipart/form-data
+        description: Creates runtime map file with its entries.
+        operationId: createRuntimeMap
+        parameters:
+        - description: The map file to upload
+          in: formData
+          name: fileUpload
+          type: file
+          x-mimetype: text/plain
+        responses:
+          "201":
+            description: Map file created with its entries
+            schema:
+              $ref: '#/definitions/map_entries'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Creates runtime map file with its entries
+        tags:
+        - Maps
+  /services/haproxy/runtime/maps/{name}:
+      delete:
+        description: Remove all map entries from the map file.
+        operationId: clearRuntimeMap
+        parameters:
+        - description: Map file name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: If true, deletes file from disk
+          in: query
+          name: forceDelete
+          type: boolean
+        responses:
+          "204":
+            description: All map entries deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Remove all map entries from the map file
+        tags:
+        - Maps
+      get:
+        description: Returns one runtime map file.
+        operationId: getOneRuntimeMap
+        parameters:
+        - description: Map file name
+          in: path
+          name: name
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/map'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one runtime map file
+        tags:
+        - Maps
+  /services/haproxy/runtime/maps_entries:
+      get:
+        description: Returns an array of all entries in a given runtime map file.
+        operationId: showRuntimeMap
+        parameters:
+        - description: Map file name
+          in: query
+          name: map
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/map_entries'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one map runtime entries
+        tags:
+        - Maps
+      post:
+        description: Adds an entry into the map file.
+        operationId: addMapEntry
+        parameters:
+        - description: Map file name
+          in: query
+          name: map
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/map_entry'
+        responses:
+          "201":
+            description: Map entry created
+            schema:
+              $ref: '#/definitions/map_entry'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Adds an entry into the map file
+        tags:
+        - Maps
+  /services/haproxy/runtime/maps_entries/{id}:
+      delete:
+        description: Delete all the map entries from the map by its id.
+        operationId: deleteRuntimeMapEntry
+        parameters:
+        - description: Map id
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: Map file name
+          in: query
+          name: map
+          required: true
+          type: string
+        responses:
+          "204":
+            description: Map key/value deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Deletes all the map entries from the map by its id
+        tags:
+        - Maps
+      get:
+        description: Returns one map runtime setting by it's id.
+        operationId: getRuntimeMapEntry
+        parameters:
+        - description: Map id
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: Map file name
+          in: query
+          name: map
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/map_entry'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one map runtime setting
+        tags:
+        - Maps
+      put:
+        description: Replaces the value corresponding to each id in a map.
+        operationId: replaceRuntimeMapEntry
+        parameters:
+        - description: Map id
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: Map file name
+          in: query
+          name: map
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            properties:
+              value:
+                description: Map value
+                type: string
+            required:
+            - value
+            type: object
+        responses:
+          "200":
+            description: Map value replaced
+            schema:
+              $ref: '#/definitions/map_entry'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace the value corresponding to each id in a map
+        tags:
+        - Maps
 

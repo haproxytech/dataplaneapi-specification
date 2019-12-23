@@ -228,6 +228,22 @@ definitions:
       $ref: "#/definitions/stick_table_entry"
   cluster_settings:
     $ref: "models/cluster.yaml#/settings"
+  map:
+    $ref: "models/runtime.yaml#/map"
+  maps:
+    title: Map Files Array
+    description: Array of runtime map files
+    type: array
+    items:
+      $ref: "#/definitions/map"
+  map_entry:
+    $ref: "models/runtime.yaml#/map_entry"
+  map_entries:
+    title: Maps Entries
+    description: Entries of one runtime map
+    type: array
+    items:
+      $ref: "#/definitions/map_entry"
   balance:
     $ref: "models/configuration.yaml#/balance"
   forwardfor:
@@ -386,6 +402,7 @@ tags:
   - name: TCPResponseRule
   - name: Filter
   - name: StickRule
+  - name: StickTable
   - name: LogTarget
   - name: ACL
   - name: Resolver
@@ -393,6 +410,7 @@ tags:
   - name: Peer
   - name: PeerEntry
   - name: Cluster
+  - name: Maps
 security:
   - basic_auth: []
 paths:
@@ -518,3 +536,11 @@ paths:
     $ref: "paths/runtime.yaml#/stick_tables_one"
   /services/haproxy/runtime/stick_table_entries:
     $ref: "paths/runtime.yaml#/stick_table_entries"
+  /services/haproxy/runtime/maps:
+    $ref: "paths/runtime.yaml#/maps"
+  /services/haproxy/runtime/maps/{name}:
+    $ref: "paths/runtime.yaml#/maps_one"
+  /services/haproxy/runtime/maps_entries:
+    $ref: "paths/runtime.yaml#/maps_entries"
+  /services/haproxy/runtime/maps_entries/{id}:
+    $ref: "paths/runtime.yaml#/maps_entries_one"

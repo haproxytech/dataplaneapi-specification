@@ -185,3 +185,229 @@ stick_table_entries:
           $ref: "#/definitions/stick_table_entries"
       'default':
         $ref: '#/responses/DefaultError'
+maps:
+  get: # show map
+    summary: Return all available map files
+    description: Returns all available map files.
+    operationId: getAllRuntimeMapFiles
+    tags:
+      - Maps
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/maps"
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  post: # (raw)
+    summary: Creates runtime map file with its entries
+    description: Creates runtime map file with its entries.
+    operationId: createRuntimeMap
+    consumes:
+      - multipart/form-data
+    parameters:
+      - in: formData
+        name: fileUpload
+        type: file
+        description: The map file to upload
+        x-mimetype: text/plain
+    tags:
+      - Maps
+    responses:
+      '201':
+        description: Map file created with its entries
+        schema:
+          $ref: "#/definitions/map_entries"
+      '409':
+        $ref: '#/responses/AlreadyExists'
+      '400':
+        $ref: '#/responses/BadRequest'
+      'default':
+        $ref: '#/responses/DefaultError'
+maps_one:
+  get: # one map file
+    summary: Return one runtime map file
+    description: Returns one runtime map file.
+    operationId: getOneRuntimeMap
+    tags:
+      - Maps
+    parameters:
+      - name: name
+        in: path
+        description: Map file name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/map"
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  delete: # clear map [map]
+    summary: Remove all map entries from the map file
+    description: Remove all map entries from the map file.
+    operationId: clearRuntimeMap
+    parameters:
+      - name: name
+        in: path
+        description: Map file name
+        required: true
+        type: string
+      - name: forceDelete
+        in: query
+        description: If true, deletes file from disk
+        type: boolean
+    tags:
+      - Maps
+    responses:
+      '204':
+        description: All map entries deleted
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+maps_entries:
+  get: # show map [map]
+    summary: Return one map runtime entries
+    description: Returns an array of all entries in a given runtime map file.
+    operationId: showRuntimeMap
+    tags:
+      - Maps
+    parameters:
+      - name: map
+        in: query
+        description: Map file name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/map_entries"
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  post: # add map [map] key value
+    summary: Adds an entry into the map file
+    description: Adds an entry into the map file.
+    operationId: addMapEntry
+    parameters:
+      - name: map
+        in: query
+        description: Map file name
+        required: true
+        type: string
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/map_entry'
+    tags:
+      - Maps
+    responses:
+      '201':
+        description: Map entry created
+        schema:
+          $ref: "#/definitions/map_entry"
+      '409':
+        $ref: '#/responses/AlreadyExists'
+      '400':
+        $ref: '#/responses/BadRequest'
+      'default':
+        $ref: '#/responses/DefaultError'
+maps_entries_one:
+  get: # get map <map> <value>
+    summary: Return one map runtime setting
+    description: Returns one map runtime setting by it's id.
+    operationId: getRuntimeMapEntry
+    tags:
+      - Maps
+    parameters:
+      - name: id
+        in: path
+        description: Map id
+        required: true
+        type: string
+      - name: map
+        in: query
+        description: Map file name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          $ref: "#/definitions/map_entry"
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  put: # set map <map> [<key>|#<ref>] <value>
+    summary: Replace the value corresponding to each id in a map
+    description: Replaces the value corresponding to each id in a map.
+    operationId: replaceRuntimeMapEntry
+    tags:
+      - Maps
+    parameters:
+      - name: id
+        in: path
+        description: Map id
+        required: true
+        type: string
+      - name: map
+        in: query
+        description: Map file name
+        required: true
+        type: string
+      - name: data
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+            - value
+          properties:
+            value:
+              description: Map value
+              type: string
+    responses:
+      '200':
+        description: Map value replaced
+        schema:
+          $ref: "#/definitions/map_entry"
+      '400':
+        $ref: '#/responses/BadRequest'
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  delete: # del map <map> [<key>|#<ref>]
+    summary: Deletes all the map entries from the map by its id
+    description: Delete all the map entries from the map by its id.
+    operationId: deleteRuntimeMapEntry
+    tags:
+      - Maps
+    parameters:
+      - name: id
+        in: path
+        description: Map id
+        required: true
+        type: string
+      - name: map
+        in: query
+        description: Map file name
+        required: true
+        type: string
+    responses:
+      '204':
+        description: Map key/value deleted
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'

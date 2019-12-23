@@ -346,3 +346,26 @@ table_entry:
       x-nullable: true
     use:
       type: boolean
+map:
+  title: Map File
+  description: Map File
+  type: object
+  properties:
+    id:
+      type: string
+    file:
+      type: string
+    description:
+      type: string
+map_entry:
+  title: One Map Entry
+  description: One Map Entry
+  type: object
+  properties:
+    id:
+      type: string
+      readOnly: true
+    key:
+      type: string
+    value:
+      type: string
