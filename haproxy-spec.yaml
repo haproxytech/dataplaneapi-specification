@@ -244,6 +244,22 @@ definitions:
     $ref: "models/configuration.yaml#/errorfile"
   cookie:
     $ref: "models/configuration.yaml#/cookie"
+  resolver:
+    $ref: "models/configuration.yaml#/resolver"
+  resolvers:
+    title: Resolvers
+    description: HAProxy resolvers array
+    type: array
+    items:
+      $ref: '#/definitions/resolver'
+  nameserver:
+    $ref: "models/configuration.yaml#/nameserver"
+  nameservers:
+    title: Nameservers
+    description: Nameservers array
+    type: array
+    items:
+      $ref: '#/definitions/nameserver'
 responses:
   BadRequest:
     description: Bad request
@@ -368,6 +384,8 @@ tags:
   - name: StickRule
   - name: LogTarget
   - name: ACL
+  - name: Resolver
+  - name: Nameserver
 security:
   - basic_auth: []
 paths:
@@ -469,6 +487,14 @@ paths:
     $ref: "paths/configuration.yaml#/acls"
   /services/haproxy/configuration/acls/{id}:
     $ref: "paths/configuration.yaml#/acls_one"
+  /services/haproxy/configuration/resolvers:
+    $ref: "paths/configuration.yaml#/resolvers"
+  /services/haproxy/configuration/resolvers/{name}:
+    $ref: "paths/configuration.yaml#/resolvers_one"
+  /services/haproxy/configuration/nameservers:
+    $ref: "paths/configuration.yaml#/nameservers"
+  /services/haproxy/configuration/nameservers/{name}:
+    $ref: "paths/configuration.yaml#/nameservers_one"
   /services/haproxy/configuration/raw:
     $ref: "paths/configuration.yaml#/configuration"
   /services/haproxy/runtime:

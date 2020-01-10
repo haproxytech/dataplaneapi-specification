@@ -3471,6 +3471,77 @@ definitions:
       required:
       - name
       type: object
+  resolver:
+      description: Runtime DNS configuration
+      properties:
+        accepted_payload_size:
+          minimum: 1232
+          type: integer
+        hold_nx:
+          type: integer
+        hold_obsolete:
+          type: integer
+        hold_other:
+          type: integer
+        hold_refused:
+          type: integer
+        hold_timeout:
+          type: integer
+        hold_valid:
+          type: integer
+        name:
+          pattern: ^[A-Za-z0-9-_.:]+$
+          type: string
+          x-nullable: false
+        parse-resolv-conf:
+          type: boolean
+        resolve_retries:
+          minimum: 1
+          type: integer
+        timeout_resolve:
+          type: integer
+        timeout_retry:
+          type: integer
+      required:
+      - name
+      title: Resolver
+      type: object
+  resolvers:
+    title: Resolvers
+    description: HAProxy resolvers array
+    type: array
+    items:
+      $ref: '#/definitions/resolver'
+  nameserver:
+      description: Nameserver used in Runtime DNS configuration
+      example:
+        address: 10.0.0.1
+        name: ns1
+        port: 53
+      properties:
+        address:
+          pattern: ^[^\s]+$
+          type: string
+        name:
+          pattern: ^[A-Za-z0-9-_.:]+$
+          type: string
+          x-nullable: false
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          x-nullable: true
+      required:
+      - name
+      - address
+      title: Nameserver
+      type: object
+  nameservers:
+    title: Nameservers
+    description: Nameservers array
+    type: array
+    items:
+      $ref: '#/definitions/nameserver'
 responses:
   BadRequest:
     description: Bad request
@@ -3595,6 +3666,8 @@ tags:
   - name: StickRule
   - name: LogTarget
   - name: ACL
+  - name: Resolver
+  - name: Nameserver
 security:
   - basic_auth: []
 paths:
@@ -7599,6 +7672,340 @@ paths:
         - Backend options
         - Frontend options
         - ACL
+  /services/haproxy/configuration/resolvers:
+      get:
+        description: Returns an array of all configured resolvers.
+        operationId: getResolvers
+        parameters:
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/resolvers'
+              required:
+              - data
+              type: object
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return an array of resolvers
+        tags:
+        - Resolver
+        - HAProxy configuration management
+      post:
+        description: Adds a new resolver section to the configuration file.
+        operationId: createResolver
+        parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/resolver'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "201":
+            description: Resolver created
+            schema:
+              $ref: '#/definitions/resolver'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/resolver'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Add a resolver
+        tags:
+        - Resolver
+        - HAProxy configuration management
+  /services/haproxy/configuration/resolvers/{name}:
+      delete:
+        description: Deletes a resolver from the configuration by it's name.
+        operationId: deleteResolver
+        parameters:
+        - description: Resolver name
+          in: path
+          name: name
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+          "204":
+            description: Resolver deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Delete a resolver
+        tags:
+        - Resolver
+        - HAProxy configuration management
+      get:
+        description: Returns one resolver section configuration by it's name.
+        operationId: getResolver
+        parameters:
+        - description: Resolver name
+          in: path
+          name: name
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/resolver'
+              type: object
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return a resolver
+        tags:
+        - Resolver
+        - HAProxy configuration management
+      put:
+        description: Replaces a resolver configuration by it's name.
+        operationId: replaceResolver
+        parameters:
+        - description: Resolver name
+          in: path
+          name: name
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/resolver'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "200":
+            description: Resolver replaced
+            schema:
+              $ref: '#/definitions/resolver'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/resolver'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace a resolver
+        tags:
+        - Resolver
+        - HAProxy configuration management
+  /services/haproxy/configuration/nameservers:
+      get:
+        description: Returns an array of all configured nameservers.
+        operationId: getNameservers
+        parameters:
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/nameservers'
+              required:
+              - data
+              type: object
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return an array of nameservers
+        tags:
+        - Nameserver
+        - HAProxy configuration management
+      post:
+        description: Adds a new nameserver to the resolvers section.
+        operationId: createNameserver
+        parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/nameserver'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "201":
+            description: Nameserver created
+            schema:
+              $ref: '#/definitions/nameserver'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/nameserver'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Add a nameserver
+        tags:
+        - Nameserver
+        - HAProxy configuration management
+  /services/haproxy/configuration/nameservers/{name}:
+      delete:
+        description: Deletes a nameserver from the resolvers section by it's name.
+        operationId: deleteNameserver
+        parameters:
+        - description: Nameserver name
+          in: path
+          name: name
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+          "204":
+            description: Nameserver deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Delete a nameserver
+        tags:
+        - Nameserver
+        - HAProxy configuration management
+      get:
+        description: Returns one nameserver configuration by it's name.
+        operationId: getNameserver
+        parameters:
+        - description: Nameserver name
+          in: path
+          name: name
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/nameserver'
+              type: object
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return a nameserver
+        tags:
+        - Nameserver
+        - HAProxy configuration management
+      put:
+        description: Replaces a nameserver configuration by it's name.
+        operationId: replaceNameserver
+        parameters:
+        - description: Nameserver name
+          in: path
+          name: name
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/nameserver'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "200":
+            description: Nameserver replaced
+            schema:
+              $ref: '#/definitions/nameserver'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/nameserver'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace a nameserver
+        tags:
+        - Nameserver
+        - HAProxy configuration management
   /services/haproxy/configuration/raw:
       get:
         description: Returns HAProxy configuration file in plain text

@@ -225,6 +225,65 @@ defaults:
       items:
         $ref: "#/definitions/errorfile"
   additionalProperties: false
+resolver:
+  title: Resolver
+  description: Runtime DNS configuration
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      pattern: '^[A-Za-z0-9-_.:]+$'
+      x-nullable: false
+    accepted_payload_size:
+      type: integer
+      minimum: 1232
+    hold_nx:
+      type: integer
+    hold_obsolete:
+      type: integer
+    hold_other:
+      type: integer
+    hold_refused:
+      type: integer
+    hold_timeout:
+      type: integer
+    hold_valid:
+      type: integer
+    parse-resolv-conf:
+      type: boolean
+    resolve_retries:
+      type: integer
+      minimum: 1
+    timeout_resolve:
+      type: integer
+    timeout_retry:
+      type: integer
+nameserver:
+  title: Nameserver
+  description: Nameserver used in Runtime DNS configuration
+  type: object
+  required:
+    - name
+    - address
+  properties:
+    name:
+      type: string
+      pattern: '^[A-Za-z0-9-_.:]+$'
+      x-nullable: false
+    address:
+      type: string
+      pattern: '^[^\s]+$'
+    port:
+      type: integer
+      x-nullable: true
+      minimum: 1
+      maximum: 65535
+  example:
+    name: ns1
+    address: 10.0.0.1
+    port: 53
 frontend:
   title: Frontend
   description: HAProxy frontend configuration
