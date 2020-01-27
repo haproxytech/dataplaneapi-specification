@@ -816,6 +816,9 @@ definitions:
           - enabled
           - disabled
           type: string
+        check-sni:
+          pattern: ^[^\s]+$
+          type: string
         check-ssl:
           enum:
           - enabled
@@ -883,6 +886,9 @@ definitions:
           enum:
           - enabled
           - disabled
+          type: string
+        sni:
+          pattern: ^[^\s]+$
           type: string
         ssl:
           enum:
@@ -3125,6 +3131,9 @@ definitions:
       x-display-name: ForwardFor
   default_server:
       properties:
+        check-sni:
+          pattern: ^[^\s]+$
+          type: string
         check-ssl:
           enum:
           - enabled
@@ -3153,6 +3162,9 @@ definitions:
         rise:
           type: integer
           x-nullable: true
+        sni:
+          pattern: ^[^\s]+$
+          type: string
       type: object
   httpchk:
       properties:
