@@ -614,9 +614,15 @@ server:
     send-proxy-v2:
       type: string
       enum: [enabled, disabled]
+    sni:
+      type: string
+      pattern: '^[^\s]+$'
     ssl:
       type: string
       enum: [enabled, disabled]
+    check-sni:
+      type: string
+      pattern: '^[^\s]+$'
     check-ssl:
       type: string
       enum: [enabled, disabled]
@@ -1447,6 +1453,12 @@ default_server:
     fall:
       type: integer
       x-nullable: true
+    check-sni:
+      type: string
+      pattern: '^[^\s]+$'
+    sni:
+      type: string
+      pattern: '^[^\s]+$'
     check-ssl:
       type: string
       enum: [enabled, disabled]
