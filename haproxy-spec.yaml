@@ -208,6 +208,8 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/stick_table_entry"
+  cluster_settings:
+    $ref: "models/cluster.yaml#/settings"
   balance:
     $ref: "models/configuration.yaml#/balance"
   forwardfor:
@@ -355,6 +357,8 @@ paths:
     $ref: "paths/general.yaml#/specification"
   /info:
     $ref: "paths/general.yaml#/info"
+  /cluster:
+    $ref: "paths/cluster.yaml#/cluster"
   /services:
     $ref: "paths/general.yaml#/services"
   /services/haproxy:

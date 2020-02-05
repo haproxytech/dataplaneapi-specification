@@ -1,0 +1,15 @@
+---
+settings:
+  title: Cluster Settings
+  description: Settings for git cluster.
+  type: object
+  properties:
+    bootstrap_key:
+      type: string
+    mode:
+      type: string
+      enum: [single, cluster]
+    status:
+      type: string
+      enum: [active, unreachable, waiting_approval]
+      readOnly: true

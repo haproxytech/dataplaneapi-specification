@@ -3017,6 +3017,25 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/stick_table_entry"
+  cluster_settings:
+      description: Settings for git cluster.
+      properties:
+        bootstrap_key:
+          type: string
+        mode:
+          enum:
+          - single
+          - cluster
+          type: string
+        status:
+          enum:
+          - active
+          - unreachable
+          - waiting_approval
+          readOnly: true
+          type: string
+      title: Cluster Settings
+      type: object
   balance:
       properties:
         algorithm:
@@ -3430,6 +3449,44 @@ paths:
         summary: Return API, hardware and OS information
         tags:
         - Information
+  /cluster:
+      get:
+        description: Returns cluster data
+        operationId: getCluster
+        produces:
+        - application/json
+        responses:
+          "200":
+            description: Success
+            schema:
+              $ref: '#/definitions/cluster_settings'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return cluster data
+        tags:
+        - Discovery
+      post:
+        description: Post cluster settings
+        operationId: postCluster
+        parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/cluster_settings'
+        - $ref: '#/parameters/version'
+        responses:
+          "200":
+            description: Cluster settings changed
+            schema:
+              $ref: '#/definitions/cluster_settings'
+          "400":
+            $ref: '#/responses/BadRequest'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Post cluster settings
+        tags:
+        - Cluster
   /services:
       get:
         description: Returns a list of API managed services endpoints.
