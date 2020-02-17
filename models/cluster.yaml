@@ -13,3 +13,21 @@ settings:
       type: string
       enum: [active, unreachable, waiting_approval]
       readOnly: true
+    cluster:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        address:
+          pattern: ^[^\s]+$
+          type: string
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          x-nullable: true
+        api_base_path:
+          type: string
+      title: Cluster controller information
+      type: object

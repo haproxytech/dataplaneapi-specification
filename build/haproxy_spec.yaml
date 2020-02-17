@@ -3022,6 +3022,24 @@ definitions:
       properties:
         bootstrap_key:
           type: string
+        cluster:
+          properties:
+            address:
+              pattern: ^[^\s]+$
+              type: string
+            api_base_path:
+              type: string
+            description:
+              type: string
+            name:
+              type: string
+            port:
+              maximum: 65535
+              minimum: 1
+              type: integer
+              x-nullable: true
+          title: Cluster controller information
+          type: object
         mode:
           enum:
           - single
