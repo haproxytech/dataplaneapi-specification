@@ -3018,7 +3018,7 @@ definitions:
     items:
       $ref: "#/definitions/stick_table_entry"
   cluster_settings:
-      description: Settings for git cluster.
+      description: Settings related to a cluster.
       properties:
         bootstrap_key:
           type: string
