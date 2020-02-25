@@ -1657,7 +1657,26 @@ definitions:
         action:
           enum:
           - accept
+          - capture
+          - do-resolve
+          - expect-netscaler-cip
+          - expect-proxy
           - reject
+          - sc-inc-gpc0
+          - sc-inc-gpc1
+          - sc-set-gpt0
+          - send-spoe-group
+          - set-dst-port
+          - set-dst
+          - set-priority
+          - set-src
+          - set-var
+          - silent-drop
+          - track-sc0
+          - track-sc1
+          - track-sc2
+          - unset-var
+          - use-service
           type: string
           x-dependency:
             type:
@@ -1667,6 +1686,31 @@ definitions:
               - content
               - session
           x-nullable: false
+        capture_len:
+          type: integer
+          x-dependency:
+            action:
+              required: true
+              value: capture
+            type:
+              required: true
+              value:
+              - connection
+              - content
+          x-display-name: Capture Length
+        capture_sample:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: capture
+            type:
+              required: true
+              value:
+              - connection
+              - content
+          x-display-name: Capture Sample
         cond:
           enum:
           - if
@@ -1695,9 +1739,135 @@ definitions:
             freeFormat: true
             operation: getACLs
             property: acl_name
+        expr:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value:
+              - do-resolve
+              - set-var
+              - set-src
+              - set-priority
+              - set-dst
+              - set-dst-port
+            type:
+              value:
+              - session
+              - connection
+              - content
+          x-display-name: Standard HAProxy expression
+        gpt_value:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: sc-set-gpt0
+            type:
+              required: true
+              value:
+              - connection
+              - content
+              - session
+          x-display-name: Sticky counter value
         index:
           type: integer
           x-nullable: true
+        priority_type:
+          enum:
+          - class
+          - offset
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: set-priority
+            type:
+              value:
+              - content
+        resolve_protocol:
+          enum:
+          - ipv4
+          - ipv6
+          type: string
+          x-dependency:
+            action:
+              required: false
+              value: do-resolve
+            type:
+              required: true
+              value:
+              - content
+          x-display-name: Protocol
+        resolve_resolvers:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: do-resolve
+            type:
+              required: true
+              value:
+              - content
+          x-display-name: Resolvers
+        resolve_var:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: do-resolve
+            type:
+              required: true
+              value:
+              - content
+          x-display-name: Variable name
+        sc_inc_id:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value:
+              - sc-inc-gpc0
+              - sc-inc-gpc1
+              - sc-set-gpt0
+            type:
+              required: true
+              value:
+              - connection
+              - content
+              - session
+          x-display-name: Sticky counter ID
+        service_name:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: use-service
+            type:
+              value: content
+          x-display-name: Service name
+        spoe_engine_name:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: send-spoe-group
+            type:
+              required: true
+              value:
+              - content
+          x-display-name: Engine name
+        spoe_group_name:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: send-spoe-group
+            type:
+              required: true
+              value:
+              - content
+          x-display-name: Group name
         timeout:
           type: integer
           x-dependency:
@@ -1705,6 +1875,36 @@ definitions:
               required: true
               value: inspect-delay
           x-nullable: true
+        track_key:
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value:
+              - track-sc0
+              - track-sc1
+              - track-sc2
+            type:
+              value:
+              - session
+              - connection
+              - content
+          x-display-name: Sample expression rule
+        track_table:
+          type: string
+          x-dependency:
+            action:
+              required: false
+              value:
+              - track-sc0
+              - track-sc1
+              - track-sc2
+            type:
+              value:
+              - session
+              - connection
+              - content
+          x-display-name: Optional table name
         type:
           enum:
           - connection
@@ -1713,6 +1913,34 @@ definitions:
           - session
           type: string
           x-nullable: false
+        var_name:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value:
+              - set-var
+              - unset-var
+            type:
+              value:
+              - session
+              - content
+          x-display-name: Variable name
+        var_scope:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value:
+              - set-var
+              - unset-var
+            type:
+              value:
+              - session
+              - content
+          x-display-name: Variable scope
       required:
       - index
       - type
