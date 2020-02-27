@@ -596,6 +596,9 @@ server:
       x-nullable: true
     agent-send:
       type: string
+    proto:
+      type: string
+      pattern: '^[^\s]+$'
     maintenance:
       type: string
       enum: [enabled, disabled]

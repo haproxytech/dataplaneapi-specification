@@ -877,6 +877,9 @@ definitions:
           minimum: 1
           type: integer
           x-nullable: true
+        proto:
+          pattern: ^[^\s]+$
+          type: string
         send-proxy:
           enum:
           - enabled
