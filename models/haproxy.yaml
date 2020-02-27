@@ -559,6 +559,9 @@ server:
     check:
       type: string
       enum: [enabled, disabled]
+    proto:
+      type: string
+      pattern: '^[^\s]+$'
     maintenance:
       type: string
       enum: [enabled, disabled]
