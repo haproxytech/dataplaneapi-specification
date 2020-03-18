@@ -140,7 +140,7 @@ definitions:
     description: |
       Sites array. Sites are considered as one service and all farms connected to that service.
       Farms are connected to service using use-backend and default_backend directives. Sites let you
-      configure simple HAProxy configurations, for more advanced options use /haproxy/configuration 
+      configure simple HAProxy configurations, for more advanced options use /haproxy/configuration
       endpoints.
     type: array
     items:
@@ -696,6 +696,51 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/backend'
+  peer_section:
+      additionalProperties: false
+      description: HAProxy peer_section configuration
+      properties:
+        name:
+          pattern: ^[A-Za-z0-9-_.:]+$
+          type: string
+          x-nullable: false
+      required:
+      - name
+      title: Peer Section
+      type: object
+  peer_sections:
+    title: Peer_Section
+    description: HAProxy peer_section array
+    type: array
+    items:
+      $ref: '#/definitions/peer_section'
+  peer_entry:
+      description: Peer Entry from peers table
+      properties:
+        address:
+          pattern: ^[^\s]+$
+          type: string
+        name:
+          pattern: ^[A-Za-z0-9-_.:]+$
+          type: string
+          x-nullable: false
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          x-nullable: true
+      required:
+      - name
+      - address
+      - port
+      title: Peer Entry
+      type: object
+  peer_entries:
+    title: Peer entries
+    description: HAProxy peer entries array
+    type: array
+    items:
+      $ref: '#/definitions/peer_entry'
   bind:
       additionalProperties: false
       description: HAProxy frontend bind configuration
@@ -3329,7 +3374,7 @@ responses:
         x-nullable: false
     schema:
       $ref: '#/definitions/error'
-parameters: 
+parameters:
   transaction_id:
     name: transaction_id
     in: query
@@ -3368,21 +3413,21 @@ tags:
   - name: Specification
   - name: Transactions
     description: |
-      Managing transactions. Configuration changes can be grouped in the transaction. You start the 
-      transaction with trasactions POST, and call the configuration changes you need with parameter 
+      Managing transactions. Configuration changes can be grouped in the transaction. You start the
+      transaction with trasactions POST, and call the configuration changes you need with parameter
       transaction_id. When you want to commit the transaction, you call the transactions PUT and all changes
-      in that transaction is commited. If you call a configuration change without the transaction_id, 
+      in that transaction is commited. If you call a configuration change without the transaction_id,
       transaction mechanism is implicitly called with one operation in transaction.
   - name: Reloads
     description: |
       Checking reload success. To avoid constant reloading we reload in intervals that are configurable when
-      with reload-delay option. When a change to configuration is made and force_reload url query string 
+      with reload-delay option. When a change to configuration is made and force_reload url query string
       parameter is false we issue a request for reload, and return the reload ID in response header. You can
       then use reloads endpoints to check the status of that reload ID. If force_reload is true, we override all
       of this and reload immediately.
   - name: Sites
     description: |
-      Managing sites (simple configuration mode). Sites are considered as one frontend with multiple backends 
+      Managing sites (simple configuration mode). Sites are considered as one frontend with multiple backends
       connected to it via default_backend or use-backend directives.
   - name: Stats
     description: Stats container
@@ -4221,6 +4266,372 @@ paths:
         tags:
         - Frontend
         - HAProxy configuration management
+  /services/haproxy/configuration/peer_section:
+      get:
+        description: Returns an array of all configured peer_section.
+        operationId: getPeerSections
+        parameters:
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/peer_section'
+              required:
+              - data
+              type: object
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return an array of peer_section
+        tags:
+        - Peer
+        - HAProxy configuration management
+      post:
+        description: Adds a new peer to the configuration file.
+        operationId: createPeer
+        parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/peer_section'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "201":
+            description: Peer created
+            schema:
+              $ref: '#/definitions/peer_section'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/peer_section'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Add a peer
+        tags:
+        - Peer
+        - HAProxy configuration management
+  /services/haproxy/configuration/peer_section/{name}:
+      delete:
+        description: Deletes a peer from the configuration by it's name.
+        operationId: deletePeer
+        parameters:
+        - description: Peer name
+          in: path
+          name: name
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+          "204":
+            description: Peer deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Delete a peer
+        tags:
+        - Peer
+        - HAProxy configuration management
+      get:
+        description: Returns one peer configuration by it's name.
+        operationId: getPeerSection
+        parameters:
+        - description: Peer name
+          in: path
+          name: name
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/peer_section'
+              type: object
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return a peer
+        tags:
+        - Peer
+        - HAProxy configuration management
+      put:
+        description: Replaces a peer configuration by it's name.
+        operationId: replacePeer
+        parameters:
+        - description: Peer name
+          in: path
+          name: name
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/peer_section'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "200":
+            description: Peer replaced
+            schema:
+              $ref: '#/definitions/peer_section'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/peer_section'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace a peer
+        tags:
+        - Peer
+        - HAProxy configuration management
+  /services/haproxy/configuration/peer_entries:
+      get:
+        description: Returns an array of all peer_entries that are configured in specified
+          peer section.
+        operationId: getPeerEntries
+        parameters:
+        - description: Parent peer section name
+          in: query
+          name: peer_section
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/peer_entries'
+              required:
+              - data
+              type: object
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return an array of peer_entries
+        tags:
+        - PeerEntry
+        - HAProxy configuration management
+      post:
+        description: Adds a new peer entry in the specified peer section in the configuration
+          file.
+        operationId: createPeerEntry
+        parameters:
+        - description: Parent peer section name
+          in: query
+          name: peer_section
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/peer_entry'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "201":
+            description: PeerEntry created
+            schema:
+              $ref: '#/definitions/peer_entry'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/peer_entry'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Add a new peer_entry
+        tags:
+        - Peer_Entry
+        - HAProxy configuration management
+  /services/haproxy/configuration/peer_entries/{name}:
+      delete:
+        description: Deletes a peer entry configuration by it's name in the specified peer
+          section.
+        operationId: deletePeerEntry
+        parameters:
+        - description: PeerEntry name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Parent peers name
+          in: query
+          name: peer_section
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+          "204":
+            description: PeerEntry deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Delete a peer_entry
+        tags:
+        - Peer_Entry
+        - HAProxy configuration management
+        - Peers options
+      get:
+        description: Returns one peer_entry configuration by it's name in the specified
+          peer section.
+        operationId: getPeerEntry
+        parameters:
+        - description: PeerEntry name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Parent peers name
+          in: query
+          name: peer_section
+          required: true
+          type: string
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Successful operation
+            headers:
+              Configuration-Version:
+                description: Configuration file version
+                type: integer
+                x-nullable: false
+            schema:
+              properties:
+                _version:
+                  type: integer
+                data:
+                  $ref: '#/definitions/peer_entry'
+              type: object
+          "404":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one peer_entry
+        tags:
+        - PeerEntry
+        - HAProxy configuration management
+      put:
+        description: Replaces a peer entry configuration by it's name in the specified peer
+          section.
+        operationId: replacePeerEntry
+        parameters:
+        - description: PeerEntry name
+          in: path
+          name: name
+          required: true
+          type: string
+        - description: Parent peers name
+          in: query
+          name: peer_section
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/peer_entry'
+        - $ref: '#/parameters/transaction_id'
+        - $ref: '#/parameters/version'
+        - $ref: '#/parameters/force_reload'
+        responses:
+          "200":
+            description: PeerEntry replaced
+            schema:
+              $ref: '#/definitions/peer_entry'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/peer_entry'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace a peer_entry
+        tags:
+        - PeerEntry
+        - HAProxy configuration management
+        - Peers options
   /services/haproxy/configuration/backends:
       get:
         description: Returns an array of all configured backends.

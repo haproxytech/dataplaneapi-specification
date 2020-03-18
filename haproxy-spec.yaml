@@ -21,7 +21,7 @@ definitions:
     description: |
       Sites array. Sites are considered as one service and all farms connected to that service.
       Farms are connected to service using use-backend and default_backend directives. Sites let you
-      configure simple HAProxy configurations, for more advanced options use /haproxy/configuration 
+      configure simple HAProxy configurations, for more advanced options use /haproxy/configuration
       endpoints.
     type: array
     items:
@@ -46,6 +46,22 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/backend'
+  peer_section:
+    $ref: "models/configuration.yaml#/peer_section"
+  peer_sections:
+    title: Peer_Section
+    description: HAProxy peer_section array
+    type: array
+    items:
+      $ref: '#/definitions/peer_section'
+  peer_entry:
+    $ref: "models/configuration.yaml#/peer_entry"
+  peer_entries:
+    title: Peer entries
+    description: HAProxy peer entries array
+    type: array
+    items:
+      $ref: '#/definitions/peer_entry'
   bind:
     $ref: "models/configuration.yaml#/bind"
   binds:
@@ -261,7 +277,7 @@ responses:
         x-nullable: false
     schema:
       $ref: '#/definitions/error'
-parameters: 
+parameters:
   transaction_id:
     name: transaction_id
     in: query
@@ -300,21 +316,21 @@ tags:
   - name: Specification
   - name: Transactions
     description: |
-      Managing transactions. Configuration changes can be grouped in the transaction. You start the 
-      transaction with trasactions POST, and call the configuration changes you need with parameter 
+      Managing transactions. Configuration changes can be grouped in the transaction. You start the
+      transaction with trasactions POST, and call the configuration changes you need with parameter
       transaction_id. When you want to commit the transaction, you call the transactions PUT and all changes
-      in that transaction is commited. If you call a configuration change without the transaction_id, 
+      in that transaction is commited. If you call a configuration change without the transaction_id,
       transaction mechanism is implicitly called with one operation in transaction.
   - name: Reloads
     description: |
       Checking reload success. To avoid constant reloading we reload in intervals that are configurable when
-      with reload-delay option. When a change to configuration is made and force_reload url query string 
+      with reload-delay option. When a change to configuration is made and force_reload url query string
       parameter is false we issue a request for reload, and return the reload ID in response header. You can
       then use reloads endpoints to check the status of that reload ID. If force_reload is true, we override all
       of this and reload immediately.
   - name: Sites
     description: |
-      Managing sites (simple configuration mode). Sites are considered as one frontend with multiple backends 
+      Managing sites (simple configuration mode). Sites are considered as one frontend with multiple backends
       connected to it via default_backend or use-backend directives.
   - name: Stats
     description: Stats container
@@ -380,7 +396,7 @@ paths:
   /services/haproxy/reloads/{id}:
     $ref: "paths/general.yaml#/reloads_one"
   /services/haproxy/configuration:
-    $ref: "paths/general.yaml#/configuration"    
+    $ref: "paths/general.yaml#/configuration"
   /services/haproxy/configuration/global:
     $ref: "paths/configuration.yaml#/global"
   /services/haproxy/configuration/defaults:
@@ -389,6 +405,14 @@ paths:
     $ref: "paths/configuration.yaml#/frontends"
   /services/haproxy/configuration/frontends/{name}:
     $ref: "paths/configuration.yaml#/frontends_one"
+  /services/haproxy/configuration/peer_section:
+    $ref: "paths/configuration.yaml#/peer_section"
+  /services/haproxy/configuration/peer_section/{name}:
+    $ref: "paths/configuration.yaml#/peer_section_one"
+  /services/haproxy/configuration/peer_entries:
+    $ref: "paths/configuration.yaml#/peer_entries"
+  /services/haproxy/configuration/peer_entries/{name}:
+    $ref: "paths/configuration.yaml#/peer_entries_one"
   /services/haproxy/configuration/backends:
     $ref: "paths/configuration.yaml#/backends"
   /services/haproxy/configuration/backends/{name}:
