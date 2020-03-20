@@ -1622,9 +1622,14 @@ cookie:
       type: boolean
     domain:
       type: array
+      x-go-name: Domains
       items:
-        type: string
-        pattern: '^[^\s]+$'
+        type: object
+        x-go-name: Domain
+        properties:
+          value:
+            type: string
+            pattern: '^[^\s]+$'
     maxidle:
       type: integer
       pattern: '^[^\d+$]'

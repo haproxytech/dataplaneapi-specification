@@ -3215,9 +3215,14 @@ definitions:
       properties:
         domain:
           items:
-            pattern: ^[^\s]+$
-            type: string
+            properties:
+              value:
+                pattern: ^[^\s]+$
+                type: string
+            type: object
+            x-go-name: Domain
           type: array
+          x-go-name: Domains
         dynamic:
           type: boolean
         httponly:
