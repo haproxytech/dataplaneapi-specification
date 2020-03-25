@@ -163,6 +163,9 @@ defaults:
     http_keep_alive_timeout:
       type: integer
       x-nullable: true
+    http_reuse:
+      type: string
+      enum: [aggressive, always, never, safe]
     server_timeout:
       type: integer
       x-nullable: true
@@ -413,6 +416,12 @@ backend:
       x-nullable: true
     httpchk:
       $ref: "#/definitions/httpchk"
+      x-dependency:
+        mode:
+          value: http
+    http_reuse:
+      type: string
+      enum: [aggressive, always, never, safe]
       x-dependency:
         mode:
           value: http

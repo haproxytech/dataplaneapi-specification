@@ -336,6 +336,13 @@ definitions:
         http_request_timeout:
           type: integer
           x-nullable: true
+        http_reuse:
+          enum:
+          - aggressive
+          - always
+          - never
+          - safe
+          type: string
         httpchk:
           $ref: '#/definitions/httpchk'
         httplog:
@@ -628,6 +635,16 @@ definitions:
             mode:
               value: http
           x-nullable: true
+        http_reuse:
+          enum:
+          - aggressive
+          - always
+          - never
+          - safe
+          type: string
+          x-dependency:
+            mode:
+              value: http
         httpchk:
           $ref: '#/definitions/httpchk'
           x-dependency:
