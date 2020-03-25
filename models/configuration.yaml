@@ -99,6 +99,8 @@ defaults:
       enum: [ssl-hello-chk, smtpchk, ldap-check, mysql-check, pgsql-check, tcp-check, redis-check]
     httpchk:
       $ref: "#/definitions/httpchk"
+    http-check:
+      $ref: "#/definitions/http-check"
     http_connection_mode:
       type: string
       enum: [httpclose, http-server-close, http-keep-alive]
@@ -336,6 +338,8 @@ backend:
         modifier:
           type: string
           enum: [avalanche]
+    http-check:
+      $ref: "#/definitions/http-check"
     mode:
       type: string
       enum: [http, tcp]
@@ -1725,3 +1729,34 @@ cookie:
       pattern: '^[^\d+$]'
     dynamic:
       type: boolean
+http-check:
+  type: object
+  required:
+    - type
+  properties:
+    type:
+      type: string
+      enum: [disable-on-404, expect, send-state]
+    exclamation_mark:
+      type: boolean
+      x-display-name: Expect Exclamation Mark
+      x-dependency:
+        type:
+          value: expect
+    match:
+      type: string
+      enum: [status, rstatus, string, rstring]
+      x-display-name: Expect Match
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: expect
+          required: true
+    pattern:
+      type: string
+      x-display-name: Expect Pattern
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: expect
+          required: true

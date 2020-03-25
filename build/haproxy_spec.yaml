@@ -313,6 +313,8 @@ definitions:
           x-display-name: External Check Path
         forwardfor:
           $ref: '#/definitions/forwardfor'
+        http-check:
+          $ref: '#/definitions/http-check'
         http-use-htx:
           enum:
           - enabled
@@ -598,6 +600,8 @@ definitions:
               - avalanche
               type: string
           type: object
+        http-check:
+          $ref: '#/definitions/http-check'
         http-use-htx:
           enum:
           - enabled
@@ -3325,6 +3329,44 @@ definitions:
           type: string
       type: object
       x-display-name: HTTP Check
+  http-check:
+      properties:
+        exclamation_mark:
+          type: boolean
+          x-dependency:
+            type:
+              value: expect
+          x-display-name: Expect Exclamation Mark
+        match:
+          enum:
+          - status
+          - rstatus
+          - string
+          - rstring
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: expect
+          x-display-name: Expect Match
+        pattern:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: expect
+          x-display-name: Expect Pattern
+        type:
+          enum:
+          - disable-on-404
+          - expect
+          - send-state
+          type: string
+      required:
+      - type
+      type: object
   redispatch:
       properties:
         enabled:

@@ -234,6 +234,8 @@ definitions:
     $ref: "models/configuration.yaml#/default_server"
   httpchk:
     $ref: "models/configuration.yaml#/httpchk"
+  http-check:
+    $ref: "models/configuration.yaml#/http-check"
   redispatch:
     $ref: "models/configuration.yaml#/redispatch"
   errorfile:
