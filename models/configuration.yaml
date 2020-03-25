@@ -3,6 +3,18 @@ global:
   description: HAProxy global configuration
   type: object
   properties:
+    chroot:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: Chroot
+    group:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: Group
+    user:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: User
     daemon:
       type: string
       enum: [enabled, disabled]
@@ -33,6 +45,12 @@ global:
     ssl_default_bind_ciphers:
       type: string
       x-display-name: SSL Default Bind Ciphers
+    ssl_default_server_options:
+      type: string
+      x-display-name: SSL Default Server Options
+    ssl_default_server_ciphers:
+      type: string
+      x-display-name: SSL Default Server Ciphers
     cpu_maps:
       x-go-name: CPUMaps
       type: array

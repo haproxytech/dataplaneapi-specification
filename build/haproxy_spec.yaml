@@ -149,6 +149,10 @@ definitions:
       additionalProperties: false
       description: HAProxy global configuration
       properties:
+        chroot:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: Chroot
         cpu_maps:
           items:
             properties:
@@ -174,6 +178,10 @@ definitions:
         external_check:
           type: boolean
           x-display-name: External Check
+        group:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: Group
         master-worker:
           type: boolean
           x-display-name: Master Worker Mode
@@ -223,12 +231,22 @@ definitions:
         ssl_default_bind_options:
           type: string
           x-display-name: SSL Default Bind Options
+        ssl_default_server_ciphers:
+          type: string
+          x-display-name: SSL Default Server Ciphers
+        ssl_default_server_options:
+          type: string
+          x-display-name: SSL Default Server Options
         stats_timeout:
           type: integer
           x-nullable: true
         tune_ssl_default_dh_param:
           type: integer
           x-display-name: SSL Default DH Parameter Size
+        user:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: User
       title: Global
       type: object
   defaults:
