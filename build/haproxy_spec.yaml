@@ -7844,6 +7844,11 @@ paths:
         description: Returns an array of all configured nameservers.
         operationId: getNameservers
         parameters:
+        - description: Parent resolver name
+          in: query
+          name: resolver
+          required: true
+          type: string
         - $ref: '#/parameters/transaction_id'
         responses:
           "200":
@@ -7872,6 +7877,11 @@ paths:
         description: Adds a new nameserver to the resolvers section.
         operationId: createNameserver
         parameters:
+        - description: Parent resolver name
+          in: query
+          name: resolver
+          required: true
+          type: string
         - in: body
           name: data
           required: true
@@ -7913,6 +7923,11 @@ paths:
           name: name
           required: true
           type: string
+        - description: Parent resolver name
+          in: query
+          name: resolver
+          required: true
+          type: string
         - $ref: '#/parameters/transaction_id'
         - $ref: '#/parameters/version'
         - $ref: '#/parameters/force_reload'
@@ -7940,6 +7955,11 @@ paths:
         - description: Nameserver name
           in: path
           name: name
+          required: true
+          type: string
+        - description: Parent resolver name
+          in: query
+          name: resolver
           required: true
           type: string
         - $ref: '#/parameters/transaction_id'
@@ -7973,6 +7993,11 @@ paths:
         - description: Nameserver name
           in: path
           name: name
+          required: true
+          type: string
+        - description: Parent resolver name
+          in: query
+          name: resolver
           required: true
           type: string
         - in: body

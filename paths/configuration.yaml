@@ -1186,6 +1186,11 @@ nameservers:
     description: Returns an array of all configured nameservers.
     operationId: getNameservers
     parameters:
+      - name: resolver
+        in: query
+        description: Parent resolver name
+        required: true
+        type: string
       - $ref: "#/parameters/transaction_id"
     tags:
       - Nameserver
@@ -1214,6 +1219,11 @@ nameservers:
     description: Adds a new nameserver to the resolvers section.
     operationId: createNameserver
     parameters:
+      - name: resolver
+        in: query
+        description: Parent resolver name
+        required: true
+        type: string
       - name: data
         required: true
         in: body
@@ -1258,6 +1268,11 @@ nameservers_one:
         description: Nameserver name
         required: true
         type: string
+      - name: resolver
+        in: query
+        description: Parent resolver name
+        required: true
+        type: string
       - $ref: "#/parameters/transaction_id"
     responses:
       '200':
@@ -1289,6 +1304,11 @@ nameservers_one:
       - name: name
         in: path
         description: Nameserver name
+        required: true
+        type: string
+      - name: resolver
+        in: query
+        description: Parent resolver name
         required: true
         type: string
       - name: data
@@ -1329,6 +1349,11 @@ nameservers_one:
       - name: name
         in: path
         description: Nameserver name
+        required: true
+        type: string
+      - name: resolver
+        in: query
+        description: Parent resolver name
         required: true
         type: string
       - $ref: "#/parameters/transaction_id"
