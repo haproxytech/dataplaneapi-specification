@@ -119,6 +119,8 @@ defaults:
       $ref: "#/definitions/httpchk"
     http-check:
       $ref: "#/definitions/http-check"
+    bind_process:
+      $ref: "#/definitions/bind_process"
     http_connection_mode:
       type: string
       enum: [httpclose, http-server-close, http-keep-alive]
@@ -243,6 +245,8 @@ frontend:
       x-dependency:
         mode:
           value: http
+    bind_process:
+      $ref: "#/definitions/bind_process"
     clflog:
       type: boolean
       x-display-name: CLF Log
@@ -358,6 +362,8 @@ backend:
           enum: [avalanche]
     http-check:
       $ref: "#/definitions/http-check"
+    bind_process:
+      $ref: "#/definitions/bind_process"
     mode:
       type: string
       enum: [http, tcp]
@@ -1778,3 +1784,6 @@ http-check:
         type:
           value: expect
           required: true
+bind_process:
+  type: string
+  pattern: '^[^\s]+$'

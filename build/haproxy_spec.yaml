@@ -271,6 +271,8 @@ definitions:
           x-display-name: Advanced Check
         balance:
           $ref: '#/definitions/balance'
+        bind_process:
+          $ref: '#/definitions/bind_process'
         check_timeout:
           type: integer
           x-nullable: true
@@ -416,6 +418,8 @@ definitions:
         mode: http
         name: test_frontend
       properties:
+        bind_process:
+          $ref: '#/definitions/bind_process'
         clflog:
           type: boolean
           x-dependency:
@@ -567,6 +571,8 @@ definitions:
           x-display-name: Advanced Check
         balance:
           $ref: '#/definitions/balance'
+        bind_process:
+          $ref: '#/definitions/bind_process'
         check_timeout:
           type: integer
           x-nullable: true
@@ -3385,6 +3391,9 @@ definitions:
       required:
       - type
       type: object
+  bind_process:
+      pattern: ^[^\s]+$
+      type: string
   redispatch:
       properties:
         enabled:

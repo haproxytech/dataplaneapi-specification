@@ -236,6 +236,8 @@ definitions:
     $ref: "models/configuration.yaml#/httpchk"
   http-check:
     $ref: "models/configuration.yaml#/http-check"
+  bind_process:
+    $ref: "models/configuration.yaml#/bind_process"
   redispatch:
     $ref: "models/configuration.yaml#/redispatch"
   errorfile:
