@@ -406,6 +406,15 @@ definitions:
         tcplog:
           type: boolean
           x-display-name: TCP Log
+        unique_id_format:
+          type: string
+          x-display-name: Unique ID format
+        unique_id_header:
+          type: string
+          x-dependency:
+            unique_id_format:
+              required: true
+          x-display-name: Unique ID header
       title: Defaults
       type: object
   frontend:
@@ -528,6 +537,15 @@ definitions:
             mode:
               value: tcp
           x-display-name: TCP Log
+        unique_id_format:
+          type: string
+          x-display-name: Unique ID format
+        unique_id_header:
+          type: string
+          x-dependency:
+            unique_id_format:
+              required: true
+          x-display-name: Unique ID header
       required:
       - name
       title: Frontend

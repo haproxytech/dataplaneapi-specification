@@ -224,6 +224,15 @@ defaults:
       x-go-name: ErrorFiles
       items:
         $ref: "#/definitions/errorfile"
+    unique_id_format:
+      type: string
+      x-display-name: Unique ID format
+    unique_id_header:
+      type: string
+      x-display-name: Unique ID header
+      x-dependency:
+        unique_id_format:
+          required: true
   additionalProperties: false
 resolver:
   title: Resolver
@@ -387,6 +396,15 @@ frontend:
       x-dependency:
         mode:
           value: http
+    unique_id_format:
+      type: string
+      x-display-name: Unique ID format
+    unique_id_header:
+      type: string
+      x-display-name: Unique ID header
+      x-dependency:
+        unique_id_format:
+          required: true
   additionalProperties: false
   example:
     name: test_frontend
