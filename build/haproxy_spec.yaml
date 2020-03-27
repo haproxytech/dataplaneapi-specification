@@ -269,6 +269,12 @@ definitions:
           - redis-check
           type: string
           x-display-name: Advanced Check
+        allbackups:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-display-name: All Backups
         balance:
           $ref: '#/definitions/balance'
         bind_process:
@@ -384,6 +390,12 @@ definitions:
         log_tag:
           pattern: ^[^\s]+$
           type: string
+        logasap:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-display-name: Log ASAP
         maxconn:
           type: integer
           x-display-name: Max Connections
@@ -520,6 +532,12 @@ definitions:
         log_tag:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
+        logasap:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-display-name: Log ASAP
         maxconn:
           type: integer
           x-display-name: Max Connections
@@ -589,6 +607,12 @@ definitions:
           - redis-check
           type: string
           x-display-name: Advanced Check
+        allbackups:
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-display-name: All Backups
         balance:
           $ref: '#/definitions/balance'
         bind_process:

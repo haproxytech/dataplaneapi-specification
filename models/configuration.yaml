@@ -234,6 +234,14 @@ defaults:
       x-dependency:
         unique_id_format:
           required: true
+    logasap:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: Log ASAP
+    allbackups:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: All Backups
   additionalProperties: false
 resolver:
   title: Resolver
@@ -314,6 +322,10 @@ frontend:
       x-dependency:
         mode:
           value: http
+    logasap:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: Log ASAP
     bind_process:
       type: string
       pattern: '^[^\s]+$'
@@ -447,6 +459,10 @@ backend:
     mode:
       type: string
       enum: [http, tcp]
+    allbackups:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: All Backups
     log_tag:
       type: string
       pattern: '^[^\s]+$'
