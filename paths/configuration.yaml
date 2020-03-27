@@ -551,46 +551,6 @@ peer_section_one:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-  put:
-    summary: Replace a peer
-    description: Replaces a peer configuration by it's name.
-    operationId: replacePeer
-    tags:
-      - Peer
-      - HAProxy configuration management
-    parameters:
-      - name: name
-        in: path
-        description: Peer name
-        required: true
-        type: string
-      - name: data
-        required: true
-        in: body
-        schema:
-          $ref: "#/definitions/peer_section"
-      - $ref: "#/parameters/transaction_id"
-      - $ref: "#/parameters/version"
-      - $ref: "#/parameters/force_reload"
-    responses:
-      '202':
-        description: Configuration change accepted and reload requested
-        headers:
-          Reload-ID:
-            description: ID of the requested reload
-            type: string
-        schema:
-          $ref: "#/definitions/peer_section"
-      '200':
-        description: Peer replaced
-        schema:
-          $ref: "#/definitions/peer_section"
-      '400':
-        $ref: '#/responses/BadRequest'
-      '404':
-        $ref: '#/responses/NotFound'
-      'default':
-        $ref: '#/responses/DefaultError'
   delete:
     summary: Delete a peer
     description: Deletes a peer from the configuration by it's name.

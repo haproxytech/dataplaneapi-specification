@@ -4600,46 +4600,6 @@ paths:
         tags:
         - Peer
         - HAProxy configuration management
-      put:
-        description: Replaces a peer configuration by it's name.
-        operationId: replacePeer
-        parameters:
-        - description: Peer name
-          in: path
-          name: name
-          required: true
-          type: string
-        - in: body
-          name: data
-          required: true
-          schema:
-            $ref: '#/definitions/peer_section'
-        - $ref: '#/parameters/transaction_id'
-        - $ref: '#/parameters/version'
-        - $ref: '#/parameters/force_reload'
-        responses:
-          "200":
-            description: Peer replaced
-            schema:
-              $ref: '#/definitions/peer_section'
-          "202":
-            description: Configuration change accepted and reload requested
-            headers:
-              Reload-ID:
-                description: ID of the requested reload
-                type: string
-            schema:
-              $ref: '#/definitions/peer_section'
-          "400":
-            $ref: '#/responses/BadRequest'
-          "404":
-            $ref: '#/responses/NotFound'
-          default:
-            $ref: '#/responses/DefaultError'
-        summary: Replace a peer
-        tags:
-        - Peer
-        - HAProxy configuration management
   /services/haproxy/configuration/peer_entries:
       get:
         description: Returns an array of all peer_entries that are configured in specified
