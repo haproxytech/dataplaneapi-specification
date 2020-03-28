@@ -272,7 +272,8 @@ definitions:
         balance:
           $ref: '#/definitions/balance'
         bind_process:
-          $ref: '#/definitions/bind_process'
+          pattern: ^[^\s]+$
+          type: string
         check_timeout:
           type: integer
           x-nullable: true
@@ -428,7 +429,8 @@ definitions:
         name: test_frontend
       properties:
         bind_process:
-          $ref: '#/definitions/bind_process'
+          pattern: ^[^\s]+$
+          type: string
         clflog:
           type: boolean
           x-dependency:
@@ -590,7 +592,8 @@ definitions:
         balance:
           $ref: '#/definitions/balance'
         bind_process:
-          $ref: '#/definitions/bind_process'
+          pattern: ^[^\s]+$
+          type: string
         check_timeout:
           type: integer
           x-nullable: true
@@ -3409,9 +3412,6 @@ definitions:
       required:
       - type
       type: object
-  bind_process:
-      pattern: ^[^\s]+$
-      type: string
   redispatch:
       properties:
         enabled:
