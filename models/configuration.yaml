@@ -814,10 +814,10 @@ http_request_rule:
   description: HAProxy HTTP request rule configuration (corresponds to http-request directives)
   type: object
   required:
-    - id
+    - index
     - type
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     type:
@@ -1064,10 +1064,10 @@ http_response_rule:
   description: HAProxy HTTP response rule configuration (corresponds to http-response directives)
   type: object
   required:
-    - id
+    - index
     - type
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     type:
@@ -1242,10 +1242,10 @@ tcp_request_rule:
   description: HAProxy TCP Request Rule configuration (corresponds to tcp-request)
   type: object
   required:
-    - id
+    - index
     - type
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     type:
@@ -1298,10 +1298,10 @@ tcp_response_rule:
   description: HAProxy TCP Response Rule configuration (corresponds to tcp-response)
   type: object
   required:
-    - id
+    - index
     - type
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     type:
@@ -1353,10 +1353,10 @@ backend_switching_rule:
   description: HAProxy backend switching rule configuration (corresponds to use_backend directive)
   type: object
   required:
-    - id
+    - index
     - name
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     name:
@@ -1392,10 +1392,10 @@ server_switching_rule:
   description: HAProxy server switching rule configuration (corresponds to use-server directive)
   type: object
   required:
-    - id
+    - index
     - target_server
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     target_server:
@@ -1430,10 +1430,10 @@ filter:
   description: HAProxy filters
   type: object
   required:
-    - id
+    - index
     - type
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     type:
@@ -1494,11 +1494,11 @@ stick_rule:
   description: Define a pattern used to create an entry in a stickiness table or matching condition or associate a user to a server.
   type: object
   required:
-    - id
+    - index
     - type
     - pattern
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     type:
@@ -1536,9 +1536,9 @@ log_target:
   description: Per-instance logging of events and traffic.
   type: object
   required:
-    - id
+    - index
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     global:
@@ -1607,12 +1607,12 @@ acl:
     from the request, the response or any environmental status.
   type: object
   required:
-    - id
+    - index
     - acl_name
     - criterion
     - value
   properties:
-    id:
+    index:
       type: integer
       x-nullable: true
     acl_name:

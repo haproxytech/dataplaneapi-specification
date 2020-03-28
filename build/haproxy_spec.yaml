@@ -1169,7 +1169,7 @@ definitions:
               - set-header
               - replace-value
           x-display-name: Header Name
-        id:
+        index:
           type: integer
           x-nullable: true
         log_level:
@@ -1351,7 +1351,7 @@ definitions:
               required: true
               value: set-var
       required:
-      - id
+      - index
       - type
       title: HTTP Request Rule
       type: object
@@ -1459,7 +1459,7 @@ definitions:
               - set-header
               - replace-value
           x-display-name: Header Name
-        id:
+        index:
           type: integer
           x-nullable: true
         log_level:
@@ -1583,7 +1583,7 @@ definitions:
               required: true
               value: set-var
       required:
-      - id
+      - index
       - type
       title: HTTP Response Rule
       type: object
@@ -1643,7 +1643,7 @@ definitions:
             freeFormat: true
             operation: getACLs
             property: acl_name
-        id:
+        index:
           type: integer
           x-nullable: true
         timeout:
@@ -1662,7 +1662,7 @@ definitions:
           type: string
           x-nullable: false
       required:
-      - id
+      - index
       - type
       title: TCP Request Rule
       type: object
@@ -1712,7 +1712,7 @@ definitions:
             freeFormat: true
             operation: getACLs
             property: acl_name
-        id:
+        index:
           type: integer
           x-nullable: true
         timeout:
@@ -1729,7 +1729,7 @@ definitions:
           type: string
           x-nullable: false
       required:
-      - id
+      - index
       - type
       title: TCP Response Rule
       type: object
@@ -1765,7 +1765,7 @@ definitions:
             freeFormat: true
             operation: getACLs
             property: acl_name
-        id:
+        index:
           type: integer
           x-nullable: true
         name:
@@ -1777,7 +1777,7 @@ definitions:
             property: name
           x-nullable: false
       required:
-      - id
+      - index
       - name
       title: Backend Switching Rule
       type: object
@@ -1813,7 +1813,7 @@ definitions:
             freeFormat: true
             operation: getACLs
             property: acl_name
-        id:
+        index:
           type: integer
           x-nullable: true
         target_server:
@@ -1824,7 +1824,7 @@ definitions:
             property: name
           x-nullable: false
       required:
-      - id
+      - index
       - target_server
       title: Server Switching Rule
       type: object
@@ -1850,7 +1850,7 @@ definitions:
             type:
               required: true
               value: cache
-        id:
+        index:
           type: integer
           x-nullable: true
         spoe_config:
@@ -1898,7 +1898,7 @@ definitions:
           type: string
           x-nullable: false
       required:
-      - id
+      - index
       - type
       title: Filter
       type: object
@@ -1933,7 +1933,7 @@ definitions:
             freeFormat: true
             operation: getACLs
             property: acl_name
-        id:
+        index:
           type: integer
           x-nullable: true
         pattern:
@@ -1952,7 +1952,7 @@ definitions:
           type: string
           x-nullable: false
       required:
-      - id
+      - index
       - type
       - pattern
       title: Stick Rule
@@ -2025,7 +2025,7 @@ definitions:
               value: false
         global:
           type: boolean
-        id:
+        index:
           type: integer
           x-nullable: true
         length:
@@ -2072,7 +2072,7 @@ definitions:
         nolog:
           type: boolean
       required:
-      - id
+      - index
       title: Log Target
       type: object
   log_targets:
@@ -2096,14 +2096,14 @@ definitions:
           pattern: ^[^\s]+$
           type: string
           x-nullable: false
-        id:
+        index:
           type: integer
           x-nullable: true
         value:
           type: string
           x-nullable: false
       required:
-      - id
+      - index
       - acl_name
       - criterion
       - value
@@ -5473,15 +5473,15 @@ paths:
         - Backend options
         - Frontend options
         - HTTPRequestRule
-  /services/haproxy/configuration/http_request_rules/{id}:
+  /services/haproxy/configuration/http_request_rules/{index}:
       delete:
-        description: Deletes a HTTP Request Rule configuration by it's ID from the specified
+        description: Deletes a HTTP Request Rule configuration by it's index from the specified
           parent.
         operationId: deleteHTTPRequestRule
         parameters:
-        - description: HTTP Request Rule ID
+        - description: HTTP Request Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -5520,13 +5520,13 @@ paths:
         - Frontend options
         - HTTPRequestRule
       get:
-        description: Returns one HTTP Request Rule configuration by it's ID in the specified
+        description: Returns one HTTP Request Rule configuration by it's index in the specified
           parent.
         operationId: getHTTPRequestRule
         parameters:
-        - description: HTTP Request Rule ID
+        - description: HTTP Request Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -5569,13 +5569,13 @@ paths:
         - Frontend options
         - HTTPRequestRule
       put:
-        description: Replaces a HTTP Request Rule configuration by it's ID in the specified
+        description: Replaces a HTTP Request Rule configuration by it's index in the specified
           parent.
         operationId: replaceHTTPRequestRule
         parameters:
-        - description: HTTP Request Rule ID
+        - description: HTTP Request Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -5719,15 +5719,15 @@ paths:
         - Backend options
         - Frontend options
         - HTTPResponseRule
-  /services/haproxy/configuration/http_response_rules/{id}:
+  /services/haproxy/configuration/http_response_rules/{index}:
       delete:
-        description: Deletes a HTTP Response Rule configuration by it's ID from the specified
+        description: Deletes a HTTP Response Rule configuration by it's index from the specified
           parent.
         operationId: deleteHTTPResponseRule
         parameters:
-        - description: HTTP Response Rule ID
+        - description: HTTP Response Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -5766,13 +5766,13 @@ paths:
         - Frontend options
         - HTTPResponseRule
       get:
-        description: Returns one HTTP Response Rule configuration by it's ID in the specified
+        description: Returns one HTTP Response Rule configuration by it's index in the specified
           parent.
         operationId: getHTTPResponseRule
         parameters:
-        - description: HTTP Response Rule ID
+        - description: HTTP Response Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -5815,13 +5815,13 @@ paths:
         - Frontend options
         - HTTPResponseRule
       put:
-        description: Replaces a HTTP Response Rule configuration by it's ID in the specified
+        description: Replaces a HTTP Response Rule configuration by it's index in the specified
           parent.
         operationId: replaceHTTPResponseRule
         parameters:
-        - description: HTTP Response Rule ID
+        - description: HTTP Response Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -5966,15 +5966,15 @@ paths:
         - Backend options
         - Frontend options
         - TCPRequestRule
-  /services/haproxy/configuration/tcp_request_rules/{id}:
+  /services/haproxy/configuration/tcp_request_rules/{index}:
       delete:
-        description: Deletes a TCP Request Rule configuration by it's ID from the specified
+        description: Deletes a TCP Request Rule configuration by it's index from the specified
           parent.
         operationId: deleteTCPRequestRule
         parameters:
-        - description: TCP Request Rule ID
+        - description: TCP Request Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -6013,13 +6013,13 @@ paths:
         - Frontend options
         - TCPRequestRule
       get:
-        description: Returns one TCP Request Rule configuration by it's ID in the specified
+        description: Returns one TCP Request Rule configuration by it's index in the specified
           parent.
         operationId: getTCPRequestRule
         parameters:
-        - description: TCP Request Rule ID
+        - description: TCP Request Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -6062,13 +6062,13 @@ paths:
         - Frontend options
         - TCPRequestRule
       put:
-        description: Replaces a TCP Request Rule configuration by it's ID in the specified
+        description: Replaces a TCP Request Rule configuration by it's index in the specified
           parent.
         operationId: replaceTCPRequestRule
         parameters:
-        - description: TCP Request Rule ID
+        - description: TCP Request Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -6196,15 +6196,15 @@ paths:
         - Backend options
         - Frontend options
         - TCPResponseRule
-  /services/haproxy/configuration/tcp_response_rules/{id}:
+  /services/haproxy/configuration/tcp_response_rules/{index}:
       delete:
-        description: Deletes a TCP Response Rule configuration by it's ID from the specified
+        description: Deletes a TCP Response Rule configuration by it's index from the specified
           backend.
         operationId: deleteTCPResponseRule
         parameters:
-        - description: TCP Response Rule ID
+        - description: TCP Response Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent backend name
@@ -6235,13 +6235,13 @@ paths:
         - Frontend options
         - TCPResponseRule
       get:
-        description: Returns one TCP Response Rule configuration by it's ID in the specified
+        description: Returns one TCP Response Rule configuration by it's index in the specified
           backend.
         operationId: getTCPResponseRule
         parameters:
-        - description: TCP Response Rule ID
+        - description: TCP Response Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent backend name
@@ -6276,13 +6276,13 @@ paths:
         - Frontend options
         - TCPResponseRule
       put:
-        description: Replaces a TCP Response Rule configuration by it's ID in the specified
+        description: Replaces a TCP Response Rule configuration by it's Index in the specified
           backend.
         operationId: replaceTCPResponseRule
         parameters:
-        - description: TCP Response Rule ID
+        - description: TCP Response Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent backend name
@@ -6401,15 +6401,15 @@ paths:
         - HAProxy configuration management
         - Frontend options
         - BackendSwitchingRule
-  /services/haproxy/configuration/backend_switching_rules/{id}:
+  /services/haproxy/configuration/backend_switching_rules/{index}:
       delete:
-        description: Deletes a Backend Switching Rule configuration by it's ID from the
+        description: Deletes a Backend Switching Rule configuration by it's index from the
           specified frontend.
         operationId: deleteBackendSwitchingRule
         parameters:
-        - description: Switching Rule ID
+        - description: Switching Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Frontend name
@@ -6439,13 +6439,13 @@ paths:
         - Frontend options
         - BackendSwitchingRule
       get:
-        description: Returns one Backend Switching Rule configuration by it's ID in the
+        description: Returns one Backend Switching Rule configuration by it's index in the
           specified frontend.
         operationId: getBackendSwitchingRule
         parameters:
-        - description: Switching Rule ID
+        - description: Switching Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Frontend name
@@ -6479,13 +6479,13 @@ paths:
         - Frontend options
         - BackendSwitchingRule
       put:
-        description: Replaces a Backend Switching Rule configuration by it's ID in the specified
-          frontend.
+        description: Replaces a Backend Switching Rule configuration by it's index in the
+          specified frontend.
         operationId: replaceBackendSwitchingRule
         parameters:
-        - description: Switching Rule ID
+        - description: Switching Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Frontend name
@@ -6603,15 +6603,15 @@ paths:
         - HAProxy configuration management
         - Backend options
         - ServerSwitchingRule
-  /services/haproxy/configuration/server_switching_rules/{id}:
+  /services/haproxy/configuration/server_switching_rules/{index}:
       delete:
-        description: Deletes a Server Switching Rule configuration by it's ID from the specified
-          backend.
+        description: Deletes a Server Switching Rule configuration by it's index from the
+          specified backend.
         operationId: deleteServerSwitchingRule
         parameters:
-        - description: Switching Rule ID
+        - description: Switching Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Backend name
@@ -6641,13 +6641,13 @@ paths:
         - Backend options
         - ServerSwitchingRule
       get:
-        description: Returns one Server Switching Rule configuration by it's ID in the specified
-          backend.
+        description: Returns one Server Switching Rule configuration by it's index in the
+          specified backend.
         operationId: getServerSwitchingRule
         parameters:
-        - description: Switching Rule ID
+        - description: Switching Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Backend name
@@ -6681,13 +6681,13 @@ paths:
         - Backend options
         - ServerSwitchingRule
       put:
-        description: Replaces a Server Switching Rule configuration by it's ID in the specified
-          backend.
+        description: Replaces a Server Switching Rule configuration by it's index in the
+          specified backend.
         operationId: replaceServerSwitchingRule
         parameters:
-        - description: Switching Rule ID
+        - description: Switching Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Backend name
@@ -6821,14 +6821,14 @@ paths:
         - Backend options
         - Frontend options
         - Filter
-  /services/haproxy/configuration/filters/{id}:
+  /services/haproxy/configuration/filters/{index}:
       delete:
-        description: Deletes a Filter configuration by it's ID from the specified parent.
+        description: Deletes a Filter configuration by it's index from the specified parent.
         operationId: deleteFilter
         parameters:
-        - description: Filter ID
+        - description: Filter Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -6867,12 +6867,12 @@ paths:
         - Frontend options
         - Filter
       get:
-        description: Returns one Filter configuration by it's ID in the specified parent.
+        description: Returns one Filter configuration by it's index in the specified parent.
         operationId: getFilter
         parameters:
-        - description: Filter ID
+        - description: Filter Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -6915,12 +6915,12 @@ paths:
         - Frontend options
         - Filter
       put:
-        description: Replaces a Filter configuration by it's ID in the specified parent.
+        description: Replaces a Filter configuration by it's index in the specified parent.
         operationId: replaceFilter
         parameters:
-        - description: Filter ID
+        - description: Filter Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -7045,14 +7045,15 @@ paths:
         - HAProxy configuration management
         - Backend options
         - StickRule
-  /services/haproxy/configuration/stick_rules/{id}:
+  /services/haproxy/configuration/stick_rules/{index}:
       delete:
-        description: Deletes a Stick Rule configuration by it's ID from the specified backend.
+        description: Deletes a Stick Rule configuration by it's index from the specified
+          backend.
         operationId: deleteStickRule
         parameters:
-        - description: Stick Rule ID
+        - description: Stick Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Backend name
@@ -7082,12 +7083,13 @@ paths:
         - Backend options
         - StickRule
       get:
-        description: Returns one Stick Rule configuration by it's ID in the specified backend.
+        description: Returns one Stick Rule configuration by it's index in the specified
+          backend.
         operationId: getStickRule
         parameters:
-        - description: Stick Rule ID
+        - description: Stick Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Backend name
@@ -7121,12 +7123,13 @@ paths:
         - Backend options
         - StickRule
       put:
-        description: Replaces a Stick Rule configuration by it's ID in the specified backend.
+        description: Replaces a Stick Rule configuration by it's index in the specified
+          backend.
         operationId: replaceStickRule
         parameters:
-        - description: Stick Rule ID
+        - description: Stick Rule Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Backend name
@@ -7260,14 +7263,15 @@ paths:
         - Backend options
         - Frontend options
         - LogTarget
-  /services/haproxy/configuration/log_targets/{id}:
+  /services/haproxy/configuration/log_targets/{index}:
       delete:
-        description: Deletes a Log Target configuration by it's ID from the specified parent.
+        description: Deletes a Log Target configuration by it's index from the specified
+          parent.
         operationId: deleteLogTarget
         parameters:
-        - description: Log Target ID
+        - description: Log Target Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -7306,12 +7310,13 @@ paths:
         - Frontend options
         - LogTarget
       get:
-        description: Returns one Log Target configuration by it's ID in the specified parent.
+        description: Returns one Log Target configuration by it's index in the specified
+          parent.
         operationId: getLogTarget
         parameters:
-        - description: Log Target ID
+        - description: Log Target Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -7354,12 +7359,13 @@ paths:
         - Frontend options
         - LogTarget
       put:
-        description: Replaces a Log Target configuration by it's ID in the specified parent.
+        description: Replaces a Log Target configuration by it's index in the specified
+          parent.
         operationId: replaceLogTarget
         parameters:
-        - description: Log Target ID
+        - description: Log Target Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -7502,14 +7508,14 @@ paths:
         - Backend options
         - Frontend options
         - ACL
-  /services/haproxy/configuration/acls/{id}:
+  /services/haproxy/configuration/acls/{index}:
       delete:
-        description: Deletes a ACL line configuration by it's ID from the specified parent.
+        description: Deletes a ACL line configuration by it's index from the specified parent.
         operationId: deleteAcl
         parameters:
-        - description: ACL line ID
+        - description: ACL line Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -7548,12 +7554,12 @@ paths:
         - Frontend options
         - ACL
       get:
-        description: Returns one ACL line configuration by it's ID in the specified parent.
+        description: Returns one ACL line configuration by it's index in the specified parent.
         operationId: getAcl
         parameters:
-        - description: ACL line ID
+        - description: ACL line Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name
@@ -7596,12 +7602,12 @@ paths:
         - Frontend options
         - ACL
       put:
-        description: Replaces a ACL line configuration by it's ID in the specified parent.
+        description: Replaces a ACL line configuration by it's index in the specified parent.
         operationId: replaceAcl
         parameters:
-        - description: ACL line ID
+        - description: ACL line Index
           in: path
-          name: id
+          name: index
           required: true
           type: integer
         - description: Parent name

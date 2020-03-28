@@ -449,43 +449,43 @@ paths:
     $ref: "paths/configuration.yaml#/servers_one"
   /services/haproxy/configuration/http_request_rules:
     $ref: "paths/configuration.yaml#/http_request_rules"
-  /services/haproxy/configuration/http_request_rules/{id}:
+  /services/haproxy/configuration/http_request_rules/{index}:
     $ref: "paths/configuration.yaml#/http_request_rules_one"
   /services/haproxy/configuration/http_response_rules:
     $ref: "paths/configuration.yaml#/http_response_rules"
-  /services/haproxy/configuration/http_response_rules/{id}:
+  /services/haproxy/configuration/http_response_rules/{index}:
     $ref: "paths/configuration.yaml#/http_response_rules_one"
   /services/haproxy/configuration/tcp_request_rules:
     $ref: "paths/configuration.yaml#/tcp_request_rules"
-  /services/haproxy/configuration/tcp_request_rules/{id}:
+  /services/haproxy/configuration/tcp_request_rules/{index}:
     $ref: "paths/configuration.yaml#/tcp_request_rules_one"
   /services/haproxy/configuration/tcp_response_rules:
     $ref: "paths/configuration.yaml#/tcp_response_rules"
-  /services/haproxy/configuration/tcp_response_rules/{id}:
+  /services/haproxy/configuration/tcp_response_rules/{index}:
     $ref: "paths/configuration.yaml#/tcp_response_rules_one"
   /services/haproxy/configuration/backend_switching_rules:
     $ref: "paths/configuration.yaml#/backend_switching_rules"
-  /services/haproxy/configuration/backend_switching_rules/{id}:
+  /services/haproxy/configuration/backend_switching_rules/{index}:
     $ref: "paths/configuration.yaml#/backend_switching_rules_one"
   /services/haproxy/configuration/server_switching_rules:
     $ref: "paths/configuration.yaml#/server_switching_rules"
-  /services/haproxy/configuration/server_switching_rules/{id}:
+  /services/haproxy/configuration/server_switching_rules/{index}:
     $ref: "paths/configuration.yaml#/server_switching_rules_one"
   /services/haproxy/configuration/filters:
     $ref: "paths/configuration.yaml#/filters"
-  /services/haproxy/configuration/filters/{id}:
+  /services/haproxy/configuration/filters/{index}:
     $ref: "paths/configuration.yaml#/filters_one"
   /services/haproxy/configuration/stick_rules:
     $ref: "paths/configuration.yaml#/stick_rules"
-  /services/haproxy/configuration/stick_rules/{id}:
+  /services/haproxy/configuration/stick_rules/{index}:
     $ref: "paths/configuration.yaml#/stick_rules_one"
   /services/haproxy/configuration/log_targets:
     $ref: "paths/configuration.yaml#/log_targets"
-  /services/haproxy/configuration/log_targets/{id}:
+  /services/haproxy/configuration/log_targets/{index}:
     $ref: "paths/configuration.yaml#/log_targets_one"
   /services/haproxy/configuration/acls:
     $ref: "paths/configuration.yaml#/acls"
-  /services/haproxy/configuration/acls/{id}:
+  /services/haproxy/configuration/acls/{index}:
     $ref: "paths/configuration.yaml#/acls_one"
   /services/haproxy/configuration/resolvers:
     $ref: "paths/configuration.yaml#/resolvers"
