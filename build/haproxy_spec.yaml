@@ -4513,7 +4513,7 @@ paths:
                 _version:
                   type: integer
                 data:
-                  $ref: '#/definitions/peer_section'
+                  $ref: '#/definitions/peer_sections'
               required:
               - data
               type: object
@@ -4695,7 +4695,7 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new peer_entry
         tags:
-        - Peer_Entry
+        - PeerEntry
         - HAProxy configuration management
   /services/haproxy/configuration/peer_entries/{name}:
       delete:
@@ -4731,7 +4731,7 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a peer_entry
         tags:
-        - Peer_Entry
+        - PeerEntry
         - HAProxy configuration management
         - Peers options
       get:

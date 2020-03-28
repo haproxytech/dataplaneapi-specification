@@ -477,7 +477,7 @@ peer_section:
             - data
           properties:
             data:
-              $ref: "#/definitions/peer_section"
+              $ref: "#/definitions/peer_sections"
             _version:
               type: integer
       'default':
@@ -620,7 +620,7 @@ peer_entries:
     description: Adds a new peer entry in the specified peer section in the configuration file.
     operationId: createPeerEntry
     tags:
-      - Peer_Entry
+      - PeerEntry
       - HAProxy configuration management
     parameters:
       - name: peer_section
@@ -745,7 +745,7 @@ peer_entries_one:
     description: Deletes a peer entry configuration by it's name in the specified peer section.
     operationId: deletePeerEntry
     tags:
-      - Peer_Entry
+      - PeerEntry
       - HAProxy configuration management
       - Peers options
     parameters:
