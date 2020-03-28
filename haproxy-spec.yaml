@@ -384,6 +384,9 @@ tags:
   - name: ACL
   - name: Resolver
   - name: Nameserver
+  - name: Peer
+  - name: PeerEntry
+  - name: Cluster
 security:
   - basic_auth: []
 paths:
