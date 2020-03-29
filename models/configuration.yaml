@@ -804,6 +804,24 @@ server:
       x-dependency:
         ssl:
           value: enabled
+    resolvers:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dynamic-enum:
+        operation: getResolvers
+        property: name
+    resolve-prefer:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dependency:
+        resolvers:
+          required: true
+    resolve-net:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dependency:
+        resolvers:
+          required: true
   additionalProperties: false
   example:
     name: www
@@ -1665,6 +1683,24 @@ default_server:
       minimum: 1
       maximum: 65535
       x-nullable: true
+    resolvers:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dynamic-enum:
+        operation: getResolvers
+        property: name
+    resolve-prefer:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dependency:
+        resolvers:
+          required: true
+    resolve-net:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dependency:
+        resolvers:
+          required: true
 forwardfor:
   type: object
   x-display-name: ForwardFor

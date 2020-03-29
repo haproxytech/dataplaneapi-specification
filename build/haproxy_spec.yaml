@@ -991,6 +991,24 @@ definitions:
         proto:
           pattern: ^[^\s]+$
           type: string
+        resolve-net:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            resolvers:
+              required: true
+        resolve-prefer:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            resolvers:
+              required: true
+        resolvers:
+          pattern: ^[^\s]+$
+          type: string
+          x-dynamic-enum:
+            operation: getResolvers
+            property: name
         send-proxy:
           enum:
           - enabled
@@ -3348,6 +3366,24 @@ definitions:
           minimum: 1
           type: integer
           x-nullable: true
+        resolve-net:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            resolvers:
+              required: true
+        resolve-prefer:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            resolvers:
+              required: true
+        resolvers:
+          pattern: ^[^\s]+$
+          type: string
+          x-dynamic-enum:
+            operation: getResolvers
+            property: name
         rise:
           type: integer
           x-nullable: true
