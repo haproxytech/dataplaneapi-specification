@@ -8062,7 +8062,7 @@ paths:
         - $ref: '#/parameters/transaction_id'
         - $ref: '#/parameters/version'
         produces:
-        - text/plain
+        - application/json
         responses:
           "200":
             description: Operation successful
@@ -8097,10 +8097,22 @@ paths:
           required: true
           schema:
             type: string
+        - default: false
+          description: If set, no reload will be initiated and runtime actions from X-Runtime-Actions
+            will be applied
+          in: query
+          name: skip_reload
+          required: false
+          type: boolean
+        - description: List of Runtime API commands with parameters separated by ';'
+          in: header
+          name: X-Runtime-Actions
+          required: false
+          type: string
         - $ref: '#/parameters/version'
         - $ref: '#/parameters/force_reload'
         produces:
-        - text/plain
+        - application/json
         responses:
           "201":
             description: New HAProxy configuration pushed

@@ -2830,7 +2830,7 @@ configuration:
       - $ref: "#/parameters/transaction_id"
       - $ref: "#/parameters/version"
     produces:
-      - text/plain
+      - application/json
     tags:
       - Configuration
       - HAProxy configuration management
@@ -2858,7 +2858,7 @@ configuration:
     description: Push a new haproxy configuration file in plain text
     operationId: postHAProxyConfiguration
     produces:
-      - text/plain
+      - application/json
     consumes:
       - text/plain
     parameters:
@@ -2867,6 +2867,17 @@ configuration:
         required: true
         schema:
           type: string
+      - name: skip_reload
+        in: query
+        description: If set, no reload will be initiated and runtime actions from X-Runtime-Actions will be applied
+        type: boolean
+        required: false
+        default: false
+      - name: X-Runtime-Actions
+        in: header
+        description: List of Runtime API commands with parameters separated by ';'
+        type: string
+        required: false
       - $ref: "#/parameters/version"
       - $ref: "#/parameters/force_reload"
     tags:
