@@ -3557,16 +3557,22 @@ definitions:
           type: integer
         hold_nx:
           type: integer
+          x-nullable: false
         hold_obsolete:
           type: integer
+          x-nullable: false
         hold_other:
           type: integer
+          x-nullable: false
         hold_refused:
           type: integer
+          x-nullable: false
         hold_timeout:
           type: integer
+          x-nullable: false
         hold_valid:
           type: integer
+          x-nullable: false
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
@@ -3578,8 +3584,10 @@ definitions:
           type: integer
         timeout_resolve:
           type: integer
+          x-nullable: false
         timeout_retry:
           type: integer
+          x-nullable: false
       required:
       - name
       title: Resolver

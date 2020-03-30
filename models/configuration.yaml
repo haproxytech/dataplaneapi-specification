@@ -259,16 +259,22 @@ resolver:
       minimum: 1232
     hold_nx:
       type: integer
+      x-nullable: false
     hold_obsolete:
       type: integer
+      x-nullable: false
     hold_other:
       type: integer
+      x-nullable: false
     hold_refused:
       type: integer
+      x-nullable: false
     hold_timeout:
       type: integer
+      x-nullable: false
     hold_valid:
       type: integer
+      x-nullable: false
     parse-resolv-conf:
       type: boolean
     resolve_retries:
@@ -276,8 +282,10 @@ resolver:
       minimum: 1
     timeout_resolve:
       type: integer
+      x-nullable: false
     timeout_retry:
       type: integer
+      x-nullable: false
 nameserver:
   title: Nameserver
   description: Nameserver used in Runtime DNS configuration
