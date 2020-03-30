@@ -242,6 +242,8 @@ defaults:
       type: string
       enum: [enabled, disabled]
       x-display-name: All Backups
+    stats_options:
+      $ref: "#/definitions/stats_options"
   additionalProperties: false
 resolver:
   title: Resolver
@@ -427,6 +429,8 @@ frontend:
       x-dependency:
         unique_id_format:
           required: true
+    stats_options:
+      $ref: "#/definitions/stats_options"
   additionalProperties: false
   example:
     name: test_frontend
@@ -588,6 +592,9 @@ backend:
       x-dependency:
         mode:
           value: http
+      pattern: '^[^\s]+$'
+    stats_options:
+      $ref: "#/definitions/stats_options"
   additionalProperties: false
   example:
     name: test_backend
@@ -1924,3 +1931,30 @@ http-check:
         type:
           value: expect
           required: true
+stats_options:
+  type: object
+  properties:
+    stats_enable:
+      type: boolean
+      x-display-name: Stats Enable
+    stats_hide_version:
+      type: boolean
+      x-display-name: Stats Hide Version
+    stats_maxconn:
+      type: integer
+      minimum: 1
+    stats_refresh_delay:
+      type: integer
+      x-nullable: true
+    stats_show_desc:
+      type: string
+      pattern: '^[^\s]+$'
+    stats_show_legends:
+      type: boolean
+      x-display-name: Stats Show Legends
+    stats_show_node_name:
+      type: string
+      pattern: '^[^\s]+$'
+    stats_uri_prefix:
+      type: string
+      pattern: '^[^\s]+$'

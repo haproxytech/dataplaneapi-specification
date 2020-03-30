@@ -166,6 +166,8 @@ definitions:
     $ref: "models/stats.yaml#/native_stat_stats"
   native_stats_collection:
     $ref: "models/stats.yaml#/native_stats_collection"
+  stats_options:
+    $ref: "models/configuration.yaml#/stats_options"
   error:
     $ref: "models/errors.yaml#/error"
   endpoint:
