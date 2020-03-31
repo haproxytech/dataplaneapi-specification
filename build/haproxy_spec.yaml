@@ -2927,6 +2927,7 @@ definitions:
         stats_show_node_name:
           pattern: ^[^\s]+$
           type: string
+          x-nullable: true
         stats_uri_prefix:
           pattern: ^[^\s]+$
           type: string
