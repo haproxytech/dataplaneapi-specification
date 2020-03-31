@@ -2106,6 +2106,7 @@ stats_options:
     stats_show_desc:
       type: string
       pattern: '^[^\s]+$'
+      x-nullable: true
     stats_show_legends:
       type: boolean
       x-display-name: Stats Show Legends

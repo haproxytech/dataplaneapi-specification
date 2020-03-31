@@ -2921,6 +2921,7 @@ definitions:
         stats_show_desc:
           pattern: ^[^\s]+$
           type: string
+          x-nullable: true
         stats_show_legends:
           type: boolean
           x-display-name: Stats Show Legends
