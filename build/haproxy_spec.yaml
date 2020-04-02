@@ -3899,7 +3899,8 @@ responses:
       Configuration-Version:
         description: Configuration file version
         type: integer
-        x-nullable: false
+        x-nullable: true
+        default: 0
     schema:
       $ref: '#/definitions/error'
   NotFound:
@@ -3908,7 +3909,8 @@ responses:
       Configuration-Version:
         description: Configuration file version
         type: integer
-        x-nullable: false
+        x-nullable: true
+        default: 0
     schema:
       $ref: '#/definitions/error'
   AlreadyExists:
@@ -3917,7 +3919,8 @@ responses:
       Configuration-Version:
         description: Configuration file version
         type: integer
-        x-nullable: false
+        x-nullable: true
+        default: 0
     schema:
       $ref: '#/definitions/error'
   DefaultError:
@@ -3926,7 +3929,8 @@ responses:
       Configuration-Version:
         description: Configuration file version
         type: integer
-        x-nullable: false
+        x-nullable: true
+        default: 0
     schema:
       $ref: '#/definitions/error'
 parameters:
