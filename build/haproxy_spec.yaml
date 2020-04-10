@@ -1241,11 +1241,23 @@ definitions:
               required: true
               value: set-log-level
         path_fmt:
+          pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
               required: true
-              value: set-path
+              value:
+              - set-path
+              - replace-path
+        path_match:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value:
+              - set-path
+              - replace-path
         query-fmt:
           type: string
           x-dependency:
@@ -1363,6 +1375,7 @@ definitions:
           - set-header
           - set-log-level
           - set-path
+          - replace-path
           - set-query
           - set-uri
           - set-var

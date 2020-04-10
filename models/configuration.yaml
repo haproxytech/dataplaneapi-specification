@@ -874,7 +874,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1018,12 +1018,20 @@ http_request_rule:
         type:
           value: set-log-level
           required: true
-    path_fmt:
+    path_match:
       type: string
+      pattern: '^[^\s]+$'
       x-dependency:
         type:
+          value: [set-path, replace-path]
           required: true
-          value: set-path
+    path_fmt:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: [set-path, replace-path]
+          required: true
     var_name:
       type: string
       pattern: '^[^\s]+$'
