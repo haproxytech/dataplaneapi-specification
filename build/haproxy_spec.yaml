@@ -4181,6 +4181,20 @@ paths:
         summary: Post cluster settings
         tags:
         - Cluster
+  /cluster/certificate:
+      post:
+        description: Initiates a certificate refresh
+        operationId: initiateCertificateRefresh
+        responses:
+          "200":
+            description: refresh activated
+          "403":
+            description: refresh not possible
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Initiates a certificate refresh
+        tags:
+        - Cluster
   /services:
       get:
         description: Returns a list of API managed services endpoints.

@@ -37,3 +37,18 @@ cluster:
         $ref: '#/responses/BadRequest'
       'default':
         $ref: '#/responses/DefaultError'
+certificate:
+  post:
+    tags:
+      - Cluster
+    summary: Initiates a certificate refresh
+    description: Initiates a certificate refresh
+    operationId: initiateCertificateRefresh
+    responses:
+      '200':
+        description: refresh activated
+      '403':
+        description: refresh not possible
+      'default':
+        $ref: '#/responses/DefaultError'
+        

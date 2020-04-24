@@ -422,6 +422,8 @@ paths:
     $ref: "paths/general.yaml#/info"
   /cluster:
     $ref: "paths/cluster.yaml#/cluster"
+  /cluster/certificate:
+    $ref: "paths/cluster.yaml#/certificate"
   /services:
     $ref: "paths/general.yaml#/services"
   /services/haproxy:
