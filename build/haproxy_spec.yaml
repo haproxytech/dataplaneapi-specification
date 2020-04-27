@@ -1179,6 +1179,18 @@ definitions:
             operation: getACLs
             property: acl_name
         deny_status:
+          enum:
+          - 200
+          - 400
+          - 403
+          - 405
+          - 408
+          - 425
+          - 429
+          - 500
+          - 502
+          - 503
+          - 504
           type: integer
           x-dependency:
             type:

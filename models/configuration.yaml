@@ -983,6 +983,7 @@ http_request_rule:
           required: true
     deny_status:
       type: integer
+      enum: [200, 400, 403, 405, 408, 425, 429, 500, 502, 503, 504]
       x-nullable: false
       x-dependency:
         type:
