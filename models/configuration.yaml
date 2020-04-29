@@ -2114,7 +2114,6 @@ stats_options:
       x-nullable: true
     stats_show_desc:
       type: string
-      pattern: '^[^\s]+$'
       x-nullable: true
     stats_show_legends:
       type: boolean
