@@ -798,6 +798,9 @@ server:
     send-proxy-v2:
       type: string
       enum: [enabled, disabled]
+    slowstart:
+      type: string
+      pattern: '^[1-9][0-9]*(us|ms|s|m|h|d)$'
     sni:
       type: string
       pattern: '^[^\s]+$'
