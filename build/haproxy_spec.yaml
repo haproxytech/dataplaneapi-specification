@@ -3881,26 +3881,27 @@ definitions:
       description: Runtime DNS configuration
       properties:
         accepted_payload_size:
-          minimum: 1232
+          maximum: 8192
+          minimum: 512
           type: integer
         hold_nx:
           type: integer
-          x-nullable: false
+          x-nullable: true
         hold_obsolete:
           type: integer
-          x-nullable: false
+          x-nullable: true
         hold_other:
           type: integer
-          x-nullable: false
+          x-nullable: true
         hold_refused:
           type: integer
-          x-nullable: false
+          x-nullable: true
         hold_timeout:
           type: integer
-          x-nullable: false
+          x-nullable: true
         hold_valid:
           type: integer
-          x-nullable: false
+          x-nullable: true
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
