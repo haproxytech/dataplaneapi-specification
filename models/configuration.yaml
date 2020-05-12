@@ -258,25 +258,26 @@ resolver:
       x-nullable: false
     accepted_payload_size:
       type: integer
-      minimum: 1232
+      minimum: 512
+      maximum: 8192
     hold_nx:
       type: integer
-      x-nullable: false
+      x-nullable: true
     hold_obsolete:
       type: integer
-      x-nullable: false
+      x-nullable: true
     hold_other:
       type: integer
-      x-nullable: false
+      x-nullable: true
     hold_refused:
       type: integer
-      x-nullable: false
+      x-nullable: true
     hold_timeout:
       type: integer
-      x-nullable: false
+      x-nullable: true
     hold_valid:
       type: integer
-      x-nullable: false
+      x-nullable: true
     parse-resolv-conf:
       type: boolean
     resolve_retries:
