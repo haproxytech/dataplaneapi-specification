@@ -1051,8 +1051,8 @@ definitions:
           - disabled
           type: string
         slowstart:
-          pattern: ^[1-9][0-9]*(us|ms|s|m|h|d)$
-          type: string
+          type: integer
+          x-nullable: true
         sni:
           pattern: ^[^\s]+$
           type: string
@@ -3740,6 +3740,9 @@ definitions:
             operation: getResolvers
             property: name
         rise:
+          type: integer
+          x-nullable: true
+        slowstart:
           type: integer
           x-nullable: true
         sni:
