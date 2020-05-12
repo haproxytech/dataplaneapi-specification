@@ -799,8 +799,8 @@ server:
       type: string
       enum: [enabled, disabled]
     slowstart:
-      type: string
-      pattern: '^[1-9][0-9]*(us|ms|s|m|h|d)$'
+      type: integer
+      x-nullable: true
     sni:
       type: string
       pattern: '^[^\s]+$'
@@ -1872,6 +1872,9 @@ default_server:
     check-sni:
       type: string
       pattern: '^[^\s]+$'
+    slowstart:
+      type: integer
+      x-nullable: true
     sni:
       type: string
       pattern: '^[^\s]+$'
