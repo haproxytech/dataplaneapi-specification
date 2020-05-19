@@ -139,6 +139,10 @@ defaults:
       type: string
       enum: [enabled, disabled]
       x-display-name: Don't Log Null
+    http-buffer-request:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: HTTP bufferrequest
     httplog:
       type: boolean
       x-display-name: HTTP Log
@@ -367,6 +371,10 @@ frontend:
       type: string
       enum: [enabled, disabled]
       x-display-name: Don't Log Null
+    http-buffer-request:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: HTTP bufferrequest
     http_connection_mode:
       type: string
       enum: [httpclose, http-server-close, http-keep-alive]
@@ -476,6 +484,10 @@ backend:
       type: string
       enum: [enabled, disabled]
       x-display-name: All Backups
+    http-buffer-request:
+      type: string
+      enum: [enabled, disabled]
+      x-display-name: HTTP bufferrequest
     log_tag:
       type: string
       pattern: '^[^\s]+$'
