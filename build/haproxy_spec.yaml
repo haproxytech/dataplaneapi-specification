@@ -1040,6 +1040,19 @@ definitions:
         proto:
           pattern: ^[^\s]+$
           type: string
+        proxy-v2-options:
+          items:
+            enum:
+            - ssl
+            - cert-cn
+            - ssl-cipher
+            - cert-sig
+            - cert-key
+            - authority
+            - crc32c
+            - unique-id
+            type: string
+          type: array
         resolve-net:
           pattern: ^[^\s]+$
           type: string
