@@ -811,6 +811,11 @@ server:
     send-proxy-v2:
       type: string
       enum: [enabled, disabled]
+    proxy-v2-options:
+      type: array
+      items:
+        type: string
+        enum: [ssl, cert-cn, ssl-cipher, cert-sig, cert-key, authority, crc32c, unique-id]
     slowstart:
       type: integer
       x-nullable: true
