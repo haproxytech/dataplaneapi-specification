@@ -820,6 +820,10 @@ server:
     ssl:
       type: string
       enum: [enabled, disabled]
+    alpn:
+      type: string
+      x-display-name: ALPN Protocols
+      pattern: '^[^\s]+$'
     check-sni:
       type: string
       pattern: '^[^\s]+$'

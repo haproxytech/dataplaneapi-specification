@@ -966,6 +966,10 @@ definitions:
           type: string
         allow_0rtt:
           type: boolean
+        alpn:
+          pattern: ^[^\s]+$
+          type: string
+          x-display-name: ALPN Protocols
         backup:
           enum:
           - enabled
