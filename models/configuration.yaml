@@ -899,7 +899,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1123,6 +1123,29 @@ http_request_rule:
         type:
           value: [add-acl, del-acl]
           required: true
+    map_file:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: [set-map, del-map]
+          required: true
+    map_keyfmt:
+      type: string
+      x-display-name: Map Key Format
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: [set-map, del-map]
+          required: true
+    map_valuefmt:
+      type: string
+      x-display-name: Map Value Format
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: set-map
+          required: true
     cond:
       type: string
       x-display-name: Condition
@@ -1158,7 +1181,7 @@ http_response_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl, capture]
+      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl, capture, set-map, del-map]
       x-nullable: false
     capture_sample:
       type: string
@@ -1300,6 +1323,29 @@ http_response_rule:
       x-dependency:
         type:
           value: [add-acl, del-acl]
+          required: true
+    map_file:
+      type: string
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: [set-map, del-map]
+          required: true
+    map_keyfmt:
+      type: string
+      x-display-name: Map Key Format
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: [set-map, del-map]
+          required: true
+    map_valuefmt:
+      type: string
+      x-display-name: Map Value Format
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: set-map
           required: true
     cond:
       type: string

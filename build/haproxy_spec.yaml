@@ -1290,6 +1290,33 @@ definitions:
             type:
               required: true
               value: set-log-level
+        map_file:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value:
+              - set-map
+              - del-map
+        map_keyfmt:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value:
+              - set-map
+              - del-map
+          x-display-name: Map Key Format
+        map_valuefmt:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-map
+          x-display-name: Map Value Format
         path_fmt:
           pattern: ^[^\s]+$
           type: string
@@ -1436,6 +1463,8 @@ definitions:
           - track-sc0
           - track-sc1
           - track-sc2
+          - set-map
+          - del-map
           type: string
           x-nullable: false
         uri-fmt:
@@ -1593,6 +1622,33 @@ definitions:
             type:
               required: true
               value: set-log-level
+        map_file:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value:
+              - set-map
+              - del-map
+        map_keyfmt:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value:
+              - set-map
+              - del-map
+          x-display-name: Map Key Format
+        map_valuefmt:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-map
+          x-display-name: Map Value Format
         redir_code:
           enum:
           - 301
@@ -1674,6 +1730,8 @@ definitions:
           - add-acl
           - del-acl
           - capture
+          - set-map
+          - del-map
           type: string
           x-nullable: false
         var_expr:
