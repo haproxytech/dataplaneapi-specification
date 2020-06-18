@@ -899,7 +899,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1145,6 +1145,30 @@ http_request_rule:
       x-dependency:
         type:
           value: set-map
+          required: true
+    cache_name:
+      type: string
+      x-display-name: Cache Name
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: cache-use
+          required: true
+    hint_name:
+      type: string
+      x-display-name: Hint Name
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: early-hint
+          required: true
+    hint_format:
+      type: string
+      x-display-name: Hint Format
+      pattern: '^[^\s]+$'
+      x-dependency:
+        type:
+          value: early-hint
           required: true
     cond:
       type: string
