@@ -1244,6 +1244,16 @@ definitions:
               - deny
               - tarpit
           x-nullable: false
+        expr:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value:
+              - do-resolve
+              - set-dst
+              - set-dst-port
+          x-display-name: Standard HAProxy expression
         hdr_format:
           pattern: ^[^\s]+$
           type: string
@@ -1359,6 +1369,16 @@ definitions:
               value:
               - set-path
               - replace-path
+        protocol:
+          enum:
+          - ipv4
+          - ipv6
+          type: string
+          x-dependency:
+            type:
+              required: false
+              value: do-resolve
+          x-display-name: Protocol
         query-fmt:
           type: string
           x-dependency:
@@ -1401,11 +1421,17 @@ definitions:
               required: true
               value: redirect
           x-display-name: Redirect Value
+        resolvers:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: do-resolve
+          x-display-name: Resolvers
         sc_id:
           type: integer
           x-dependency:
             type:
-              required: true
               value:
               - sc-inc-gpc0
               - sc-inc-gpc1
@@ -1503,6 +1529,9 @@ definitions:
           - replace-uri
           - sc-inc-gpc0
           - sc-inc-gpc1
+          - do-resolve
+          - set-dst
+          - set-dst-port
           type: string
           x-nullable: false
         uri-fmt:
@@ -1532,7 +1561,9 @@ definitions:
           x-dependency:
             type:
               required: true
-              value: set-var
+              value:
+              - set-var
+              - do-resolve
         var_scope:
           pattern: ^[^\s]+$
           type: string

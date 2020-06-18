@@ -899,7 +899,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1, do-resolve, set-dst, set-dst-port]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1063,7 +1063,7 @@ http_request_rule:
       pattern: '^[^\s]+$'
       x-dependency:
         type:
-          value: set-var
+          value: [set-var, do-resolve]
           required: true
     var_scope:
       type: string
@@ -1181,6 +1181,27 @@ http_request_rule:
       x-dependency:
         type:
           value: [sc-inc-gpc0, sc-inc-gpc1]
+    resolvers:
+      type: string
+      x-display-name: Resolvers
+      x-dependency:
+        type:
+          value: do-resolve
+          required: true
+    protocol:
+      type: string
+      enum: [ipv4, ipv6]
+      x-display-name: Protocol
+      x-dependency:
+        type:
+          value: do-resolve
+          required: false
+    expr:
+      type: string
+      x-display-name: Standard HAProxy expression
+      x-dependency:
+        type:
+          value: [do-resolve, set-dst, set-dst-port]
           required: true
     cond:
       type: string
