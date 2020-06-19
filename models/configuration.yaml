@@ -899,7 +899,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1085,12 +1085,18 @@ http_request_rule:
         type:
           required: true
           value: set-query
+    uri-match:
+      type: string
+      x-dependency:
+        type:
+          required: true
+          value: replace-uri
     uri-fmt:
       type: string
       x-dependency:
         type:
           required: true
-          value: set-uri
+          value: [set-uri, replace-uri]
     spoe_engine:
       type: string
       x-display-name: SPOE Engine

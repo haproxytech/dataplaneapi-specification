@@ -1492,6 +1492,7 @@ definitions:
           - cache-use
           - disable-l7-retry
           - early-hint
+          - replace-uri
           type: string
           x-nullable: false
         uri-fmt:
@@ -1499,7 +1500,15 @@ definitions:
           x-dependency:
             type:
               required: true
-              value: set-uri
+              value:
+              - set-uri
+              - replace-uri
+        uri-match:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: replace-uri
         var_expr:
           type: string
           x-dependency:
