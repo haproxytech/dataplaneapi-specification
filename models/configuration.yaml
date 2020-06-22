@@ -899,7 +899,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1, do-resolve, set-dst, set-dst-port]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1, do-resolve, set-dst, set-dst-port, sc-set-gpt0, set-mark, set-nice]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1180,7 +1180,8 @@ http_request_rule:
       type: integer
       x-dependency:
         type:
-          value: [sc-inc-gpc0, sc-inc-gpc1]
+          value: [sc-inc-gpc0, sc-inc-gpc1, sc-set-gpt0]
+          required: true
     resolvers:
       type: string
       x-display-name: Resolvers
@@ -1202,6 +1203,39 @@ http_request_rule:
       x-dependency:
         type:
           value: [do-resolve, set-dst, set-dst-port]
+          required: true
+    sc_expr:
+      type: string
+      x-display-name: ScSet Expression Value
+      x-dependency:
+        type:
+          value: sc-set-gpt0
+          required: true
+    sc_int:
+      type: integer
+      x-nullable: true
+      x-display-name: ScSet Integer Value
+      x-dependency:
+        type:
+          value: sc-set-gpt0
+          required: true
+    mark_value:
+      type: string
+      pattern: '^(0x[0-9A-Fa-f]+|[0-9]+)$'
+      x-display-name: Mark Value
+      x-dependency:
+        type:
+          value: set-mark
+          required: true
+    nice_value:
+      type: integer
+      minimum: -1024
+      maximum: 1024
+      x-nullable: false
+      x-display-name: Nice Value
+      x-dependency:
+        type:
+          value: set-nice
           required: true
     cond:
       type: string
@@ -1238,7 +1272,7 @@ http_response_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl, capture, set-map, del-map, sc-inc-gpc0, sc-inc-gpc1]
+      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl, capture, set-map, del-map, sc-inc-gpc0, sc-inc-gpc1, sc-set-gpt0, set-mark, set-nice]
       x-nullable: false
     capture_sample:
       type: string
@@ -1408,7 +1442,40 @@ http_response_rule:
       type: integer
       x-dependency:
         type:
-          value: [sc-inc-gpc0, sc-inc-gpc1]
+          value: [sc-inc-gpc0, sc-inc-gpc1, sc-set-gpt0]
+          required: true
+    sc_expr:
+      type: string
+      x-display-name: ScSet Expression Value
+      x-dependency:
+        type:
+          value: sc-set-gpt0
+          required: true
+    sc_int:
+      type: integer
+      x-nullable: true
+      x-display-name: ScSet Integer Value
+      x-dependency:
+        type:
+          value: sc-set-gpt0
+          required: true
+    mark_value:
+      type: string
+      pattern: '^(0x[0-9A-Fa-f]+|[0-9]+)$'
+      x-display-name: Mark Value
+      x-dependency:
+        type:
+          value: set-mark
+          required: true
+    nice_value:
+      type: integer
+      minimum: -1024
+      maximum: 1024
+      x-nullable: false
+      x-display-name: Nice Value
+      x-dependency:
+        type:
+          value: set-nice
           required: true
     cond:
       type: string

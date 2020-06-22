@@ -1351,6 +1351,24 @@ definitions:
               required: true
               value: set-map
           x-display-name: Map Value Format
+        mark_value:
+          pattern: ^(0x[0-9A-Fa-f]+|[0-9]+)$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-mark
+          x-display-name: Mark Value
+        nice_value:
+          maximum: 1024
+          minimum: -1024
+          type: integer
+          x-dependency:
+            type:
+              required: true
+              value: set-nice
+          x-display-name: Nice Value
+          x-nullable: false
         path_fmt:
           pattern: ^[^\s]+$
           type: string
@@ -1428,13 +1446,30 @@ definitions:
               required: true
               value: do-resolve
           x-display-name: Resolvers
+        sc_expr:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: sc-set-gpt0
+          x-display-name: ScSet Expression Value
         sc_id:
           type: integer
           x-dependency:
             type:
+              required: true
               value:
               - sc-inc-gpc0
               - sc-inc-gpc1
+              - sc-set-gpt0
+        sc_int:
+          type: integer
+          x-dependency:
+            type:
+              required: true
+              value: sc-set-gpt0
+          x-display-name: ScSet Integer Value
+          x-nullable: true
         spoe_engine:
           pattern: ^[^\s]+$
           type: string
@@ -1532,6 +1567,9 @@ definitions:
           - do-resolve
           - set-dst
           - set-dst-port
+          - sc-set-gpt0
+          - set-mark
+          - set-nice
           type: string
           x-nullable: false
         uri-fmt:
@@ -1726,6 +1764,24 @@ definitions:
               required: true
               value: set-map
           x-display-name: Map Value Format
+        mark_value:
+          pattern: ^(0x[0-9A-Fa-f]+|[0-9]+)$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-mark
+          x-display-name: Mark Value
+        nice_value:
+          maximum: 1024
+          minimum: -1024
+          type: integer
+          x-dependency:
+            type:
+              required: true
+              value: set-nice
+          x-display-name: Nice Value
+          x-nullable: false
         redir_code:
           enum:
           - 301
@@ -1762,6 +1818,13 @@ definitions:
               required: true
               value: redirect
           x-display-name: Redirect Value
+        sc_expr:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: sc-set-gpt0
+          x-display-name: ScSet Expression Value
         sc_id:
           type: integer
           x-dependency:
@@ -1770,6 +1833,15 @@ definitions:
               value:
               - sc-inc-gpc0
               - sc-inc-gpc1
+              - sc-set-gpt0
+        sc_int:
+          type: integer
+          x-dependency:
+            type:
+              required: true
+              value: sc-set-gpt0
+          x-display-name: ScSet Integer Value
+          x-nullable: true
         spoe_engine:
           pattern: ^[^\s]+$
           type: string
@@ -1819,6 +1891,9 @@ definitions:
           - del-map
           - sc-inc-gpc0
           - sc-inc-gpc1
+          - sc-set-gpt0
+          - set-mark
+          - set-nice
           type: string
           x-nullable: false
         var_expr:
