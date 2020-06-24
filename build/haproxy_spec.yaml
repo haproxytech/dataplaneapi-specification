@@ -1253,6 +1253,8 @@ definitions:
               - do-resolve
               - set-dst
               - set-dst-port
+              - set-priority-class
+              - set-priority-offset
           x-display-name: Standard HAProxy expression
         hdr_format:
           pattern: ^[^\s]+$
@@ -1359,6 +1361,13 @@ definitions:
               required: true
               value: set-mark
           x-display-name: Mark Value
+        method_fmt:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-method
         nice_value:
           maximum: 1024
           minimum: -1024
@@ -1570,6 +1579,9 @@ definitions:
           - sc-set-gpt0
           - set-mark
           - set-nice
+          - set-method
+          - set-priority-class
+          - set-priority-offset
           type: string
           x-nullable: false
         uri-fmt:
