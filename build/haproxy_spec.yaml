@@ -1255,6 +1255,8 @@ definitions:
               - set-dst-port
               - set-priority-class
               - set-priority-offset
+              - set-src
+              - set-src-port
           x-display-name: Standard HAProxy expression
         hdr_format:
           pattern: ^[^\s]+$
@@ -1582,6 +1584,9 @@ definitions:
           - set-method
           - set-priority-class
           - set-priority-offset
+          - set-src
+          - set-src-por
+          - wait-for-handshake
           type: string
           x-nullable: false
         uri-fmt:
