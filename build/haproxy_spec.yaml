@@ -1497,6 +1497,14 @@ definitions:
               required: true
               value: send-spoe-group
           x-display-name: SPOE Group
+        tos_value:
+          pattern: ^(0x[0-9A-Fa-f]+|[0-9]+)$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-tos
+          x-display-name: Tos Value
         track-sc0-key:
           pattern: ^[^\s]+$
           type: string
@@ -1587,6 +1595,9 @@ definitions:
           - set-src
           - set-src-por
           - wait-for-handshake
+          - set-tos
+          - silent-drop
+          - unset-var
           type: string
           x-nullable: false
         uri-fmt:
@@ -1619,13 +1630,16 @@ definitions:
               value:
               - set-var
               - do-resolve
+              - unset-var
         var_scope:
           pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
               required: true
-              value: set-var
+              value:
+              - set-var
+              - unset-var
       required:
       - index
       - type
@@ -1887,6 +1901,14 @@ definitions:
           x-dependency:
             type:
               value: set-status
+        tos_value:
+          pattern: ^(0x[0-9A-Fa-f]+|[0-9]+)$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: set-tos
+          x-display-name: Tos Value
         type:
           enum:
           - allow
@@ -1911,6 +1933,9 @@ definitions:
           - sc-set-gpt0
           - set-mark
           - set-nice
+          - set-tos
+          - silent-drop
+          - unset-var
           type: string
           x-nullable: false
         var_expr:
@@ -1926,14 +1951,18 @@ definitions:
           x-dependency:
             type:
               required: true
-              value: set-var
+              value:
+              - set-var
+              - unset-var
         var_scope:
           pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
               required: true
-              value: set-var
+              value:
+              - set-var
+              - unset-var
       required:
       - index
       - type
