@@ -1287,7 +1287,7 @@ http_response_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl, capture, set-map, del-map, sc-inc-gpc0, sc-inc-gpc1, sc-set-gpt0, set-mark, set-nice, set-tos, silent-drop, unset-var]
+      enum: [allow, deny, redirect, add-header, set-header, del-header, set-log-level, set-var, set-status, send-spoe-group, replace-header, replace-value, add-acl, del-acl, capture, set-map, del-map, sc-inc-gpc0, sc-inc-gpc1, sc-set-gpt0, set-mark, set-nice, set-tos, silent-drop, unset-var, track-sc0, track-sc1, track-sc2]
       x-nullable: false
     capture_sample:
       type: string
@@ -1500,6 +1500,51 @@ http_response_rule:
         type:
           value: set-tos
           required: true
+    track-sc0-key:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: track-sc0 Key
+      x-dependency:
+        type:
+          value: track-sc0
+          required: true
+    track-sc0-table:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: track-sc0 Table
+      x-dependency:
+        type:
+          value: track-sc0
+    track-sc1-key:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: track-sc1 Key
+      x-dependency:
+        type:
+          value: track-sc1
+          required: true
+    track-sc1-table:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: track-sc1 Table
+      x-dependency:
+        type:
+          value: track-sc1
+    track-sc2-key:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: track-sc2 Key
+      x-dependency:
+        type:
+          value: track-sc2
+          required: true
+    track-sc2-table:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: track-sc2 Table
+      x-dependency:
+        type:
+          value: track-sc2
     cond:
       type: string
       x-display-name: Condition
