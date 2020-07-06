@@ -25,6 +25,13 @@ cluster:
         in: body
         schema:
           $ref: "#/definitions/cluster_settings"
+      - name: configuration
+        description: In case of moving to single mode do we keep or clean configuration
+        enum:
+          - keep
+        in: query
+        required: false
+        type: string
       - $ref: "#/parameters/version"
     tags:
       - Cluster

@@ -4446,6 +4446,13 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/cluster_settings'
+        - description: In case of moving to single mode do we keep or clean configuration
+          enum:
+          - keep
+          in: query
+          name: configuration
+          required: false
+          type: string
         - $ref: '#/parameters/version'
         responses:
           "200":
