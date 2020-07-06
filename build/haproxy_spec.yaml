@@ -1497,6 +1497,15 @@ definitions:
               required: true
               value: send-spoe-group
           x-display-name: SPOE Group
+        strict_mode:
+          enum:
+          - "on"
+          - "off"
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: strict-mode
         tos_value:
           pattern: ^(0x[0-9A-Fa-f]+|[0-9]+)$
           type: string
@@ -1598,6 +1607,7 @@ definitions:
           - set-tos
           - silent-drop
           - unset-var
+          - strict-mode
           type: string
           x-nullable: false
         uri-fmt:
@@ -1901,6 +1911,15 @@ definitions:
           x-dependency:
             type:
               value: set-status
+        strict_mode:
+          enum:
+          - "on"
+          - "off"
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: strict-mode
         tos_value:
           pattern: ^(0x[0-9A-Fa-f]+|[0-9]+)$
           type: string
@@ -1984,6 +2003,7 @@ definitions:
           - track-sc0
           - track-sc1
           - track-sc2
+          - strict-mode
           type: string
           x-nullable: false
         var_expr:
