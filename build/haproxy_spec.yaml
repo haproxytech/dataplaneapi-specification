@@ -182,6 +182,17 @@ definitions:
           pattern: ^[^\s]+$
           type: string
           x-display-name: Group
+        lua_loads:
+          items:
+            properties:
+              file:
+                pattern: ^[^\s]+$
+                type: string
+            required:
+            - file
+            type: object
+            x-go-name: LuaLoad
+          type: array
         master-worker:
           type: boolean
           x-display-name: Master Worker Mode

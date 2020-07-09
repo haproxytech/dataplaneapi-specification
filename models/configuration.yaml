@@ -96,6 +96,17 @@ global:
     stats_timeout:
       type: integer
       x-nullable: true
+    lua_loads:
+      type: array
+      items:
+        type: object
+        x-go-name: LuaLoad
+        required:
+          - file
+        properties:
+          file:
+            type: string
+            pattern: '^[^\s]+$'
   additionalProperties: false
 defaults:
   title: Defaults
