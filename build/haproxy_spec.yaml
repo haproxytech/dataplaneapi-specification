@@ -2111,6 +2111,7 @@ definitions:
           - track-sc2
           - unset-var
           - use-service
+          - lua
           type: string
           x-dependency:
             type:
@@ -2207,6 +2208,28 @@ definitions:
         index:
           type: integer
           x-nullable: true
+        lua_action:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: lua
+            type:
+              value:
+              - connection
+              - content
+          x-display-name: Lua action name
+        lua_params:
+          type: string
+          x-dependency:
+            action:
+              value: lua
+            type:
+              value:
+              - connection
+              - content
+          x-display-name: Lua action params
         priority_type:
           enum:
           - class
@@ -2399,6 +2422,7 @@ definitions:
           enum:
           - accept
           - reject
+          - lua
           type: string
           x-dependency:
             type:
@@ -2429,6 +2453,24 @@ definitions:
         index:
           type: integer
           x-nullable: true
+        lua_action:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            action:
+              required: true
+              value: lua
+            type:
+              value: content
+          x-display-name: Lua action name
+        lua_params:
+          type: string
+          x-dependency:
+            action:
+              value: lua
+            type:
+              value: content
+          x-display-name: Lua action params
         timeout:
           type: integer
           x-dependency:

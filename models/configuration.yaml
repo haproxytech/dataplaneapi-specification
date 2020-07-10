@@ -1633,7 +1633,7 @@ tcp_request_rule:
       x-nullable: false
     action:
       type: string
-      enum: [accept, capture, do-resolve, expect-netscaler-cip, expect-proxy, reject, sc-inc-gpc0, sc-inc-gpc1, sc-set-gpt0, send-spoe-group, set-dst-port, set-dst, set-priority, set-src, set-var, silent-drop, track-sc0, track-sc1, track-sc2, unset-var, use-service]
+      enum: [accept, capture, do-resolve, expect-netscaler-cip, expect-proxy, reject, sc-inc-gpc0, sc-inc-gpc1, sc-set-gpt0, send-spoe-group, set-dst-port, set-dst, set-priority, set-src, set-var, silent-drop, track-sc0, track-sc1, track-sc2, unset-var, use-service, lua]
       x-nullable: false
       x-dependency:
         type:
@@ -1803,6 +1803,24 @@ tcp_request_rule:
           required: true
         type:
           value: [session, connection, content]
+    lua_action:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: Lua action name
+      x-dependency:
+        action:
+          value: lua
+          required: true
+        type:
+          value: [connection, content]
+    lua_params:
+      type: string
+      x-display-name: Lua action params
+      x-dependency:
+        action:
+          value: lua
+        type:
+          value: [connection, content]
     cond:
       type: string
       x-display-name: Condition
@@ -1846,7 +1864,7 @@ tcp_response_rule:
       x-nullable: false
     action:
       type: string
-      enum: [accept, reject]
+      enum: [accept, reject, lua]
       x-nullable: false
       x-dependency:
         type:
@@ -1859,6 +1877,24 @@ tcp_response_rule:
         type:
           value: inspect-delay
           required: true
+    lua_action:
+      type: string
+      pattern: '^[^\s]+$'
+      x-display-name: Lua action name
+      x-dependency:
+        action:
+          value: lua
+          required: true
+        type:
+          value: content
+    lua_params:
+      type: string
+      x-display-name: Lua action params
+      x-dependency:
+        action:
+          value: lua
+        type:
+          value: content
     cond:
       type: string
       x-display-name: Condition
