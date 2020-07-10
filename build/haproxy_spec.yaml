@@ -1339,6 +1339,18 @@ definitions:
             type:
               required: true
               value: set-log-level
+        lua_action:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: lua
+        lua_params:
+          type: string
+          x-dependency:
+            type:
+              value: lua
         map_file:
           pattern: ^[^\s]+$
           type: string
@@ -1619,6 +1631,7 @@ definitions:
           - silent-drop
           - unset-var
           - strict-mode
+          - lua
           type: string
           x-nullable: false
         uri-fmt:
@@ -1789,6 +1802,18 @@ definitions:
             type:
               required: true
               value: set-log-level
+        lua_action:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: lua
+        lua_params:
+          type: string
+          x-dependency:
+            type:
+              value: lua
         map_file:
           pattern: ^[^\s]+$
           type: string
@@ -2015,6 +2040,7 @@ definitions:
           - track-sc1
           - track-sc2
           - strict-mode
+          - lua
           type: string
           x-nullable: false
         var_expr:
