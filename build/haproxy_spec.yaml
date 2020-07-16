@@ -4552,6 +4552,7 @@ tags:
   - name: PeerEntry
   - name: Cluster
   - name: Maps
+  - name: SpecificationOpenapiv3
 security:
   - basic_auth: []
 paths:
@@ -4587,6 +4588,22 @@ paths:
         summary: Data Plane API Specification
         tags:
         - Specification
+  /specification_openapiv3:
+      get:
+        description: Return Data Plane API OpenAPI v3 specification
+        operationId: getOpenapiv3Specification
+        produces:
+        - application/json
+        responses:
+          "200":
+            description: Success
+            schema:
+              type: object
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Data Plane API v3 Specification
+        tags:
+        - SpecificationOpenapiv3
   /info:
       get:
         description: Return API, hardware and OS information

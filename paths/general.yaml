@@ -244,6 +244,22 @@ specification:
           type: object
       'default':
         $ref: '#/responses/DefaultError'
+specification_openapiv3:
+  get:
+    tags:
+      - SpecificationOpenapiv3
+    summary: Data Plane API v3 Specification
+    description: Return Data Plane API OpenAPI v3 specification
+    operationId: getOpenapiv3Specification
+    produces:
+      - application/json
+    responses:
+      '200':
+        description: Success
+        schema:
+          type: object
+      'default':
+        $ref: '#/responses/DefaultError'
 reloads:
   get:
     tags:

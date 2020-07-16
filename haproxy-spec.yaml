@@ -411,6 +411,7 @@ tags:
   - name: PeerEntry
   - name: Cluster
   - name: Maps
+  - name: SpecificationOpenapiv3
 security:
   - basic_auth: []
 paths:
@@ -418,6 +419,8 @@ paths:
     $ref: "paths/general.yaml#/root"
   /specification:
     $ref: "paths/general.yaml#/specification"
+  /specification_openapiv3:
+    $ref: "paths/general.yaml#/specification_openapiv3"
   /info:
     $ref: "paths/general.yaml#/info"
   /cluster:
