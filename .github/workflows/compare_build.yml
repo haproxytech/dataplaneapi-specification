@@ -10,4 +10,8 @@ jobs:
           cd build
           ./build -file ../haproxy-spec.yaml > haproxy_spec_to_compare.yaml
           diff -u haproxy_spec.yaml haproxy_spec_to_compare.yaml
+      - name: Ensure single tags
+        run: |
+          chmod +x ./scripts/single-tag.sh
+          ./scripts/single-tag.sh
 

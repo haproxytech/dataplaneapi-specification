@@ -8,7 +8,6 @@ global:
       - $ref: "#/parameters/transaction_id"
     tags:
       - Global
-      - HAProxy configuration management
     responses:
       '200':
         description: Successful operation
@@ -41,7 +40,6 @@ global:
       - $ref: "#/parameters/force_reload"
     tags:
       - Global
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -68,7 +66,6 @@ defaults:
       - $ref: "#/parameters/transaction_id"
     tags:
       - Defaults
-      - HAProxy configuration management
     responses:
       '200':
         description: Successful operation
@@ -101,7 +98,6 @@ defaults:
       - $ref: "#/parameters/force_reload"
     tags:
       - Defaults
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -128,7 +124,6 @@ frontends:
       - $ref: "#/parameters/transaction_id"
     tags:
       - Frontend
-      - HAProxy configuration management
     responses:
       '200':
         description: Successful operation
@@ -163,7 +158,6 @@ frontends:
       - $ref: "#/parameters/force_reload"
     tags:
       - Frontend
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -190,7 +184,6 @@ frontends_one:
     operationId: getFrontend
     tags:
       - Frontend
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -223,7 +216,6 @@ frontends_one:
     operationId: replaceFrontend
     tags:
       - Frontend
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -263,7 +255,6 @@ frontends_one:
     operationId: deleteFrontend
     tags:
       - Frontend
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -295,7 +286,6 @@ backends:
       - $ref: "#/parameters/transaction_id"
     tags:
       - Backend
-      - HAProxy configuration management
     responses:
       '200':
         description: Successful operation
@@ -330,7 +320,6 @@ backends:
       - $ref: "#/parameters/force_reload"
     tags:
       - Backend
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -357,7 +346,6 @@ backends_one:
     operationId: getBackend
     tags:
       - Backend
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -390,7 +378,6 @@ backends_one:
     operationId: replaceBackend
     tags:
       - Backend
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -430,7 +417,6 @@ backends_one:
     operationId: deleteBackend
     tags:
       - Backend
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -462,7 +448,6 @@ peer_section:
       - $ref: "#/parameters/transaction_id"
     tags:
       - Peer
-      - HAProxy configuration management
     responses:
       '200':
         description: Successful operation
@@ -497,7 +482,6 @@ peer_section:
       - $ref: "#/parameters/force_reload"
     tags:
       - Peer
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -524,7 +508,6 @@ peer_section_one:
     operationId: getPeerSection
     tags:
       - Peer
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -557,7 +540,6 @@ peer_section_one:
     operationId: deletePeer
     tags:
       - Peer
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -580,7 +562,6 @@ peer_section_one:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-
 peer_entries:
   get:
     summary: Return an array of peer_entries
@@ -588,7 +569,6 @@ peer_entries:
     operationId: getPeerEntries
     tags:
       - PeerEntry
-      - HAProxy configuration management
     parameters:
       - name: peer_section
         in: query
@@ -621,7 +601,6 @@ peer_entries:
     operationId: createPeerEntry
     tags:
       - PeerEntry
-      - HAProxy configuration management
     parameters:
       - name: peer_section
         in: query
@@ -662,7 +641,6 @@ peer_entries_one:
     operationId: getPeerEntry
     tags:
       - PeerEntry
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -700,8 +678,6 @@ peer_entries_one:
     operationId: replacePeerEntry
     tags:
       - PeerEntry
-      - HAProxy configuration management
-      - Peers options
     parameters:
       - name: name
         in: path
@@ -746,8 +722,6 @@ peer_entries_one:
     operationId: deletePeerEntry
     tags:
       - PeerEntry
-      - HAProxy configuration management
-      - Peers options
     parameters:
       - name: name
         in: path
@@ -775,7 +749,6 @@ peer_entries_one:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-
 binds:
   get:
     summary: Return an array of binds
@@ -783,8 +756,6 @@ binds:
     operationId: getBinds
     tags:
       - Bind
-      - HAProxy configuration management
-      - Frontend options
     parameters:
       - name: frontend
         in: query
@@ -817,8 +788,6 @@ binds:
     operationId: createBind
     tags:
       - Bind
-      - HAProxy configuration management
-      - Frontend options
     parameters:
       - name: frontend
         in: query
@@ -859,8 +828,6 @@ binds_one:
     operationId: getBind
     tags:
       - Bind
-      - HAProxy configuration management
-      - Frontend options
     parameters:
       - name: name
         in: path
@@ -898,8 +865,6 @@ binds_one:
     operationId: replaceBind
     tags:
       - Bind
-      - HAProxy configuration management
-      - Frontend options
     parameters:
       - name: name
         in: path
@@ -944,8 +909,6 @@ binds_one:
     operationId: deleteBind
     tags:
       - Bind
-      - HAProxy configuration management
-      - Frontend options
     parameters:
       - name: name
         in: path
@@ -982,7 +945,6 @@ resolvers:
       - $ref: "#/parameters/transaction_id"
     tags:
       - Resolver
-      - HAProxy configuration management
     responses:
       '200':
         description: Successful operation
@@ -1017,7 +979,6 @@ resolvers:
       - $ref: "#/parameters/force_reload"
     tags:
       - Resolver
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -1044,7 +1005,6 @@ resolvers_one:
     operationId: getResolver
     tags:
       - Resolver
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -1077,7 +1037,6 @@ resolvers_one:
     operationId: replaceResolver
     tags:
       - Resolver
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -1117,7 +1076,6 @@ resolvers_one:
     operationId: deleteResolver
     tags:
       - Resolver
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -1154,7 +1112,6 @@ nameservers:
       - $ref: "#/parameters/transaction_id"
     tags:
       - Nameserver
-      - HAProxy configuration management
     responses:
       '200':
         description: Successful operation
@@ -1194,7 +1151,6 @@ nameservers:
       - $ref: "#/parameters/force_reload"
     tags:
       - Nameserver
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -1221,7 +1177,6 @@ nameservers_one:
     operationId: getNameserver
     tags:
       - Nameserver
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -1259,7 +1214,6 @@ nameservers_one:
     operationId: replaceNameserver
     tags:
       - Nameserver
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -1304,7 +1258,6 @@ nameservers_one:
     operationId: deleteNameserver
     tags:
       - Nameserver
-      - HAProxy configuration management
     parameters:
       - name: name
         in: path
@@ -1339,8 +1292,6 @@ servers:
     operationId: getServers
     tags:
       - Server
-      - HAProxy configuration management
-      - Backend options
     parameters:
       - name: backend
         in: query
@@ -1373,8 +1324,6 @@ servers:
     operationId: createServer
     tags:
       - Server
-      - HAProxy configuration management
-      - Backend options
     parameters:
       - name: backend
         in: query
@@ -1415,8 +1364,6 @@ servers_one:
     operationId: getServer
     tags:
       - Server
-      - HAProxy configuration management
-      - Backend options
     parameters:
       - name: name
         in: path
@@ -1454,8 +1401,6 @@ servers_one:
     operationId: replaceServer
     tags:
       - Server
-      - HAProxy configuration management
-      - Backend options
     parameters:
       - name: name
         in: path
@@ -1500,8 +1445,6 @@ servers_one:
     operationId: deleteServer
     tags:
       - Server
-      - HAProxy configuration management
-      - Backend options
     parameters:
       - name: name
         in: path
@@ -1535,9 +1478,6 @@ tcp_response_rules:
     description: Returns all TCP Response Rules that are configured in specified backend.
     operationId: getTCPResponseRules
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPResponseRule
     parameters:
       - name: backend
@@ -1570,9 +1510,6 @@ tcp_response_rules:
     description: Adds a new TCP Response Rule of the specified type in the specified backend.
     operationId: createTCPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPResponseRule
     parameters:
       - name: backend
@@ -1613,9 +1550,6 @@ tcp_response_rules_one:
     description: Returns one TCP Response Rule configuration by it's index in the specified backend.
     operationId: getTCPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPResponseRule
     parameters:
       - name: index
@@ -1653,9 +1587,6 @@ tcp_response_rules_one:
     description: Replaces a TCP Response Rule configuration by it's Index in the specified backend.
     operationId: replaceTCPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPResponseRule
     parameters:
       - name: index
@@ -1700,9 +1631,6 @@ tcp_response_rules_one:
     description: Deletes a TCP Response Rule configuration by it's index from the specified backend.
     operationId: deleteTCPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPResponseRule
     parameters:
       - name: index
@@ -1737,9 +1665,6 @@ tcp_request_rules:
     description: Returns all TCP Request Rules that are configured in specified parent and parent type.
     operationId: getTCPRequestRules
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPRequestRule
     parameters:
       - name: parent_name
@@ -1778,9 +1703,6 @@ tcp_request_rules:
     description: Adds a new TCP Request Rule of the specified type in the specified parent.
     operationId: createTCPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPRequestRule
     parameters:
       - name: parent_name
@@ -1827,9 +1749,6 @@ tcp_request_rules_one:
     description: Returns one TCP Request Rule configuration by it's index in the specified parent.
     operationId: getTCPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPRequestRule
     parameters:
       - name: index
@@ -1873,9 +1792,6 @@ tcp_request_rules_one:
     description: Replaces a TCP Request Rule configuration by it's index in the specified parent.
     operationId: replaceTCPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPRequestRule
     parameters:
       - name: index
@@ -1926,9 +1842,6 @@ tcp_request_rules_one:
     description: Deletes a TCP Request Rule configuration by it's index from the specified parent.
     operationId: deleteTCPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - TCPRequestRule
     parameters:
       - name: index
@@ -1969,9 +1882,6 @@ http_request_rules:
     description: Returns all HTTP Request Rules that are configured in specified parent.
     operationId: getHTTPRequestRules
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPRequestRule
     parameters:
       - name: parent_name
@@ -2010,9 +1920,6 @@ http_request_rules:
     description: Adds a new HTTP Request Rule of the specified type in the specified parent.
     operationId: createHTTPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPRequestRule
     parameters:
       - name: parent_name
@@ -2059,9 +1966,6 @@ http_request_rules_one:
     description: Returns one HTTP Request Rule configuration by it's index in the specified parent.
     operationId: getHTTPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPRequestRule
     parameters:
       - name: index
@@ -2105,9 +2009,6 @@ http_request_rules_one:
     description: Replaces a HTTP Request Rule configuration by it's index in the specified parent.
     operationId: replaceHTTPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPRequestRule
     parameters:
       - name: index
@@ -2158,9 +2059,6 @@ http_request_rules_one:
     description: Deletes a HTTP Request Rule configuration by it's index from the specified parent.
     operationId: deleteHTTPRequestRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPRequestRule
     parameters:
       - name: index
@@ -2201,9 +2099,6 @@ http_response_rules:
     description: Returns all HTTP Response Rules that are configured in specified parent.
     operationId: getHTTPResponseRules
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPResponseRule
     parameters:
       - name: parent_name
@@ -2242,9 +2137,6 @@ http_response_rules:
     description: Adds a new HTTP Response Rule of the specified type in the specified parent.
     operationId: createHTTPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPResponseRule
     parameters:
       - name: parent_name
@@ -2291,9 +2183,6 @@ http_response_rules_one:
     description: Returns one HTTP Response Rule configuration by it's index in the specified parent.
     operationId: getHTTPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPResponseRule
     parameters:
       - name: index
@@ -2337,9 +2226,6 @@ http_response_rules_one:
     description: Replaces a HTTP Response Rule configuration by it's index in the specified parent.
     operationId: replaceHTTPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPResponseRule
     parameters:
       - name: index
@@ -2390,9 +2276,6 @@ http_response_rules_one:
     description: Deletes a HTTP Response Rule configuration by it's index from the specified parent.
     operationId: deleteHTTPResponseRule
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - HTTPResponseRule
     parameters:
       - name: index
@@ -2433,8 +2316,6 @@ backend_switching_rules:
     description: Returns all Backend Switching Rules that are configured in specified frontend.
     operationId: getBackendSwitchingRules
     tags:
-      - HAProxy configuration management
-      - Frontend options
       - BackendSwitchingRule
     parameters:
       - name: frontend
@@ -2467,8 +2348,6 @@ backend_switching_rules:
     description: Adds a new Backend Switching Rule of the specified type in the specified frontend.
     operationId: createBackendSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Frontend options
       - BackendSwitchingRule
     parameters:
       - name: frontend
@@ -2509,8 +2388,6 @@ backend_switching_rules_one:
     description: Returns one Backend Switching Rule configuration by it's index in the specified frontend.
     operationId: getBackendSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Frontend options
       - BackendSwitchingRule
     parameters:
       - name: index
@@ -2548,8 +2425,6 @@ backend_switching_rules_one:
     description: Replaces a Backend Switching Rule configuration by it's index in the specified frontend.
     operationId: replaceBackendSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Frontend options
       - BackendSwitchingRule
     parameters:
       - name: index
@@ -2594,8 +2469,6 @@ backend_switching_rules_one:
     description: Deletes a Backend Switching Rule configuration by it's index from the specified frontend.
     operationId: deleteBackendSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Frontend options
       - BackendSwitchingRule
     parameters:
       - name: index
@@ -2630,8 +2503,6 @@ server_switching_rules:
     description: Returns all Backend Switching Rules that are configured in specified backend.
     operationId: getServerSwitchingRules
     tags:
-      - HAProxy configuration management
-      - Backend options
       - ServerSwitchingRule
     parameters:
       - name: backend
@@ -2664,8 +2535,6 @@ server_switching_rules:
     description: Adds a new Server Switching Rule of the specified type in the specified backend.
     operationId: createServerSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - ServerSwitchingRule
     parameters:
       - name: backend
@@ -2706,8 +2575,6 @@ server_switching_rules_one:
     description: Returns one Server Switching Rule configuration by it's index in the specified backend.
     operationId: getServerSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - ServerSwitchingRule
     parameters:
       - name: index
@@ -2745,8 +2612,6 @@ server_switching_rules_one:
     description: Replaces a Server Switching Rule configuration by it's index in the specified backend.
     operationId: replaceServerSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - ServerSwitchingRule
     parameters:
       - name: index
@@ -2791,8 +2656,6 @@ server_switching_rules_one:
     description: Deletes a Server Switching Rule configuration by it's index from the specified backend.
     operationId: deleteServerSwitchingRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - ServerSwitchingRule
     parameters:
       - name: index
@@ -2833,7 +2696,6 @@ configuration:
       - application/json
     tags:
       - Configuration
-      - HAProxy configuration management
     responses:
       '200':
         description: Operation successful
@@ -2888,7 +2750,6 @@ configuration:
       - $ref: "#/parameters/force_reload"
     tags:
       - Configuration
-      - HAProxy configuration management
     responses:
       '202':
         description: Configuration change accepted and reload requested
@@ -2912,9 +2773,6 @@ filters:
     description: Returns all Filters that are configured in specified parent.
     operationId: getFilters
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - Filter
     parameters:
       - name: parent_name
@@ -2953,9 +2811,6 @@ filters:
     description: Adds a new Filter of the specified type in the specified parent.
     operationId: createFilter
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - Filter
     parameters:
       - name: parent_name
@@ -3002,9 +2857,6 @@ filters_one:
     description: Returns one Filter configuration by it's index in the specified parent.
     operationId: getFilter
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - Filter
     parameters:
       - name: index
@@ -3048,9 +2900,6 @@ filters_one:
     description: Replaces a Filter configuration by it's index in the specified parent.
     operationId: replaceFilter
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - Filter
     parameters:
       - name: index
@@ -3101,9 +2950,6 @@ filters_one:
     description: Deletes a Filter configuration by it's index from the specified parent.
     operationId: deleteFilter
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - Filter
     parameters:
       - name: index
@@ -3144,8 +2990,6 @@ stick_rules:
     description: Returns all Stick Rules that are configured in specified backend.
     operationId: getStickRules
     tags:
-      - HAProxy configuration management
-      - Backend options
       - StickRule
     parameters:
       - name: backend
@@ -3178,8 +3022,6 @@ stick_rules:
     description: Adds a new Stick Rule of the specified type in the specified backend.
     operationId: createStickRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - StickRule
     parameters:
       - name: backend
@@ -3220,8 +3062,6 @@ stick_rules_one:
     description: Returns one Stick Rule configuration by it's index in the specified backend.
     operationId: getStickRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - StickRule
     parameters:
       - name: index
@@ -3259,8 +3099,6 @@ stick_rules_one:
     description: Replaces a Stick Rule configuration by it's index in the specified backend.
     operationId: replaceStickRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - StickRule
     parameters:
       - name: index
@@ -3305,8 +3143,6 @@ stick_rules_one:
     description: Deletes a Stick Rule configuration by it's index from the specified backend.
     operationId: deleteStickRule
     tags:
-      - HAProxy configuration management
-      - Backend options
       - StickRule
     parameters:
       - name: index
@@ -3341,9 +3177,6 @@ log_targets:
     description: Returns all Log Targets that are configured in specified parent.
     operationId: getLogTargets
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - LogTarget
     parameters:
       - name: parent_name
@@ -3382,9 +3215,6 @@ log_targets:
     description: Adds a new Log Target of the specified type in the specified parent.
     operationId: createLogTarget
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - LogTarget
     parameters:
       - name: parent_name
@@ -3431,9 +3261,6 @@ log_targets_one:
     description: Returns one Log Target configuration by it's index in the specified parent.
     operationId: getLogTarget
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - LogTarget
     parameters:
       - name: index
@@ -3477,9 +3304,6 @@ log_targets_one:
     description: Replaces a Log Target configuration by it's index in the specified parent.
     operationId: replaceLogTarget
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - LogTarget
     parameters:
       - name: index
@@ -3530,9 +3354,6 @@ log_targets_one:
     description: Deletes a Log Target configuration by it's index from the specified parent.
     operationId: deleteLogTarget
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - LogTarget
     parameters:
       - name: index
@@ -3573,9 +3394,6 @@ acls:
     description: Returns all ACL lines that are configured in specified parent.
     operationId: getAcls
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - ACL
     parameters:
       - name: parent_name
@@ -3614,9 +3432,6 @@ acls:
     description: Adds a new ACL line of the specified type in the specified parent.
     operationId: createAcl
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - ACL
     parameters:
       - name: parent_name
@@ -3663,9 +3478,6 @@ acls_one:
     description: Returns one ACL line configuration by it's index in the specified parent.
     operationId: getAcl
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - ACL
     parameters:
       - name: index
@@ -3709,9 +3521,6 @@ acls_one:
     description: Replaces a ACL line configuration by it's index in the specified parent.
     operationId: replaceAcl
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - ACL
     parameters:
       - name: index
@@ -3762,9 +3571,6 @@ acls_one:
     description: Deletes a ACL line configuration by it's index from the specified parent.
     operationId: deleteAcl
     tags:
-      - HAProxy configuration management
-      - Backend options
-      - Frontend options
       - ACL
     parameters:
       - name: index

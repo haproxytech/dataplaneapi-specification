@@ -386,14 +386,8 @@ tags:
     description: Managing frontend bind configurations (advanced mode)
   - name: Server
     description: Managing backend server configurations (advanced mode)
-  - name: Frontend options
-    description: Various frontend options (advanced mode)
-  - name: Backend options
-    description: Various backend options (advanced mode)
   - name: Configuration
     description: Raw HAProxy configuration management (advanced mode)
-  - name: HAProxy configuration management
-    description: Managing advanced haproxy configuration (advanced mode)
   - name: TCPRequestRule
   - name: HTTPRequestRule
   - name: HTTPResponseRule

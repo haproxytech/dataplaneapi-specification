@@ -22,7 +22,6 @@ servers:
     operationId: getRuntimeServers
     tags:
       - Server
-      - Backend options
     parameters:
       - name: backend
         in: query
@@ -43,7 +42,6 @@ servers_one:
     operationId: getRuntimeServer
     tags:
       - Server
-      - Backend options
     parameters:
       - name: name
         in: path
@@ -70,7 +68,6 @@ servers_one:
     operationId: replaceRuntimeServer
     tags:
       - Server
-      - Backend options
     parameters:
       - name: name
         in: path

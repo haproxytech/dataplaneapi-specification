@@ -4527,14 +4527,8 @@ tags:
     description: Managing frontend bind configurations (advanced mode)
   - name: Server
     description: Managing backend server configurations (advanced mode)
-  - name: Frontend options
-    description: Various frontend options (advanced mode)
-  - name: Backend options
-    description: Various backend options (advanced mode)
   - name: Configuration
     description: Raw HAProxy configuration management (advanced mode)
-  - name: HAProxy configuration management
-    description: Managing advanced haproxy configuration (advanced mode)
   - name: TCPRequestRule
   - name: HTTPRequestRule
   - name: HTTPResponseRule
@@ -5134,7 +5128,6 @@ paths:
         summary: Return a global part of configuration
         tags:
         - Global
-        - HAProxy configuration management
       put:
         description: Replace global part of config
         operationId: replaceGlobal
@@ -5167,7 +5160,6 @@ paths:
         summary: Replace global
         tags:
         - Global
-        - HAProxy configuration management
   /services/haproxy/configuration/defaults:
       get:
         description: Returns defaults part of configuration.
@@ -5194,7 +5186,6 @@ paths:
         summary: Return defaults part of configuration
         tags:
         - Defaults
-        - HAProxy configuration management
       put:
         description: Replace defaults part of config
         operationId: replaceDefaults
@@ -5227,7 +5218,6 @@ paths:
         summary: Replace defaults
         tags:
         - Defaults
-        - HAProxy configuration management
   /services/haproxy/configuration/frontends:
       get:
         description: Returns an array of all configured frontends.
@@ -5256,7 +5246,6 @@ paths:
         summary: Return an array of frontends
         tags:
         - Frontend
-        - HAProxy configuration management
       post:
         description: Adds a new frontend to the configuration file.
         operationId: createFrontend
@@ -5291,7 +5280,6 @@ paths:
         summary: Add a frontend
         tags:
         - Frontend
-        - HAProxy configuration management
   /services/haproxy/configuration/frontends/{name}:
       delete:
         description: Deletes a frontend from the configuration by it's name.
@@ -5321,7 +5309,6 @@ paths:
         summary: Delete a frontend
         tags:
         - Frontend
-        - HAProxy configuration management
       get:
         description: Returns one frontend configuration by it's name.
         operationId: getFrontend
@@ -5354,7 +5341,6 @@ paths:
         summary: Return a frontend
         tags:
         - Frontend
-        - HAProxy configuration management
       put:
         description: Replaces a frontend configuration by it's name.
         operationId: replaceFrontend
@@ -5394,7 +5380,6 @@ paths:
         summary: Replace a frontend
         tags:
         - Frontend
-        - HAProxy configuration management
   /services/haproxy/configuration/peer_section:
       get:
         description: Returns an array of all configured peer_section.
@@ -5423,7 +5408,6 @@ paths:
         summary: Return an array of peer_section
         tags:
         - Peer
-        - HAProxy configuration management
       post:
         description: Adds a new peer to the configuration file.
         operationId: createPeer
@@ -5458,7 +5442,6 @@ paths:
         summary: Add a peer
         tags:
         - Peer
-        - HAProxy configuration management
   /services/haproxy/configuration/peer_section/{name}:
       delete:
         description: Deletes a peer from the configuration by it's name.
@@ -5488,7 +5471,6 @@ paths:
         summary: Delete a peer
         tags:
         - Peer
-        - HAProxy configuration management
       get:
         description: Returns one peer configuration by it's name.
         operationId: getPeerSection
@@ -5521,7 +5503,6 @@ paths:
         summary: Return a peer
         tags:
         - Peer
-        - HAProxy configuration management
   /services/haproxy/configuration/peer_entries:
       get:
         description: Returns an array of all peer_entries that are configured in specified
@@ -5556,7 +5537,6 @@ paths:
         summary: Return an array of peer_entries
         tags:
         - PeerEntry
-        - HAProxy configuration management
       post:
         description: Adds a new peer entry in the specified peer section in the configuration
           file.
@@ -5597,7 +5577,6 @@ paths:
         summary: Add a new peer_entry
         tags:
         - PeerEntry
-        - HAProxy configuration management
   /services/haproxy/configuration/peer_entries/{name}:
       delete:
         description: Deletes a peer entry configuration by it's name in the specified peer
@@ -5633,8 +5612,6 @@ paths:
         summary: Delete a peer_entry
         tags:
         - PeerEntry
-        - HAProxy configuration management
-        - Peers options
       get:
         description: Returns one peer_entry configuration by it's name in the specified
           peer section.
@@ -5673,7 +5650,6 @@ paths:
         summary: Return one peer_entry
         tags:
         - PeerEntry
-        - HAProxy configuration management
       put:
         description: Replaces a peer entry configuration by it's name in the specified peer
           section.
@@ -5719,8 +5695,6 @@ paths:
         summary: Replace a peer_entry
         tags:
         - PeerEntry
-        - HAProxy configuration management
-        - Peers options
   /services/haproxy/configuration/backends:
       get:
         description: Returns an array of all configured backends.
@@ -5749,7 +5723,6 @@ paths:
         summary: Return an array of backends
         tags:
         - Backend
-        - HAProxy configuration management
       post:
         description: Adds a new backend to the configuration file.
         operationId: createBackend
@@ -5784,7 +5757,6 @@ paths:
         summary: Add a backend
         tags:
         - Backend
-        - HAProxy configuration management
   /services/haproxy/configuration/backends/{name}:
       delete:
         description: Deletes a frontend from the configuration by it's name.
@@ -5814,7 +5786,6 @@ paths:
         summary: Delete a backend
         tags:
         - Backend
-        - HAProxy configuration management
       get:
         description: Returns one backend configuration by it's name.
         operationId: getBackend
@@ -5847,7 +5818,6 @@ paths:
         summary: Return a backend
         tags:
         - Backend
-        - HAProxy configuration management
       put:
         description: Replaces a backend configuration by it's name.
         operationId: replaceBackend
@@ -5887,7 +5857,6 @@ paths:
         summary: Replace a backend
         tags:
         - Backend
-        - HAProxy configuration management
   /services/haproxy/configuration/binds:
       get:
         description: Returns an array of all binds that are configured in specified frontend.
@@ -5921,8 +5890,6 @@ paths:
         summary: Return an array of binds
         tags:
         - Bind
-        - HAProxy configuration management
-        - Frontend options
       post:
         description: Adds a new bind in the specified frontend in the configuration file.
         operationId: createBind
@@ -5962,8 +5929,6 @@ paths:
         summary: Add a new bind
         tags:
         - Bind
-        - HAProxy configuration management
-        - Frontend options
   /services/haproxy/configuration/binds/{name}:
       delete:
         description: Deletes a bind configuration by it's name in the specified frontend.
@@ -5998,8 +5963,6 @@ paths:
         summary: Delete a bind
         tags:
         - Bind
-        - HAProxy configuration management
-        - Frontend options
       get:
         description: Returns one bind configuration by it's name in the specified frontend.
         operationId: getBind
@@ -6037,8 +6000,6 @@ paths:
         summary: Return one bind
         tags:
         - Bind
-        - HAProxy configuration management
-        - Frontend options
       put:
         description: Replaces a bind configuration by it's name in the specified frontend.
         operationId: replaceBind
@@ -6083,8 +6044,6 @@ paths:
         summary: Replace a bind
         tags:
         - Bind
-        - HAProxy configuration management
-        - Frontend options
   /services/haproxy/configuration/servers:
       get:
         description: Returns an array of all servers that are configured in specified backend.
@@ -6118,8 +6077,6 @@ paths:
         summary: Return an array of servers
         tags:
         - Server
-        - HAProxy configuration management
-        - Backend options
       post:
         description: Adds a new server in the specified backend in the configuration file.
         operationId: createServer
@@ -6159,8 +6116,6 @@ paths:
         summary: Add a new server
         tags:
         - Server
-        - HAProxy configuration management
-        - Backend options
   /services/haproxy/configuration/servers/{name}:
       delete:
         description: Deletes a server configuration by it's name in the specified backend.
@@ -6195,8 +6150,6 @@ paths:
         summary: Delete a server
         tags:
         - Server
-        - HAProxy configuration management
-        - Backend options
       get:
         description: Returns one server configuration by it's name in the specified backend.
         operationId: getServer
@@ -6234,8 +6187,6 @@ paths:
         summary: Return one server
         tags:
         - Server
-        - HAProxy configuration management
-        - Backend options
       put:
         description: Replaces a server configuration by it's name in the specified backend.
         operationId: replaceServer
@@ -6280,8 +6231,6 @@ paths:
         summary: Replace a server
         tags:
         - Server
-        - HAProxy configuration management
-        - Backend options
   /services/haproxy/configuration/http_request_rules:
       get:
         description: Returns all HTTP Request Rules that are configured in specified parent.
@@ -6322,9 +6271,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all HTTP Request Rules
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPRequestRule
       post:
         description: Adds a new HTTP Request Rule of the specified type in the specified
@@ -6373,9 +6319,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new HTTP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPRequestRule
   /services/haproxy/configuration/http_request_rules/{index}:
       delete:
@@ -6419,9 +6362,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a HTTP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPRequestRule
       get:
         description: Returns one HTTP Request Rule configuration by it's index in the specified
@@ -6468,9 +6408,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one HTTP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPRequestRule
       put:
         description: Replaces a HTTP Request Rule configuration by it's index in the specified
@@ -6524,9 +6461,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a HTTP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPRequestRule
   /services/haproxy/configuration/http_response_rules:
       get:
@@ -6568,9 +6502,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all HTTP Response Rules
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPResponseRule
       post:
         description: Adds a new HTTP Response Rule of the specified type in the specified
@@ -6619,9 +6550,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new HTTP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPResponseRule
   /services/haproxy/configuration/http_response_rules/{index}:
       delete:
@@ -6665,9 +6593,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a HTTP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPResponseRule
       get:
         description: Returns one HTTP Response Rule configuration by it's index in the specified
@@ -6714,9 +6639,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one HTTP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPResponseRule
       put:
         description: Replaces a HTTP Response Rule configuration by it's index in the specified
@@ -6770,9 +6692,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a HTTP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - HTTPResponseRule
   /services/haproxy/configuration/tcp_request_rules:
       get:
@@ -6815,9 +6734,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all TCP Request Rules
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPRequestRule
       post:
         description: Adds a new TCP Request Rule of the specified type in the specified
@@ -6866,9 +6782,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new TCP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPRequestRule
   /services/haproxy/configuration/tcp_request_rules/{index}:
       delete:
@@ -6912,9 +6825,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a TCP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPRequestRule
       get:
         description: Returns one TCP Request Rule configuration by it's index in the specified
@@ -6961,9 +6871,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one TCP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPRequestRule
       put:
         description: Replaces a TCP Request Rule configuration by it's index in the specified
@@ -7017,9 +6924,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a TCP Request Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPRequestRule
   /services/haproxy/configuration/tcp_response_rules:
       get:
@@ -7053,9 +6957,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all TCP Response Rules
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPResponseRule
       post:
         description: Adds a new TCP Response Rule of the specified type in the specified
@@ -7096,9 +6997,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new TCP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPResponseRule
   /services/haproxy/configuration/tcp_response_rules/{index}:
       delete:
@@ -7134,9 +7032,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a TCP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPResponseRule
       get:
         description: Returns one TCP Response Rule configuration by it's index in the specified
@@ -7175,9 +7070,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one TCP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPResponseRule
       put:
         description: Replaces a TCP Response Rule configuration by it's Index in the specified
@@ -7223,9 +7115,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a TCP Response Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - TCPResponseRule
   /services/haproxy/configuration/backend_switching_rules:
       get:
@@ -7260,8 +7149,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all Backend Switching Rules
         tags:
-        - HAProxy configuration management
-        - Frontend options
         - BackendSwitchingRule
       post:
         description: Adds a new Backend Switching Rule of the specified type in the specified
@@ -7302,8 +7189,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new Backend Switching Rule
         tags:
-        - HAProxy configuration management
-        - Frontend options
         - BackendSwitchingRule
   /services/haproxy/configuration/backend_switching_rules/{index}:
       delete:
@@ -7339,8 +7224,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a Backend Switching Rule
         tags:
-        - HAProxy configuration management
-        - Frontend options
         - BackendSwitchingRule
       get:
         description: Returns one Backend Switching Rule configuration by it's index in the
@@ -7379,8 +7262,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one Backend Switching Rule
         tags:
-        - HAProxy configuration management
-        - Frontend options
         - BackendSwitchingRule
       put:
         description: Replaces a Backend Switching Rule configuration by it's index in the
@@ -7426,8 +7307,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a Backend Switching Rule
         tags:
-        - HAProxy configuration management
-        - Frontend options
         - BackendSwitchingRule
   /services/haproxy/configuration/server_switching_rules:
       get:
@@ -7462,8 +7341,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all Server Switching Rules
         tags:
-        - HAProxy configuration management
-        - Backend options
         - ServerSwitchingRule
       post:
         description: Adds a new Server Switching Rule of the specified type in the specified
@@ -7504,8 +7381,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new Server Switching Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - ServerSwitchingRule
   /services/haproxy/configuration/server_switching_rules/{index}:
       delete:
@@ -7541,8 +7416,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a Server Switching Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - ServerSwitchingRule
       get:
         description: Returns one Server Switching Rule configuration by it's index in the
@@ -7581,8 +7454,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one Server Switching Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - ServerSwitchingRule
       put:
         description: Replaces a Server Switching Rule configuration by it's index in the
@@ -7628,8 +7499,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a Server Switching Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - ServerSwitchingRule
   /services/haproxy/configuration/filters:
       get:
@@ -7671,9 +7540,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all Filters
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - Filter
       post:
         description: Adds a new Filter of the specified type in the specified parent.
@@ -7721,9 +7587,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new Filter
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - Filter
   /services/haproxy/configuration/filters/{index}:
       delete:
@@ -7766,9 +7629,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a Filter
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - Filter
       get:
         description: Returns one Filter configuration by it's index in the specified parent.
@@ -7814,9 +7674,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one Filter
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - Filter
       put:
         description: Replaces a Filter configuration by it's index in the specified parent.
@@ -7869,9 +7726,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a Filter
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - Filter
   /services/haproxy/configuration/stick_rules:
       get:
@@ -7905,8 +7759,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all Stick Rules
         tags:
-        - HAProxy configuration management
-        - Backend options
         - StickRule
       post:
         description: Adds a new Stick Rule of the specified type in the specified backend.
@@ -7946,8 +7798,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new Stick Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - StickRule
   /services/haproxy/configuration/stick_rules/{index}:
       delete:
@@ -7983,8 +7833,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a Stick Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - StickRule
       get:
         description: Returns one Stick Rule configuration by it's index in the specified
@@ -8023,8 +7871,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one Stick Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - StickRule
       put:
         description: Replaces a Stick Rule configuration by it's index in the specified
@@ -8070,8 +7916,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a Stick Rule
         tags:
-        - HAProxy configuration management
-        - Backend options
         - StickRule
   /services/haproxy/configuration/log_targets:
       get:
@@ -8113,9 +7957,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all Log Targets
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - LogTarget
       post:
         description: Adds a new Log Target of the specified type in the specified parent.
@@ -8163,9 +8004,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new Log Target
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - LogTarget
   /services/haproxy/configuration/log_targets/{index}:
       delete:
@@ -8209,9 +8047,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a Log Target
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - LogTarget
       get:
         description: Returns one Log Target configuration by it's index in the specified
@@ -8258,9 +8093,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one Log Target
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - LogTarget
       put:
         description: Replaces a Log Target configuration by it's index in the specified
@@ -8314,9 +8146,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a Log Target
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - LogTarget
   /services/haproxy/configuration/acls:
       get:
@@ -8358,9 +8187,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return an array of all ACL lines
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - ACL
       post:
         description: Adds a new ACL line of the specified type in the specified parent.
@@ -8408,9 +8234,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Add a new ACL line
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - ACL
   /services/haproxy/configuration/acls/{index}:
       delete:
@@ -8453,9 +8276,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Delete a ACL line
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - ACL
       get:
         description: Returns one ACL line configuration by it's index in the specified parent.
@@ -8501,9 +8321,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Return one ACL line
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - ACL
       put:
         description: Replaces a ACL line configuration by it's index in the specified parent.
@@ -8556,9 +8373,6 @@ paths:
             $ref: '#/responses/DefaultError'
         summary: Replace a ACL line
         tags:
-        - HAProxy configuration management
-        - Backend options
-        - Frontend options
         - ACL
   /services/haproxy/configuration/resolvers:
       get:
@@ -8588,7 +8402,6 @@ paths:
         summary: Return an array of resolvers
         tags:
         - Resolver
-        - HAProxy configuration management
       post:
         description: Adds a new resolver section to the configuration file.
         operationId: createResolver
@@ -8623,7 +8436,6 @@ paths:
         summary: Add a resolver
         tags:
         - Resolver
-        - HAProxy configuration management
   /services/haproxy/configuration/resolvers/{name}:
       delete:
         description: Deletes a resolver from the configuration by it's name.
@@ -8653,7 +8465,6 @@ paths:
         summary: Delete a resolver
         tags:
         - Resolver
-        - HAProxy configuration management
       get:
         description: Returns one resolver section configuration by it's name.
         operationId: getResolver
@@ -8686,7 +8497,6 @@ paths:
         summary: Return a resolver
         tags:
         - Resolver
-        - HAProxy configuration management
       put:
         description: Replaces a resolver configuration by it's name.
         operationId: replaceResolver
@@ -8726,7 +8536,6 @@ paths:
         summary: Replace a resolver
         tags:
         - Resolver
-        - HAProxy configuration management
   /services/haproxy/configuration/nameservers:
       get:
         description: Returns an array of all configured nameservers.
@@ -8760,7 +8569,6 @@ paths:
         summary: Return an array of nameservers
         tags:
         - Nameserver
-        - HAProxy configuration management
       post:
         description: Adds a new nameserver to the resolvers section.
         operationId: createNameserver
@@ -8800,7 +8608,6 @@ paths:
         summary: Add a nameserver
         tags:
         - Nameserver
-        - HAProxy configuration management
   /services/haproxy/configuration/nameservers/{name}:
       delete:
         description: Deletes a nameserver from the resolvers section by it's name.
@@ -8835,7 +8642,6 @@ paths:
         summary: Delete a nameserver
         tags:
         - Nameserver
-        - HAProxy configuration management
       get:
         description: Returns one nameserver configuration by it's name.
         operationId: getNameserver
@@ -8873,7 +8679,6 @@ paths:
         summary: Return a nameserver
         tags:
         - Nameserver
-        - HAProxy configuration management
       put:
         description: Replaces a nameserver configuration by it's name.
         operationId: replaceNameserver
@@ -8918,7 +8723,6 @@ paths:
         summary: Replace a nameserver
         tags:
         - Nameserver
-        - HAProxy configuration management
   /services/haproxy/configuration/raw:
       get:
         description: Returns HAProxy configuration file in plain text
@@ -8950,7 +8754,6 @@ paths:
         summary: Return HAProxy configuration
         tags:
         - Configuration
-        - HAProxy configuration management
       post:
         consumes:
         - text/plain
@@ -9005,7 +8808,6 @@ paths:
         summary: Push new haproxy configuration
         tags:
         - Configuration
-        - HAProxy configuration management
   /services/haproxy/runtime:
       get:
         description: Returns a list of endpoints to be used for advanced runtime settings
@@ -9059,7 +8861,6 @@ paths:
         summary: Return an array of runtime servers' setings
         tags:
         - Server
-        - Backend options
   /services/haproxy/runtime/servers/{name}:
       get:
         description: Returns one server runtime settings by it's name in the specified backend.
@@ -9087,7 +8888,6 @@ paths:
         summary: Return one server runtime settings
         tags:
         - Server
-        - Backend options
       put:
         description: Replaces a server transient settings by it's name in the specified
           backend.
@@ -9122,7 +8922,6 @@ paths:
         summary: Replace server transient settings
         tags:
         - Server
-        - Backend options
   /services/haproxy/runtime/stick_tables:
       get:
         description: Returns an array of all stick tables.

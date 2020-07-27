@@ -21,3 +21,5 @@ yamllint:
   script:
     # to test locally, run:  docker run --rm -v $(pwd):/data cytopia/yamllint .
     - /bin/sh -c "yamllint -f colored ."
+    - chmod +x ./scripts/single-tag.sh
+    - /bin/sh -c ./scripts/single-tag.sh
