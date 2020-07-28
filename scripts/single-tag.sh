@@ -13,7 +13,7 @@ do
   if [ "$line" = "tags:" ]; then
     continue
   fi
-  
+
   trimLine="${line#"${line%%[![:space:]]*}"}"
   
   if [ "$found" = "true" ] && [ "${trimLine:0:1}" = "-" ]; then
@@ -27,7 +27,7 @@ do
     echo "Multiple tags are not supported. Additional tag: $line at line: $lineNo"
     exit 1
   fi
-    
+
   # handle only tags from path
   if [ "$trimLine" = "tags:" ]; then
     found="true"

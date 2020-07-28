@@ -1,3 +1,4 @@
+---
 global:
   title: Global
   description: HAProxy global configuration

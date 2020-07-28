@@ -183,7 +183,7 @@ stick_table_entries:
       'default':
         $ref: '#/responses/DefaultError'
 maps:
-  get: # show map
+  get:  # show map
     summary: Return all available map files
     description: Returns all available map files.
     operationId: getAllRuntimeMapFiles
@@ -198,7 +198,7 @@ maps:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-  post: # (raw)
+  post:  # (raw)
     summary: Creates runtime map file with its entries
     description: Creates runtime map file with its entries.
     operationId: createRuntimeMap
@@ -224,7 +224,7 @@ maps:
       'default':
         $ref: '#/responses/DefaultError'
 maps_one:
-  get: # one map file
+  get:  # one map file
     summary: Return one runtime map file
     description: Returns one runtime map file.
     operationId: getOneRuntimeMap
@@ -245,7 +245,7 @@ maps_one:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-  delete: # clear map [map]
+  delete:  # clear map [map]
     summary: Remove all map entries from the map file
     description: Remove all map entries from the map file.
     operationId: clearRuntimeMap
@@ -269,7 +269,7 @@ maps_one:
       'default':
         $ref: '#/responses/DefaultError'
 maps_entries:
-  get: # show map [map]
+  get:  # show map [map]
     summary: Return one map runtime entries
     description: Returns an array of all entries in a given runtime map file.
     operationId: showRuntimeMap
@@ -290,7 +290,7 @@ maps_entries:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-  post: # add map [map] key value
+  post:  # add map [map] key value
     summary: Adds an entry into the map file
     description: Adds an entry into the map file.
     operationId: addMapEntry
@@ -319,7 +319,7 @@ maps_entries:
       'default':
         $ref: '#/responses/DefaultError'
 maps_entries_one:
-  get: # get map <map> <value>
+  get:  # get map <map> <value>
     summary: Return one map runtime setting
     description: Returns one map runtime setting by it's id.
     operationId: getRuntimeMapEntry
@@ -345,7 +345,7 @@ maps_entries_one:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-  put: # set map <map> [<key>|#<ref>] <value>
+  put:  # set map <map> [<key>|#<ref>] <value>
     summary: Replace the value corresponding to each id in a map
     description: Replaces the value corresponding to each id in a map.
     operationId: replaceRuntimeMapEntry
@@ -384,7 +384,7 @@ maps_entries_one:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
-  delete: # del map <map> [<key>|#<ref>]
+  delete:  # del map <map> [<key>|#<ref>]
     summary: Deletes all the map entries from the map by its id
     description: Delete all the map entries from the map by its id.
     operationId: deleteRuntimeMapEntry

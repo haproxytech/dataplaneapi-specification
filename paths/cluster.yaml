@@ -58,4 +58,3 @@ certificate:
         description: refresh not possible
       'default':
         $ref: '#/responses/DefaultError'
-        

@@ -1,4 +1,6 @@
+---
 name: Compare build
+# yamllint disable-line rule:truthy
 on: [push, pull_request]
 jobs:
   build:
@@ -14,4 +16,3 @@ jobs:
         run: |
           chmod +x ./scripts/single-tag.sh
           ./scripts/single-tag.sh
-
