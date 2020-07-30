@@ -1401,7 +1401,6 @@ http_request_rule:
     hdr_name:
       type: string
       x-display-name: Header Name
-      pattern: '^[^\s]+$'
       x-dependency:
         type:
           value: [add-header, replace-header, del-header, set-header, replace-value]
@@ -1409,7 +1408,6 @@ http_request_rule:
     hdr_match:
       type: string
       x-display-name: Header Match
-      pattern: '^[^\s]+$'
       x-dependency:
         type:
           value: [replace-header, replace-value]
@@ -1417,7 +1415,6 @@ http_request_rule:
     hdr_format:
       type: string
       x-display-name: Header Format
-      pattern: '^[^\s]+$'
       x-dependency:
         type:
           value: [replace-header, replace-value, set-header, add-header]
@@ -1749,7 +1746,6 @@ http_response_rule:
     hdr_name:
       type: string
       x-display-name: Header Name
-      pattern: '^[^\s]+$'
       x-dependency:
         type:
           value: [add-header, replace-header, del-header, set-header, replace-value]
@@ -1757,7 +1753,6 @@ http_response_rule:
     hdr_match:
       type: string
       x-display-name: Header Match
-      pattern: '^[^\s]+$'
       x-dependency:
         type:
           value: [replace-header, replace-value]
@@ -1765,7 +1760,6 @@ http_response_rule:
     hdr_format:
       type: string
       x-display-name: Header Format
-      pattern: '^[^\s]+$'
       x-dependency:
         type:
           value: [replace-header, replace-value, set-header, add-header]
@@ -2949,7 +2943,6 @@ balance:
     hdr_name:
       type: string
       x-display-name: Header Name
-      pattern: '^[^\s]+$'
       x-dependency:
         algorithm:
           value: hdr

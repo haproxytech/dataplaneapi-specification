@@ -1702,7 +1702,6 @@ definitions:
               - set-src-port
           x-display-name: Standard HAProxy expression
         hdr_format:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
@@ -1714,7 +1713,6 @@ definitions:
               - add-header
           x-display-name: Header Format
         hdr_match:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
@@ -1724,7 +1722,6 @@ definitions:
               - replace-value
           x-display-name: Header Match
         hdr_name:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
@@ -2191,7 +2188,6 @@ definitions:
             operation: getACLs
             property: acl_name
         hdr_format:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
@@ -2203,7 +2199,6 @@ definitions:
               - add-header
           x-display-name: Header Format
         hdr_match:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
@@ -2213,7 +2208,6 @@ definitions:
               - replace-value
           x-display-name: Header Match
         hdr_name:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             type:
@@ -4493,7 +4487,6 @@ definitions:
           - rdp-cookie
           type: string
         hdr_name:
-          pattern: ^[^\s]+$
           type: string
           x-dependency:
             algorithm:
