@@ -4431,6 +4431,74 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/nameserver'
+  consul:
+      additionalProperties: false
+      description: Consul server configuration
+      example:
+        address: 127.0.0.1
+        id: 0
+        port: 90
+      properties:
+        address:
+          pattern: ^[^\s]+$
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        id:
+          description: Auto generated ID.
+          pattern: ^[^\s]+$
+          type: string
+          x-nullable: true
+        name:
+          type: string
+        port:
+          maximum: 65535
+          minimum: 1
+          type: integer
+        retry_timeout:
+          description: Duration in seconds in-between data pulling requests to the consul
+            server
+          minimum: 1
+          type: integer
+        server_slots_base:
+          default: 10
+          type: integer
+        server_slots_growth_increment:
+          type: integer
+        server_slots_growth_type:
+          default: exponential
+          enum:
+          - linear
+          - exponential
+          type: string
+        service-blacklist:
+          items:
+            pattern: ^[^\s]+$
+            type: string
+          type: array
+        service-whitelist:
+          items:
+            pattern: ^[^\s]+$
+            type: string
+          type: array
+        token:
+          pattern: ^[^\s]+$
+          type: string
+      required:
+      - address
+      - port
+      - enabled
+      - retry_timeout
+      title: Consul server
+      type: object
+  consuls:
+    title: Consuls
+    description: Consuls array
+    type: array
+    items:
+      $ref: '#/definitions/consul'
 responses:
   BadRequest:
     description: Bad request
@@ -4561,6 +4629,7 @@ tags:
   - name: Cluster
   - name: Maps
   - name: SpecificationOpenapiv3
+  - name: ServiceDiscovery
 security:
   - basic_auth: []
 paths:
@@ -4687,6 +4756,120 @@ paths:
         summary: Initiates a certificate refresh
         tags:
         - Cluster
+  /service_discovery/consul:
+      get:
+        description: Returns all configured Consul servers.
+        operationId: getConsuls
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              properties:
+                data:
+                  $ref: '#/definitions/consuls'
+              required:
+              - data
+              type: object
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return an array of all configured Consul servers
+        tags:
+        - ServiceDiscovery
+      post:
+        description: Adds a new Consul server.
+        operationId: createConsul
+        parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/consul'
+        responses:
+          "201":
+            description: Consul created
+            schema:
+              $ref: '#/definitions/consul'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Add a new Consul server
+        tags:
+        - ServiceDiscovery
+  /service_discovery/consul/{id}:
+      delete:
+        description: Deletes a Consul server configuration by it's id.
+        operationId: deleteConsul
+        parameters:
+        - description: Consul server Index
+          in: path
+          name: id
+          required: true
+          type: string
+        responses:
+          "204":
+            description: Consul server deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Delete a Consul server
+        tags:
+        - ServiceDiscovery
+      get:
+        description: Returns one Consul server configuration by it's id.
+        operationId: getConsul
+        parameters:
+        - description: Consul server id
+          in: path
+          name: id
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              properties:
+                data:
+                  $ref: '#/definitions/consul'
+              type: object
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one Consul server
+        tags:
+        - ServiceDiscovery
+      put:
+        description: Replaces a Consul server configuration by it's id.
+        operationId: replaceConsul
+        parameters:
+        - description: Consul Index
+          in: path
+          name: id
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/consul'
+        responses:
+          "200":
+            description: Consul server replaced
+            schema:
+              $ref: '#/definitions/consul'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace a Consul server
+        tags:
+        - ServiceDiscovery
   /services:
       get:
         description: Returns a list of API managed services endpoints.

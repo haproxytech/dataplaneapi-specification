@@ -276,6 +276,14 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/nameserver'
+  consul:
+    $ref: "models/service-discovery.yaml#/consul"
+  consuls:
+    title: Consuls
+    description: Consuls array
+    type: array
+    items:
+      $ref: '#/definitions/consul'
 responses:
   BadRequest:
     description: Bad request
@@ -406,6 +414,7 @@ tags:
   - name: Cluster
   - name: Maps
   - name: SpecificationOpenapiv3
+  - name: ServiceDiscovery
 security:
   - basic_auth: []
 paths:
@@ -421,6 +430,10 @@ paths:
     $ref: "paths/cluster.yaml#/cluster"
   /cluster/certificate:
     $ref: "paths/cluster.yaml#/certificate"
+  /service_discovery/consul:
+    $ref: "paths/service-discovery.yaml#/consul"
+  /service_discovery/consul/{id}:
+    $ref: "paths/service-discovery.yaml#/consul_one"
   /services:
     $ref: "paths/general.yaml#/services"
   /services/haproxy:
