@@ -10030,6 +10030,11 @@ paths:
           in: query
           name: forceDelete
           type: boolean
+        - default: false
+          description: If true, immediately syncs changes to disk
+          in: query
+          name: forceSync
+          type: boolean
         responses:
           "204":
             description: All map entries deleted
@@ -10092,6 +10097,11 @@ paths:
           name: map
           required: true
           type: string
+        - default: false
+          description: If true, immediately syncs changes to disk
+          in: query
+          name: forceSync
+          type: boolean
         - in: body
           name: data
           required: true
@@ -10126,6 +10136,11 @@ paths:
           name: map
           required: true
           type: string
+        - default: false
+          description: If true, immediately syncs changes to disk
+          in: query
+          name: forceSync
+          type: boolean
         responses:
           "204":
             description: Map key/value deleted
@@ -10176,6 +10191,11 @@ paths:
           name: map
           required: true
           type: string
+        - default: false
+          description: If true, immediately syncs changes to disk
+          in: query
+          name: forceSync
+          type: boolean
         - in: body
           name: data
           required: true

@@ -268,6 +268,11 @@ maps_one:
         in: query
         description: If true, deletes file from disk
         type: boolean
+      - name: forceSync
+        in: query
+        description: If true, immediately syncs changes to disk
+        type: boolean
+        default: false
     tags:
       - Maps
     responses:
@@ -309,6 +314,11 @@ maps_entries:
         description: Map file name
         required: true
         type: string
+      - name: forceSync
+        in: query
+        description: If true, immediately syncs changes to disk
+        type: boolean
+        default: false
       - name: data
         in: body
         required: true
@@ -371,6 +381,11 @@ maps_entries_one:
         description: Map file name
         required: true
         type: string
+      - name: forceSync
+        in: query
+        description: If true, immediately syncs changes to disk
+        type: boolean
+        default: false
       - name: data
         in: body
         required: true
@@ -410,6 +425,11 @@ maps_entries_one:
         description: Map file name
         required: true
         type: string
+      - name: forceSync
+        in: query
+        description: If true, immediately syncs changes to disk
+        type: boolean
+        default: false
     responses:
       '204':
         description: Map key/value deleted
