@@ -182,6 +182,20 @@ definitions:
           pattern: ^[^\s]+$
           type: string
           x-display-name: Group
+        log_send_hostname:
+          properties:
+            enabled:
+              enum:
+              - enabled
+              - disabled
+              type: string
+            param:
+              pattern: ^[^\s]+$
+              type: string
+          required:
+          - enabled
+          type: object
+          x-display-name: Log Send Hostname
         lua_loads:
           items:
             properties:
