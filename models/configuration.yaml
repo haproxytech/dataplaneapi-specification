@@ -1025,7 +1025,7 @@ http_request_rule:
     redir_code:
       type: integer
       x-display-name: Redirect Code
-      enum: [301, 302, 303]
+      enum: [301, 302, 303, 307, 308]
       x-dependency:
         type:
           value: redirect

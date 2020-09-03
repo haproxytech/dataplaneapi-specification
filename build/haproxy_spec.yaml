@@ -1462,6 +1462,8 @@ definitions:
           - 301
           - 302
           - 303
+          - 307
+          - 308
           type: integer
           x-dependency:
             type:
