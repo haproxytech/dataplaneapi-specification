@@ -1024,6 +1024,7 @@ http_request_rule:
           required: true
     redir_code:
       type: integer
+      x-nullable: true
       x-display-name: Redirect Code
       enum: [301, 302, 303, 307, 308]
       x-dependency:
@@ -1039,7 +1040,7 @@ http_request_rule:
     deny_status:
       type: integer
       enum: [200, 400, 403, 405, 408, 425, 429, 500, 502, 503, 504]
-      x-nullable: false
+      x-nullable: true
       x-dependency:
         type:
           value: [deny, tarpit]
@@ -1372,6 +1373,7 @@ http_response_rule:
           required: true
     redir_code:
       type: integer
+      x-nullable: true
       x-display-name: Redirect Code
       enum: [301, 302, 303]
       x-dependency:

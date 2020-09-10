@@ -1274,7 +1274,7 @@ definitions:
               value:
               - deny
               - tarpit
-          x-nullable: false
+          x-nullable: true
         expr:
           type: string
           x-dependency:
@@ -1469,6 +1469,7 @@ definitions:
             type:
               value: redirect
           x-display-name: Redirect Code
+          x-nullable: true
         redir_option:
           type: string
           x-dependency:
@@ -1891,6 +1892,7 @@ definitions:
             type:
               value: redirect
           x-display-name: Redirect Code
+          x-nullable: true
         redir_option:
           type: string
           x-dependency:
