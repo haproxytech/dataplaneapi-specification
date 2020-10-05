@@ -1058,6 +1058,11 @@ definitions:
           minimum: 1
           type: integer
           x-nullable: true
+        port-range-end:
+          maximum: 65535
+          minimum: 1
+          type: integer
+          x-nullable: true
         prefer_client_ciphers:
           type: boolean
         process:

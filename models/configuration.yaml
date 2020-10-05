@@ -865,10 +865,15 @@ bind:
       type: string
       pattern: '^[^\s]+$'
     port:
+      maximum: 65535
+      minimum: 1
       type: integer
       x-nullable: true
-      minimum: 1
+    port-range-end:
       maximum: 65535
+      minimum: 1
+      type: integer
+      x-nullable: true
     proto:
       type: string
       x-display-name: Protocol name
