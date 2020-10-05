@@ -1263,7 +1263,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1, do-resolve, set-dst, set-dst-port, sc-set-gpt0, set-mark, set-nice, set-method, set-priority-class, set-priority-offset, set-src, set-src-por, wait-for-handshake, set-tos, silent-drop, unset-var, strict-mode, lua]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1, do-resolve, set-dst, set-dst-port, sc-set-gpt0, set-mark, set-nice, set-method, set-priority-class, set-priority-offset, set-src, set-src-por, wait-for-handshake, set-tos, silent-drop, unset-var, strict-mode, lua, use-service]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1636,6 +1636,12 @@ http_request_rule:
       x-dependency:
         type:
           value: lua
+    service_name:
+      type: string
+      x-dependency:
+        type:
+          value: use-service
+          required: true
     cond:
       type: string
       x-display-name: Condition

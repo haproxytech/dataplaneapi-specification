@@ -1917,6 +1917,12 @@ definitions:
               value: sc-set-gpt0
           x-display-name: ScSet Integer Value
           x-nullable: true
+        service_name:
+          type: string
+          x-dependency:
+            type:
+              required: true
+              value: use-service
         spoe_engine:
           pattern: ^[^\s]+$
           type: string
@@ -2045,6 +2051,7 @@ definitions:
           - unset-var
           - strict-mode
           - lua
+          - use-service
           type: string
           x-nullable: false
         uri-fmt:
