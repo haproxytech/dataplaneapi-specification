@@ -284,6 +284,10 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/consul'
+  monitor_uri:
+    $ref: "models/monitor.yaml#/monitor_uri"
+  monitor_fail:
+    $ref: "models/monitor.yaml#/monitor_fail"
 responses:
   BadRequest:
     description: Bad request

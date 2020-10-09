@@ -442,6 +442,8 @@ definitions:
           - tcp
           - http
           type: string
+        monitor_uri:
+          $ref: '#/definitions/monitor_uri'
         queue_timeout:
           type: integer
           x-nullable: true
@@ -592,6 +594,10 @@ definitions:
           - http
           - tcp
           type: string
+        monitor_fail:
+          $ref: '#/definitions/monitor_fail'
+        monitor_uri:
+          $ref: '#/definitions/monitor_uri'
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
@@ -5229,6 +5235,26 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/consul'
+  monitor_uri:
+      type: string
+  monitor_fail:
+      properties:
+        cond:
+          enum:
+          - if
+          - unless
+          type: string
+          x-display-name: Condition
+        cond_test:
+          type: string
+          x-dependency:
+            cond:
+              required: true
+          x-display-name: Condition Test
+      required:
+      - cond
+      - cond_test
+      type: object
 responses:
   BadRequest:
     description: Bad request

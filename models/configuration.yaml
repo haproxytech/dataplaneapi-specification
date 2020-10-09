@@ -202,6 +202,8 @@ defaults:
     check_timeout:
       type: integer
       x-nullable: true
+    monitor_uri:
+      $ref: '#/definitions/monitor_uri'
     connect_timeout:
       type: integer
       x-nullable: true
@@ -470,6 +472,10 @@ frontend:
           required: true
     stats_options:
       $ref: "#/definitions/stats_options"
+    monitor_uri:
+      $ref: '#/definitions/monitor_uri'
+    monitor_fail:
+      $ref: '#/definitions/monitor_fail'
   additionalProperties: false
   example:
     name: test_frontend
