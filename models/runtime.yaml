@@ -240,7 +240,7 @@ server:
     address: 127.0.0.5
     port: 80
     operational_state: up
-    admin_state: up
+    admin_state: ready
 table:
   title: Stick Table
   description: Stick Table Information

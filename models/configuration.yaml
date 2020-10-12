@@ -654,7 +654,7 @@ backend:
       enabled: enabled
     httpchk:
       uri: "/check"
-      method: OPTIONS
+      method: GET
       version: HTTP/1.1
 peer_section:
   title: Peer Section
@@ -1260,7 +1260,6 @@ server:
     port: 8080
     check: enabled
     weight: 80
-    max-connections: 500
 http_request_rule:
   title: HTTP Request Rule
   description: HAProxy HTTP request rule configuration (corresponds to http-request directives)
@@ -1669,7 +1668,7 @@ http_request_rule:
           required: true
   additionalProperties: false
   example:
-    id: 0
+    index: 0
     type: add-header
     hdr_name: X-Haproxy-Current-Date
     hdr_format: "%T"
@@ -1982,7 +1981,7 @@ http_response_rule:
           required: true
   additionalProperties: false
   example:
-    id: 0
+    index: 0
     type: add-header
     hdr_name: X-Haproxy-Current-Date
     hdr_format: "%T"
@@ -2215,8 +2214,8 @@ tcp_request_rule:
           required: true
   additionalProperties: false
   example:
-    id: 0
-    type: accept
+    index: 0
+    type: connection
     cond: if
     cond_test: "{ src 192.168.0.0/16 }"
 tcp_response_rule:
@@ -2288,8 +2287,8 @@ tcp_response_rule:
           value: content
   additionalProperties: false
   example:
-    id: 0
-    type: accept
+    index: 0
+    type: content
     cond: if
     cond_test: "{ src 192.168.0.0/16 }"
 backend_switching_rule:
@@ -2327,7 +2326,7 @@ backend_switching_rule:
           required: true
   additionalProperties: false
   example:
-    id: 0
+    index: 0
     name: test_backend
     cond: if
     cond_test: "{ req_ssl_sni -i www.example.com }"
@@ -2365,7 +2364,7 @@ server_switching_rule:
           required: true
   additionalProperties: false
   example:
-    id: 0
+    index: 0
     target_server: www
     cond: if
     cond_test: "{ req_ssl_sni -i www.example.com }"
@@ -2429,7 +2428,7 @@ filter:
           required: true
   additionalProperties: false
   example:
-    id: 0
+    index: 0
     type: trace
     trace_name: name
     trace_rnd_parsing: true
@@ -2472,8 +2471,8 @@ stick_rule:
           required: true
   additionalProperties: false
   example:
-    id: 0
-    type: storeonly
+    index: 0
+    type: match
     pattern: src
 log_target:
   title: Log Target

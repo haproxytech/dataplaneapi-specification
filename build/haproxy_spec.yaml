@@ -638,7 +638,7 @@ definitions:
         forwardfor:
           enabled: enabled
         httpchk:
-          method: OPTIONS
+          method: GET
           uri: /check
           version: HTTP/1.1
         mode: http
@@ -1162,7 +1162,6 @@ definitions:
       example:
         address: 10.1.1.1
         check: enabled
-        max-connections: 500
         name: www
         port: 8080
         weight: 80
@@ -1579,7 +1578,7 @@ definitions:
         cond_test: '{ src 192.168.0.0/16 }'
         hdr_format: '%T'
         hdr_name: X-Haproxy-Current-Date
-        id: 0
+        index: 0
         type: add-header
       properties:
         acl_file:
@@ -2125,7 +2124,7 @@ definitions:
         cond_test: '{ src 192.168.0.0/16 }'
         hdr_format: '%T'
         hdr_name: X-Haproxy-Current-Date
-        id: 0
+        index: 0
         type: add-header
       properties:
         acl_file:
@@ -2517,8 +2516,8 @@ definitions:
       example:
         cond: if
         cond_test: '{ src 192.168.0.0/16 }'
-        id: 0
-        type: accept
+        index: 0
+        type: connection
       properties:
         action:
           enum:
@@ -2847,8 +2846,8 @@ definitions:
       example:
         cond: if
         cond_test: '{ src 192.168.0.0/16 }'
-        id: 0
-        type: accept
+        index: 0
+        type: content
       properties:
         action:
           enum:
@@ -2934,7 +2933,7 @@ definitions:
       example:
         cond: if
         cond_test: '{ req_ssl_sni -i www.example.com }'
-        id: 0
+        index: 0
         name: test_backend
       properties:
         cond:
@@ -2982,7 +2981,7 @@ definitions:
       example:
         cond: if
         cond_test: '{ req_ssl_sni -i www.example.com }'
-        id: 0
+        index: 0
         target_server: www
       properties:
         cond:
@@ -3026,7 +3025,7 @@ definitions:
       additionalProperties: false
       description: HAProxy filters
       example:
-        id: 0
+        index: 0
         trace_name: name
         trace_rnd_parsing: true
         type: trace
@@ -3101,9 +3100,9 @@ definitions:
       description: Define a pattern used to create an entry in a stickiness table or matching
         condition or associate a user to a server.
       example:
-        id: 0
+        index: 0
         pattern: src
-        type: storeonly
+        type: match
       properties:
         cond:
           enum:
@@ -4204,7 +4203,7 @@ definitions:
       description: Runtime transient server properties
       example:
         address: 127.0.0.5
-        admin_state: up
+        admin_state: ready
         operational_state: up
         port: 80
         server_id: 1
@@ -5172,8 +5171,10 @@ definitions:
       description: Consul server configuration
       example:
         address: 127.0.0.1
-        id: 0
+        enabled: true
+        id: "0"
         port: 90
+        retry_timeout: 10
       properties:
         address:
           pattern: ^[^\s]+$

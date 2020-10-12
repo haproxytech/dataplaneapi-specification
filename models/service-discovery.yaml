@@ -50,6 +50,8 @@ consul:
       type: string
   additionalProperties: false
   example:
-    id: 0
+    id: "0"
+    enabled: true
     address: 127.0.0.1
     port: 90
+    retry_timeout: 10
