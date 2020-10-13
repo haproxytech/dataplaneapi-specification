@@ -4235,7 +4235,7 @@ definitions:
           type: string
         port:
           maximum: 65535
-          minimum: 0
+          minimum: 1
           readOnly: true
           type: integer
           x-nullable: true

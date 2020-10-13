@@ -225,7 +225,7 @@ server:
     port:
       type: integer
       x-nullable: true
-      minimum: 0
+      minimum: 1
       maximum: 65535
       readOnly: true
     operational_state:
