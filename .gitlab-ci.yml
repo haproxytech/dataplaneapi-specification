@@ -5,7 +5,7 @@ compare build:
     name: alpine:3.10.3
     entrypoint: [""]
   tags:
-    - docker
+    - go
   script:
     # try building it and compare if resulting file is equal to what is commited.
     - cd build
@@ -17,7 +17,7 @@ yamllint:
     name: cytopia/yamllint:latest
     entrypoint: [""]
   tags:
-    - docker
+    - go
   script:
     # to test locally, run:  docker run --rm -v $(pwd):/data cytopia/yamllint .
     - /bin/sh -c "yamllint -f colored ."
