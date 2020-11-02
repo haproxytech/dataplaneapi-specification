@@ -10221,4 +10221,22 @@ paths:
         summary: Replace the value corresponding to each id in a map
         tags:
         - Maps
+  /services/haproxy/configuration/version:
+      get:
+        description: Returns configuration version.
+        operationId: getConfigurationVersion
+        parameters:
+        - $ref: '#/parameters/transaction_id'
+        responses:
+          "200":
+            description: Configuration version
+            schema:
+              type: integer
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return a configuration version
+        tags:
+        - Configuration
 
