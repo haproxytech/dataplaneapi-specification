@@ -2741,6 +2741,12 @@ configuration:
         type: boolean
         required: false
         default: false
+      - name: only_validate
+        in: query
+        description: If set, only validates configuration, without applying it
+        type: boolean
+        required: false
+        default: false
       - name: X-Runtime-Actions
         in: header
         description: List of Runtime API commands with parameters separated by ';'

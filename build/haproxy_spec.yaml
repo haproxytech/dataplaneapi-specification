@@ -9733,6 +9733,12 @@ paths:
           name: skip_reload
           required: false
           type: boolean
+        - default: false
+          description: If set, only validates configuration, without applying it
+          in: query
+          name: only_validate
+          required: false
+          type: boolean
         - description: List of Runtime API commands with parameters separated by ';'
           in: header
           name: X-Runtime-Actions
