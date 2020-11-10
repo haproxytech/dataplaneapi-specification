@@ -6713,7 +6713,7 @@ paths:
         - Backend
   /services/haproxy/configuration/backends/{name}:
       delete:
-        description: Deletes a frontend from the configuration by it's name.
+        description: Deletes a backend from the configuration by it's name.
         operationId: deleteBackend
         parameters:
         - description: Backend name

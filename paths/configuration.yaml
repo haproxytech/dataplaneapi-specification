@@ -413,7 +413,7 @@ backends_one:
         $ref: '#/responses/DefaultError'
   delete:
     summary: Delete a backend
-    description: Deletes a frontend from the configuration by it's name.
+    description: Deletes a backend from the configuration by it's name.
     operationId: deleteBackend
     tags:
       - Backend
