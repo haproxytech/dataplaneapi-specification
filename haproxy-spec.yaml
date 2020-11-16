@@ -568,3 +568,7 @@ paths:
     $ref: "paths/runtime.yaml#/maps_entries_one"
   /services/haproxy/configuration/version:
     $ref: "paths/configuration.yaml#/version"
+  /services/haproxy/storage/maps:
+    $ref: "paths/storage.yaml#/maps"
+  /services/haproxy/storage/maps/{name}:
+    $ref: "paths/storage.yaml#/maps_one"

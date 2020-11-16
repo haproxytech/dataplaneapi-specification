@@ -1,0 +1,92 @@
+---
+maps:
+  get:
+    summary: Return all available map files on disk
+    description: Returns all available map files on disk.
+    operationId: getAllStorageMapFiles
+    tags:
+      - Storage
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          type: array
+          items:
+            type: string
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+maps_one:
+  get:
+    summary: Return one map file from disk
+    description: Returns one map file from disk.
+    operationId: getOneStorageMap
+    tags:
+      - Storage
+    parameters:
+      - name: name
+        in: path
+        description: Map file name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: Successful operation
+        schema:
+          type: string
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  delete:
+    summary: Deletes map file from disk
+    description: Deletes map file from disk.
+    operationId: deleteStorageMap
+    tags:
+      - Storage
+    parameters:
+      - name: name
+        in: path
+        description: Map file name
+        required: true
+        type: string
+    responses:
+      '204':
+        description: Map file deleted
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
+  put:
+    summary: Replace a Map file on disk
+    description: Replaces a Map file on disk.
+    operationId: replaceStorageMapFile
+    produces:
+      - application/json
+    consumes:
+      - text/plain
+    tags:
+      - Storage
+    parameters:
+      - name: name
+        in: path
+        description: Map file name
+        required: true
+        type: string
+      - name: data
+        in: body
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: Map file replaced
+        schema:
+          type: string
+      '400':
+        $ref: '#/responses/BadRequest'
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'

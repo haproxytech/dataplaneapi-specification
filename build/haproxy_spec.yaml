@@ -10302,4 +10302,95 @@ paths:
         summary: Return a configuration version
         tags:
         - Configuration
+  /services/haproxy/storage/maps:
+      get:
+        description: Returns all available map files on disk.
+        operationId: getAllStorageMapFiles
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              items:
+                type: string
+              type: array
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return all available map files on disk
+        tags:
+        - Storage
+  /services/haproxy/storage/maps/{name}:
+      delete:
+        description: Deletes map file from disk.
+        operationId: deleteStorageMap
+        parameters:
+        - description: Map file name
+          in: path
+          name: name
+          required: true
+          type: string
+        responses:
+          "204":
+            description: Map file deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Deletes map file from disk
+        tags:
+        - Storage
+      get:
+        description: Returns one map file from disk.
+        operationId: getOneStorageMap
+        parameters:
+        - description: Map file name
+          in: path
+          name: name
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              type: string
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one map file from disk
+        tags:
+        - Storage
+      put:
+        consumes:
+        - text/plain
+        description: Replaces a Map file on disk.
+        operationId: replaceStorageMapFile
+        parameters:
+        - description: Map file name
+          in: path
+          name: name
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            type: string
+        produces:
+        - application/json
+        responses:
+          "200":
+            description: Map file replaced
+            schema:
+              type: string
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace a Map file on disk
+        tags:
+        - Storage
 
