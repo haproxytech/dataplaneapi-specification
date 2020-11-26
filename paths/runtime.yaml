@@ -17,7 +17,7 @@ process_info:
         $ref: '#/responses/DefaultError'
 servers:
   get:
-    summary: Return an array of runtime servers' setings
+    summary: Return an array of runtime servers' settings
     description: Returns an array of all servers' runtime settings.
     operationId: getRuntimeServers
     tags:

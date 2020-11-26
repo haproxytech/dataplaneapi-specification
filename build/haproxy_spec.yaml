@@ -9824,7 +9824,7 @@ paths:
               $ref: '#/definitions/runtime_servers'
           default:
             $ref: '#/responses/DefaultError'
-        summary: Return an array of runtime servers' setings
+        summary: Return an array of runtime servers' settings
         tags:
         - Server
   /services/haproxy/runtime/servers/{name}:
