@@ -231,6 +231,9 @@ defaults:
     queue_timeout:
       type: integer
       x-nullable: true
+    tunnel_timeout:
+      type: integer
+      x-nullable: true
     external_check:
       type: string
       enum: [enabled, disabled]
@@ -597,6 +600,9 @@ backend:
     redispatch:
       $ref: "#/definitions/redispatch"
     server_timeout:
+      type: integer
+      x-nullable: true
+    tunnel_timeout:
       type: integer
       x-nullable: true
     httpchk:

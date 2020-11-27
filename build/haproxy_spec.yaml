@@ -460,6 +460,9 @@ definitions:
         tcplog:
           type: boolean
           x-display-name: TCP Log
+        tunnel_timeout:
+          type: integer
+          x-nullable: true
         unique_id_format:
           type: string
           x-display-name: Unique ID format
@@ -838,6 +841,9 @@ definitions:
               - binary
               type: string
           type: object
+        tunnel_timeout:
+          type: integer
+          x-nullable: true
       required:
       - name
       title: Backend
