@@ -268,6 +268,9 @@ definitions:
         ssl_default_server_options:
           type: string
           x-display-name: SSL Default Server Options
+        ssl_mode_async:
+          type: boolean
+          x-display-name: Asynchronous TLS I/O operations
         stats_timeout:
           type: integer
           x-nullable: true
