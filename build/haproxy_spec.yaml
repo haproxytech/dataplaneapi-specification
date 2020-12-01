@@ -269,7 +269,10 @@ definitions:
           type: string
           x-display-name: SSL Default Server Options
         ssl_mode_async:
-          type: boolean
+          enum:
+          - enabled
+          - disabled
+          type: string
           x-display-name: Asynchronous TLS I/O operations
         stats_timeout:
           type: integer

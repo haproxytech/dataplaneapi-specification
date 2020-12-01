@@ -59,7 +59,8 @@ global:
       type: string
       x-display-name: SSL Default Server Ciphersuites
     ssl_mode_async:
-      type: boolean
+      type: string
+      enum: [enabled, disabled]
       x-display-name: Asynchronous TLS I/O operations
     cpu_maps:
       x-go-name: CPUMaps
