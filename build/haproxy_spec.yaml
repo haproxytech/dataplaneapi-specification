@@ -304,6 +304,7 @@ definitions:
           - pgsql-check
           - tcp-check
           - redis-check
+          - httpchk
           type: string
           x-display-name: Advanced Check
         allbackups:
@@ -415,8 +416,8 @@ definitions:
           - never
           - safe
           type: string
-        httpchk:
-          $ref: '#/definitions/httpchk'
+        httpchk_params:
+          $ref: '#/definitions/httpchk_params'
         httplog:
           type: boolean
           x-display-name: HTTP Log
@@ -648,11 +649,12 @@ definitions:
       additionalProperties: false
       description: HAProxy backend configuration
       example:
+        adv_check: httpchk
         balance:
           algorithm: roundrobin
         forwardfor:
           enabled: enabled
-        httpchk:
+        httpchk_params:
           method: GET
           uri: /check
           version: HTTP/1.1
@@ -673,6 +675,7 @@ definitions:
           - pgsql-check
           - tcp-check
           - redis-check
+          - httpchk
           type: string
           x-display-name: Advanced Check
         allbackups:
@@ -793,8 +796,8 @@ definitions:
           x-dependency:
             mode:
               value: http
-        httpchk:
-          $ref: '#/definitions/httpchk'
+        httpchk_params:
+          $ref: '#/definitions/httpchk_params'
           x-dependency:
             mode:
               value: http
@@ -4969,7 +4972,7 @@ definitions:
           x-nullable: true
       title: Default Server
       type: object
-  httpchk:
+  httpchk_params:
       properties:
         method:
           enum:

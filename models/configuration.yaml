@@ -148,15 +148,15 @@ defaults:
     adv_check:
       type: string
       x-display-name: Advanced Check
-      enum: [ssl-hello-chk, smtpchk, ldap-check, mysql-check, pgsql-check, tcp-check, redis-check]
+      enum: [ssl-hello-chk, smtpchk, ldap-check, mysql-check, pgsql-check, tcp-check, redis-check, httpchk]
     smtpchk_params:
       $ref: "#/definitions/smtpchk_params"
     mysql_check_params:
       $ref: "#/definitions/mysql_check_params"
     pgsql_check_params:
       $ref: "#/definitions/pgsql_check_params"
-    httpchk:
-      $ref: "#/definitions/httpchk"
+    httpchk_params:
+      $ref: "#/definitions/httpchk_params"
     http-check:
       $ref: "#/definitions/http-check"
     bind_process:
@@ -573,7 +573,7 @@ backend:
     adv_check:
       type: string
       x-display-name: Advanced Check
-      enum: [ssl-hello-chk, smtpchk, ldap-check, mysql-check, pgsql-check, tcp-check, redis-check]
+      enum: [ssl-hello-chk, smtpchk, ldap-check, mysql-check, pgsql-check, tcp-check, redis-check, httpchk]
     smtpchk_params:
       $ref: "#/definitions/smtpchk_params"
     mysql_check_params:
@@ -621,8 +621,8 @@ backend:
     tunnel_timeout:
       type: integer
       x-nullable: true
-    httpchk:
-      $ref: "#/definitions/httpchk"
+    httpchk_params:
+      $ref: "#/definitions/httpchk_params"
       x-dependency:
         mode:
           value: http
@@ -674,7 +674,8 @@ backend:
       algorithm: roundrobin
     forwardfor:
       enabled: enabled
-    httpchk:
+    adv_check: httpchk
+    httpchk_params:
       uri: "/check"
       method: GET
       version: HTTP/1.1
@@ -2979,7 +2980,7 @@ balance:
       x-dependency:
         algorithm:
           value: rdp-cookie
-httpchk:
+httpchk_params:
   type: object
   x-display-name: HTTP Check
   properties:

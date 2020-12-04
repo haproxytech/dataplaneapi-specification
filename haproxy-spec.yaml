@@ -250,8 +250,8 @@ definitions:
     $ref: "models/configuration.yaml#/forwardfor"
   default_server:
     $ref: "models/configuration.yaml#/default_server"
-  httpchk:
-    $ref: "models/configuration.yaml#/httpchk"
+  httpchk_params:
+    $ref: "models/configuration.yaml#/httpchk_params"
   http-check:
     $ref: "models/configuration.yaml#/http-check"
   redispatch:
