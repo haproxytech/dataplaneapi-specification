@@ -288,6 +288,12 @@ definitions:
     $ref: "models/monitor.yaml#/monitor_uri"
   monitor_fail:
     $ref: "models/monitor.yaml#/monitor_fail"
+  smtpchk_params:
+    $ref: "models/configuration.yaml#/smtpchk_params"
+  mysql_check_params:
+    $ref: "models/configuration.yaml#/mysql_check_params"
+  pgsql_check_params:
+    $ref: "models/configuration.yaml#/pgsql_check_params"
 responses:
   BadRequest:
     description: Bad request

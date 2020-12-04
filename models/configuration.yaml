@@ -149,6 +149,12 @@ defaults:
       type: string
       x-display-name: Advanced Check
       enum: [ssl-hello-chk, smtpchk, ldap-check, mysql-check, pgsql-check, tcp-check, redis-check]
+    smtpchk_params:
+      $ref: "#/definitions/smtpchk_params"
+    mysql_check_params:
+      $ref: "#/definitions/mysql_check_params"
+    pgsql_check_params:
+      $ref: "#/definitions/pgsql_check_params"
     httpchk:
       $ref: "#/definitions/httpchk"
     http-check:
@@ -568,6 +574,12 @@ backend:
       type: string
       x-display-name: Advanced Check
       enum: [ssl-hello-chk, smtpchk, ldap-check, mysql-check, pgsql-check, tcp-check, redis-check]
+    smtpchk_params:
+      $ref: "#/definitions/smtpchk_params"
+    mysql_check_params:
+      $ref: "#/definitions/mysql_check_params"
+    pgsql_check_params:
+      $ref: "#/definitions/pgsql_check_params"
     external_check:
       type: string
       enum: [enabled, disabled]
@@ -3100,3 +3112,23 @@ stats_options:
     stats_uri_prefix:
       type: string
       pattern: '^[^\s]+$'
+smtpchk_params:
+  type: object
+  properties:
+    hello:
+      type: string
+    domain:
+      type: string
+mysql_check_params:
+  type: object
+  properties:
+    username:
+      type: string
+    client_version:
+      type: string
+      enum: [pre-41, post-41]
+pgsql_check_params:
+  type: object
+  properties:
+    username:
+      type: string

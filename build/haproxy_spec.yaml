@@ -450,6 +450,10 @@ definitions:
           type: string
         monitor_uri:
           $ref: '#/definitions/monitor_uri'
+        mysql_check_params:
+          $ref: '#/definitions/mysql_check_params'
+        pgsql_check_params:
+          $ref: '#/definitions/pgsql_check_params'
         queue_timeout:
           type: integer
           x-nullable: true
@@ -461,6 +465,8 @@ definitions:
         server_timeout:
           type: integer
           x-nullable: true
+        smtpchk_params:
+          $ref: '#/definitions/smtpchk_params'
         stats_options:
           $ref: '#/definitions/stats_options'
         tcplog:
@@ -800,10 +806,14 @@ definitions:
           - http
           - tcp
           type: string
+        mysql_check_params:
+          $ref: '#/definitions/mysql_check_params'
         name:
           pattern: ^[A-Za-z0-9-_.:]+$
           type: string
           x-nullable: false
+        pgsql_check_params:
+          $ref: '#/definitions/pgsql_check_params'
         queue_timeout:
           type: integer
           x-nullable: true
@@ -815,6 +825,8 @@ definitions:
         server_timeout:
           type: integer
           x-nullable: true
+        smtpchk_params:
+          $ref: '#/definitions/smtpchk_params'
         stats_options:
           $ref: '#/definitions/stats_options'
         stick_table:
@@ -5260,6 +5272,28 @@ definitions:
       required:
       - cond
       - cond_test
+      type: object
+  smtpchk_params:
+      properties:
+        domain:
+          type: string
+        hello:
+          type: string
+      type: object
+  mysql_check_params:
+      properties:
+        client_version:
+          enum:
+          - pre-41
+          - post-41
+          type: string
+        username:
+          type: string
+      type: object
+  pgsql_check_params:
+      properties:
+        username:
+          type: string
       type: object
 responses:
   BadRequest:
