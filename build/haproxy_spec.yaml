@@ -5976,7 +5976,6 @@ paths:
                 message:
                   type: string
               type: object
-            title: Transaction rate limiting
           default:
             $ref: '#/responses/DefaultError'
         summary: Start a new transaction
