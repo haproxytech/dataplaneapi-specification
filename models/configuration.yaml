@@ -1745,7 +1745,7 @@ http_response_rule:
       type: integer
       x-nullable: true
       x-display-name: Redirect Code
-      enum: [301, 302, 303]
+      enum: [301, 302, 303, 307, 308]
       x-dependency:
         type:
           value: redirect
