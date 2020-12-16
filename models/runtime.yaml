@@ -355,6 +355,8 @@ map:
       type: string
     file:
       type: string
+    storage_name:
+      type: string
     description:
       type: string
 map_entry:

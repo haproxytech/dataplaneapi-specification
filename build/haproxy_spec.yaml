@@ -4462,6 +4462,8 @@ definitions:
           type: string
         id:
           type: string
+        storage_name:
+          type: string
       title: Map File
       type: object
   maps:
