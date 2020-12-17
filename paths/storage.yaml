@@ -1,8 +1,8 @@
 ---
 maps:
   get:
-    summary: Return all available map files on disk
-    description: Returns all available map files on disk.
+    summary: Return a list of all managed map files
+    description: Returns a list of all managed map files
     operationId: getAllStorageMapFiles
     tags:
       - Storage
@@ -10,24 +10,55 @@ maps:
       '200':
         description: Successful operation
         schema:
-          type: array
-          items:
-            type: string
+          $ref: "#/definitions/maps"
       '404':
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
+  post:  # (raw)
+    summary: Creates a managed runtime map file with its entries
+    description: Creates a managed runtime map file with its entries.
+    operationId: createRuntimeMap
+    consumes:
+      - multipart/form-data
+    parameters:
+      - in: formData
+        name: fileUpload
+        type: file
+        description: The map file contents
+        x-mimetype: text/plain
+    tags:
+      - Storage
+    responses:
+      '201':
+        description: Map file created with its entries
+        schema:
+          $ref: "#/definitions/map"
+      '202':
+        description: Configuration change accepted and reload requested
+        headers:
+          Reload-ID:
+            description: ID of the requested reload
+            type: string
+        schema:
+          $ref: '#/definitions/map'
+      '409':
+        $ref: '#/responses/AlreadyExists'
+      '400':
+        $ref: '#/responses/BadRequest'
+      'default':
+        $ref: '#/responses/DefaultError'
 maps_one:
   get:
-    summary: Return one map file from disk
-    description: Returns one map file from disk.
+    summary: Return the contents of one managed map file from disk
+    description: Returns the contents of one managed map file from disk
     operationId: getOneStorageMap
     tags:
       - Storage
     parameters:
       - name: name
         in: path
-        description: Map file name
+        description: Map file storage_name
         required: true
         type: string
     responses:
@@ -40,15 +71,15 @@ maps_one:
       'default':
         $ref: '#/responses/DefaultError'
   delete:
-    summary: Deletes map file from disk
-    description: Deletes map file from disk.
+    summary: Deletes a managed map file from disk
+    description: Deletes a managed map file from disk.
     operationId: deleteStorageMap
     tags:
       - Storage
     parameters:
       - name: name
         in: path
-        description: Map file name
+        description: Map file storage_name
         required: true
         type: string
     responses:
@@ -59,8 +90,8 @@ maps_one:
       'default':
         $ref: '#/responses/DefaultError'
   put:
-    summary: Replace a Map file on disk
-    description: Replaces a Map file on disk.
+    summary: Replace contents of a managed map file on disk
+    description: Replaces the contents of a managed map file on disk
     operationId: replaceStorageMapFile
     produces:
       - application/json
@@ -71,7 +102,7 @@ maps_one:
     parameters:
       - name: name
         in: path
-        description: Map file name
+        description: Map file storage_name
         required: true
         type: string
       - name: data
@@ -79,6 +110,7 @@ maps_one:
         required: true
         schema:
           type: string
+      - $ref: "#/parameters/force_reload"
     responses:
       '200':
         description: Map file replaced

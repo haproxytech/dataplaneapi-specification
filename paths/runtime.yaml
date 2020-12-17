@@ -184,11 +184,18 @@ stick_table_entries:
         $ref: '#/responses/DefaultError'
 maps:
   get:  # show map
-    summary: Return all available map files
-    description: Returns all available map files.
+    summary: Return runtime map files
+    description: Returns runtime map files.
     operationId: getAllRuntimeMapFiles
     tags:
       - Maps
+    parameters:
+      - name: includeUnmanaged
+        in: query
+        description: If true, also show unmanaged map files loaded in haproxy
+        required: false
+        type: boolean
+        default: false
     responses:
       '200':
         description: Successful operation
@@ -196,40 +203,6 @@ maps:
           $ref: "#/definitions/maps"
       '404':
         $ref: '#/responses/NotFound'
-      'default':
-        $ref: '#/responses/DefaultError'
-  post:  # (raw)
-    summary: Creates runtime map file with its entries
-    description: Creates runtime map file with its entries.
-    operationId: createRuntimeMap
-    consumes:
-      - multipart/form-data
-    parameters:
-      - in: formData
-        name: fileUpload
-        type: file
-        description: The map file to upload
-        x-mimetype: text/plain
-      - $ref: "#/parameters/force_reload"
-    tags:
-      - Maps
-    responses:
-      '201':
-        description: Map file created with its entries
-        schema:
-          $ref: "#/definitions/map"
-      '202':
-        description: Configuration change accepted and reload requested
-        headers:
-          Reload-ID:
-            description: ID of the requested reload
-            type: string
-        schema:
-          $ref: '#/definitions/map'
-      '409':
-        $ref: '#/responses/AlreadyExists'
-      '400':
-        $ref: '#/responses/BadRequest'
       'default':
         $ref: '#/responses/DefaultError'
 maps_one:
@@ -292,7 +265,7 @@ maps_entries:
     parameters:
       - name: map
         in: query
-        description: Map file name
+        description: Map storage_name
         required: true
         type: string
     responses:
@@ -311,7 +284,7 @@ maps_entries:
     parameters:
       - name: map
         in: query
-        description: Map file name
+        description: Map storage_name
         required: true
         type: string
       - name: forceSync
@@ -352,7 +325,7 @@ maps_entries_one:
         type: string
       - name: map
         in: query
-        description: Map file name
+        description: Map storage_name
         required: true
         type: string
     responses:
@@ -378,7 +351,7 @@ maps_entries_one:
         type: string
       - name: map
         in: query
-        description: Map file name
+        description: Map storage_name
         required: true
         type: string
       - name: forceSync
@@ -422,7 +395,7 @@ maps_entries_one:
         type: string
       - name: map
         in: query
-        description: Map file name
+        description: Map storage_name
         required: true
         type: string
       - name: forceSync

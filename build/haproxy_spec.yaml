@@ -10031,8 +10031,15 @@ paths:
         - StickTable
   /services/haproxy/runtime/maps:
       get:
-        description: Returns all available map files.
+        description: Returns runtime map files.
         operationId: getAllRuntimeMapFiles
+        parameters:
+        - default: false
+          description: If true, also show unmanaged map files loaded in haproxy
+          in: query
+          name: includeUnmanaged
+          required: false
+          type: boolean
         responses:
           "200":
             description: Successful operation
@@ -10042,41 +10049,7 @@ paths:
             $ref: '#/responses/NotFound'
           default:
             $ref: '#/responses/DefaultError'
-        summary: Return all available map files
-        tags:
-        - Maps
-      post:
-        consumes:
-        - multipart/form-data
-        description: Creates runtime map file with its entries.
-        operationId: createRuntimeMap
-        parameters:
-        - description: The map file to upload
-          in: formData
-          name: fileUpload
-          type: file
-          x-mimetype: text/plain
-        - $ref: '#/parameters/force_reload'
-        responses:
-          "201":
-            description: Map file created with its entries
-            schema:
-              $ref: '#/definitions/map'
-          "202":
-            description: Configuration change accepted and reload requested
-            headers:
-              Reload-ID:
-                description: ID of the requested reload
-                type: string
-            schema:
-              $ref: '#/definitions/map'
-          "400":
-            $ref: '#/responses/BadRequest'
-          "409":
-            $ref: '#/responses/AlreadyExists'
-          default:
-            $ref: '#/responses/DefaultError'
-        summary: Creates runtime map file with its entries
+        summary: Return runtime map files
         tags:
         - Maps
   /services/haproxy/runtime/maps/{name}:
@@ -10134,7 +10107,7 @@ paths:
         description: Returns an array of all entries in a given runtime map file.
         operationId: showRuntimeMap
         parameters:
-        - description: Map file name
+        - description: Map storage_name
           in: query
           name: map
           required: true
@@ -10155,7 +10128,7 @@ paths:
         description: Adds an entry into the map file.
         operationId: addMapEntry
         parameters:
-        - description: Map file name
+        - description: Map storage_name
           in: query
           name: map
           required: true
@@ -10194,7 +10167,7 @@ paths:
           name: id
           required: true
           type: string
-        - description: Map file name
+        - description: Map storage_name
           in: query
           name: map
           required: true
@@ -10223,7 +10196,7 @@ paths:
           name: id
           required: true
           type: string
-        - description: Map file name
+        - description: Map storage_name
           in: query
           name: map
           required: true
@@ -10249,7 +10222,7 @@ paths:
           name: id
           required: true
           type: string
-        - description: Map file name
+        - description: Map storage_name
           in: query
           name: map
           required: true
@@ -10304,28 +10277,59 @@ paths:
         - Configuration
   /services/haproxy/storage/maps:
       get:
-        description: Returns all available map files on disk.
+        description: Returns a list of all managed map files
         operationId: getAllStorageMapFiles
         responses:
           "200":
             description: Successful operation
             schema:
-              items:
-                type: string
-              type: array
+              $ref: '#/definitions/maps'
           "404":
             $ref: '#/responses/NotFound'
           default:
             $ref: '#/responses/DefaultError'
-        summary: Return all available map files on disk
+        summary: Return a list of all managed map files
+        tags:
+        - Storage
+      post:
+        consumes:
+        - multipart/form-data
+        description: Creates a managed runtime map file with its entries.
+        operationId: createRuntimeMap
+        parameters:
+        - description: The map file contents
+          in: formData
+          name: fileUpload
+          type: file
+          x-mimetype: text/plain
+        responses:
+          "201":
+            description: Map file created with its entries
+            schema:
+              $ref: '#/definitions/map'
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+            schema:
+              $ref: '#/definitions/map'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Creates a managed runtime map file with its entries
         tags:
         - Storage
   /services/haproxy/storage/maps/{name}:
       delete:
-        description: Deletes map file from disk.
+        description: Deletes a managed map file from disk.
         operationId: deleteStorageMap
         parameters:
-        - description: Map file name
+        - description: Map file storage_name
           in: path
           name: name
           required: true
@@ -10337,14 +10341,14 @@ paths:
             $ref: '#/responses/NotFound'
           default:
             $ref: '#/responses/DefaultError'
-        summary: Deletes map file from disk
+        summary: Deletes a managed map file from disk
         tags:
         - Storage
       get:
-        description: Returns one map file from disk.
+        description: Returns the contents of one managed map file from disk
         operationId: getOneStorageMap
         parameters:
-        - description: Map file name
+        - description: Map file storage_name
           in: path
           name: name
           required: true
@@ -10358,16 +10362,16 @@ paths:
             $ref: '#/responses/NotFound'
           default:
             $ref: '#/responses/DefaultError'
-        summary: Return one map file from disk
+        summary: Return the contents of one managed map file from disk
         tags:
         - Storage
       put:
         consumes:
         - text/plain
-        description: Replaces a Map file on disk.
+        description: Replaces the contents of a managed map file on disk
         operationId: replaceStorageMapFile
         parameters:
-        - description: Map file name
+        - description: Map file storage_name
           in: path
           name: name
           required: true
@@ -10377,6 +10381,7 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: '#/parameters/force_reload'
         produces:
         - application/json
         responses:
@@ -10390,7 +10395,7 @@ paths:
             $ref: '#/responses/NotFound'
           default:
             $ref: '#/responses/DefaultError'
-        summary: Replace a Map file on disk
+        summary: Replace contents of a managed map file on disk
         tags:
         - Storage
 
