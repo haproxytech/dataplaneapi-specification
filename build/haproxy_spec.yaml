@@ -10355,11 +10355,13 @@ paths:
           name: name
           required: true
           type: string
+        produces:
+        - application/octet-stream
         responses:
           "200":
             description: Successful operation
             schema:
-              type: string
+              type: file
           "404":
             $ref: '#/responses/NotFound'
           default:
@@ -10389,8 +10391,6 @@ paths:
         responses:
           "200":
             description: Map file replaced
-            schema:
-              type: string
           "400":
             $ref: '#/responses/BadRequest'
           "404":
