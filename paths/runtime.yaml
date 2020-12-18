@@ -190,7 +190,7 @@ maps:
     tags:
       - Maps
     parameters:
-      - name: includeUnmanaged
+      - name: include_unmanaged
         in: query
         description: If true, also show unmanaged map files loaded in haproxy
         required: false
@@ -265,7 +265,7 @@ maps_entries:
     parameters:
       - name: map
         in: query
-        description: Map storage_name
+        description: Mapfile attribute storage_name
         required: true
         type: string
     responses:
@@ -284,7 +284,7 @@ maps_entries:
     parameters:
       - name: map
         in: query
-        description: Map storage_name
+        description: Mapfile attribute storage_name
         required: true
         type: string
       - name: forceSync
@@ -325,7 +325,7 @@ maps_entries_one:
         type: string
       - name: map
         in: query
-        description: Map storage_name
+        description: Mapfile attribute storage_name
         required: true
         type: string
     responses:
@@ -351,7 +351,7 @@ maps_entries_one:
         type: string
       - name: map
         in: query
-        description: Map storage_name
+        description: Mapfile attribute storage_name
         required: true
         type: string
       - name: forceSync
@@ -395,7 +395,7 @@ maps_entries_one:
         type: string
       - name: map
         in: query
-        description: Map storage_name
+        description: Mapfile attribute storage_name
         required: true
         type: string
       - name: forceSync

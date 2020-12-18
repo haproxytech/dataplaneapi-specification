@@ -10039,7 +10039,7 @@ paths:
         - default: false
           description: If true, also show unmanaged map files loaded in haproxy
           in: query
-          name: includeUnmanaged
+          name: include_unmanaged
           required: false
           type: boolean
         responses:
@@ -10109,7 +10109,7 @@ paths:
         description: Returns an array of all entries in a given runtime map file.
         operationId: showRuntimeMap
         parameters:
-        - description: Map storage_name
+        - description: Mapfile attribute storage_name
           in: query
           name: map
           required: true
@@ -10130,7 +10130,7 @@ paths:
         description: Adds an entry into the map file.
         operationId: addMapEntry
         parameters:
-        - description: Map storage_name
+        - description: Mapfile attribute storage_name
           in: query
           name: map
           required: true
@@ -10169,7 +10169,7 @@ paths:
           name: id
           required: true
           type: string
-        - description: Map storage_name
+        - description: Mapfile attribute storage_name
           in: query
           name: map
           required: true
@@ -10198,7 +10198,7 @@ paths:
           name: id
           required: true
           type: string
-        - description: Map storage_name
+        - description: Mapfile attribute storage_name
           in: query
           name: map
           required: true
@@ -10224,7 +10224,7 @@ paths:
           name: id
           required: true
           type: string
-        - description: Map storage_name
+        - description: Mapfile attribute storage_name
           in: query
           name: map
           required: true
@@ -10301,20 +10301,12 @@ paths:
         parameters:
         - description: The map file contents
           in: formData
-          name: fileUpload
+          name: file_upload
           type: file
           x-mimetype: text/plain
         responses:
           "201":
             description: Map file created with its entries
-            schema:
-              $ref: '#/definitions/map'
-          "202":
-            description: Configuration change accepted and reload requested
-            headers:
-              Reload-ID:
-                description: ID of the requested reload
-                type: string
             schema:
               $ref: '#/definitions/map'
           "400":
@@ -10389,7 +10381,13 @@ paths:
         produces:
         - application/json
         responses:
-          "200":
+          "202":
+            description: Configuration change accepted and reload requested
+            headers:
+              Reload-ID:
+                description: ID of the requested reload
+                type: string
+          "204":
             description: Map file replaced
           "400":
             $ref: '#/responses/BadRequest'

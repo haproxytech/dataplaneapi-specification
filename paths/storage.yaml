@@ -23,7 +23,7 @@ maps:
       - multipart/form-data
     parameters:
       - in: formData
-        name: fileUpload
+        name: file_upload
         type: file
         description: The map file contents
         x-mimetype: text/plain
@@ -34,14 +34,6 @@ maps:
         description: Map file created with its entries
         schema:
           $ref: "#/definitions/map"
-      '202':
-        description: Configuration change accepted and reload requested
-        headers:
-          Reload-ID:
-            description: ID of the requested reload
-            type: string
-        schema:
-          $ref: '#/definitions/map'
       '409':
         $ref: '#/responses/AlreadyExists'
       '400':
@@ -114,7 +106,13 @@ maps_one:
           type: string
       - $ref: "#/parameters/force_reload"
     responses:
-      '200':
+      "202":
+        description: Configuration change accepted and reload requested
+        headers:
+          Reload-ID:
+            description: ID of the requested reload
+            type: string
+      '204':
         description: Map file replaced
       '400':
         $ref: '#/responses/BadRequest'
