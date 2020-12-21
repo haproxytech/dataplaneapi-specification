@@ -741,7 +741,7 @@ bind:
       x-dependency:
         ssl:
           value: true
-    #ca_file:
+    # ca_file:
     #  type: string
     #  x-dependency:
     #    ssl:
@@ -782,7 +782,7 @@ bind:
       x-dependency:
         ssl:
           value: true
-    #crt:
+    # crt:
     #  type: string
     #  x-dependency:
     #    ssl:

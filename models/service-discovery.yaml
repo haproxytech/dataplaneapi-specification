@@ -1,3 +1,4 @@
+---
 consul:
   title: Consul server
   description: Consul server configuration
@@ -43,7 +44,7 @@ consul:
       enum: [linear, exponential]
       default: exponential
     server_slots_growth_increment:
-      type: integer 
+      type: integer
     description:
       type: string
     name:

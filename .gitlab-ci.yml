@@ -1,5 +1,8 @@
 ---
+stages:
+  - lint
 compare build:
+  stage: lint
   image:
     # I just like pinning things, this version is latest, not special in any way
     name: alpine:3.10.3
@@ -11,8 +14,8 @@ compare build:
     - cd build
     - ./build -file ../haproxy-spec.yaml > haproxy_spec_to_compare.yaml
     - diff -u haproxy_spec_to_compare.yaml haproxy_spec.yaml
-
 yamllint:
+  stage: lint
   image:
     name: cytopia/yamllint:latest
     entrypoint: [""]
@@ -23,3 +26,12 @@ yamllint:
     - /bin/sh -c "yamllint -f colored ."
     - chmod +x ./scripts/single-tag.sh
     - /bin/sh -c ./scripts/single-tag.sh
+lint-commit-msg:
+  stage: lint
+  image:
+    name: haproxytech/check-commit:latest
+    entrypoint: [""]
+  tags:
+    - go
+  script:
+    - go run /check.go
