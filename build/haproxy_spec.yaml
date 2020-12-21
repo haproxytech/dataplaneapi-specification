@@ -4282,6 +4282,7 @@ definitions:
                 - gpc0_rate
                 - gpc1
                 - gpc1_rate
+                - gpt0
                 - conn_cnt
                 - conn_cur
                 - conn_rate
@@ -4374,6 +4375,9 @@ definitions:
           type: integer
           x-nullable: true
         gpc1_rate:
+          type: integer
+          x-nullable: true
+        gpt0:
           type: integer
           x-nullable: true
         http_err_cnt:
