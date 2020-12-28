@@ -986,7 +986,7 @@ server:
       x-dependency:
         ssl:
           value: enabled
-    maintenance: # I don't see this option in the specification
+    maintenance:
       type: string
       enum: [enabled, disabled]
     agent-check:
