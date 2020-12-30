@@ -4494,6 +4494,21 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/map_entry"
+  ssl_certificate:
+      description: A file containing one or more SSL/TLS certificates and keys
+      properties:
+        description:
+          type: string
+        storage_name:
+          type: string
+      title: SSL File
+      type: object
+  ssl_certificates:
+    title: SSL Files Array
+    description: Array of ssl certificate files
+    type: array
+    items:
+      $ref: "#/definitions/ssl_certificate"
   balance:
       properties:
         algorithm:
@@ -10400,6 +10415,120 @@ paths:
           default:
             $ref: '#/responses/DefaultError'
         summary: Replace contents of a managed map file on disk
+        tags:
+        - Storage
+  /services/haproxy/storage/ssl_certificates:
+      get:
+        description: Returns all available SSL certificates on disk.
+        operationId: getAllStorageSSLCertificates
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/ssl_certificates'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return all available SSL certificates on disk
+        tags:
+        - Storage
+      post:
+        consumes:
+        - multipart/form-data
+        description: Creates SSL certificate.
+        operationId: createStorageSSLCertificate
+        parameters:
+        - description: The SSL certificate to upload
+          in: formData
+          name: file_upload
+          type: file
+          x-mimetype: text/plain
+        responses:
+          "201":
+            description: SSL certificate created
+            schema:
+              $ref: '#/definitions/ssl_certificate'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "409":
+            $ref: '#/responses/AlreadyExists'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Create SSL certificate
+        tags:
+        - Storage
+  /services/haproxy/storage/ssl_certificates/{name}:
+      delete:
+        description: Deletes SSL certificate from disk.
+        operationId: deleteStorageSSLCertificate
+        parameters:
+        - description: SSL certificate name
+          in: path
+          name: name
+          required: true
+          type: string
+        responses:
+          "204":
+            description: SSL certificate deleted
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Delete SSL certificate from disk
+        tags:
+        - Storage
+      get:
+        description: Returns one SSL certificate from disk.
+        operationId: getOneStorageSSLCertificate
+        parameters:
+        - description: SSL certificate name
+          in: path
+          name: name
+          required: true
+          type: string
+        responses:
+          "200":
+            description: Successful operation
+            schema:
+              $ref: '#/definitions/ssl_certificate'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return one SSL certificate from disk
+        tags:
+        - Storage
+      put:
+        consumes:
+        - text/plain
+        description: Replaces SSL certificate on disk.
+        operationId: replaceStorageSSLCertificate
+        parameters:
+        - description: SSL certificate name
+          in: path
+          name: name
+          required: true
+          type: string
+        - in: body
+          name: data
+          required: true
+          schema:
+            type: string
+        produces:
+        - application/json
+        responses:
+          "202":
+            description: SSL certificate replaced
+            schema:
+              $ref: '#/definitions/ssl_certificate'
+          "400":
+            $ref: '#/responses/BadRequest'
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Replace SSL certificates on disk
         tags:
         - Storage
 

@@ -244,6 +244,14 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/map_entry"
+  ssl_certificate:
+    $ref: "models/runtime.yaml#/ssl_certificate"
+  ssl_certificates:
+    title: SSL Files Array
+    description: Array of ssl certificate files
+    type: array
+    items:
+      $ref: "#/definitions/ssl_certificate"
   balance:
     $ref: "models/configuration.yaml#/balance"
   forwardfor:
@@ -572,3 +580,7 @@ paths:
     $ref: "paths/storage.yaml#/maps"
   /services/haproxy/storage/maps/{name}:
     $ref: "paths/storage.yaml#/maps_one"
+  /services/haproxy/storage/ssl_certificates:
+    $ref: "paths/storage.yaml#/ssl_certificates"
+  /services/haproxy/storage/ssl_certificates/{name}:
+    $ref: "paths/storage.yaml#/ssl_certificates_one"

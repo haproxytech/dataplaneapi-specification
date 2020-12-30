@@ -374,3 +374,12 @@ map_entry:
       type: string
     value:
       type: string
+ssl_certificate:
+  title: SSL File
+  description: A file containing one or more SSL/TLS certificates and keys
+  type: object
+  properties:
+    storage_name:
+      type: string
+    description:
+      type: string
