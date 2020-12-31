@@ -192,6 +192,14 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/transaction"
+  spoe_transaction:
+    $ref: "models/spoe-transactions.yaml#/spoe_transaction"
+  spoe_transactions:
+    title: SPOE Transactions array
+    description: SPOE Configuration transactions array
+    type: array
+    items:
+      $ref: "#/definitions/spoe_transaction"
   info:
     $ref: "models/general.yaml#/info"
   reload:
@@ -302,6 +310,40 @@ definitions:
     $ref: "models/configuration.yaml#/mysql_check_params"
   pgsql_check_params:
     $ref: "models/configuration.yaml#/pgsql_check_params"
+  spoe_files:
+    $ref: "models/spoe.yaml#/spoe_files"
+  spoe_scope:
+    $ref: "models/spoe.yaml#/spoe_scope"
+  spoe_scopes:
+    title: SPOE Scopes
+    description: All SPOE Scopes
+    type: array
+    items:
+      $ref: "#/definitions/spoe_scope"
+  spoe_agent:
+    $ref: "models/spoe.yaml#/spoe_agent"
+  spoe_agents:
+    title: SPOE Agents
+    description: SPOE Agents of one scope in SPOE file
+    type: array
+    items:
+      $ref: "#/definitions/spoe_agent"
+  spoe_message:
+    $ref: "models/spoe.yaml#/spoe_message"
+  spoe_messages:
+    title: SPOE Messages
+    description: SPOE Messages of one scope in SPOE file
+    type: array
+    items:
+      $ref: "#/definitions/spoe_message"
+  spoe_group:
+    $ref: "models/spoe.yaml#/spoe_group"
+  spoe_groups:
+    title: SPOE Groups
+    description: SPOE Groups of one scope in SPOE file
+    type: array
+    items:
+      $ref: "#/definitions/spoe_group"
 responses:
   BadRequest:
     description: Bad request
@@ -433,6 +475,8 @@ tags:
   - name: Maps
   - name: SpecificationOpenapiv3
   - name: ServiceDiscovery
+  - name: Spoe
+  - name: SpoeTransactions
 security:
   - basic_auth: []
 paths:
@@ -468,6 +512,10 @@ paths:
     $ref: "paths/general.yaml#/transactions"
   /services/haproxy/transactions/{id}:
     $ref: "paths/general.yaml#/transactions_one"
+  /services/haproxy/spoe_transactions:
+    $ref: "paths/spoe-transactions.yaml#/transactions"
+  /services/haproxy/spoe_transactions/{id}:
+    $ref: "paths/spoe-transactions.yaml#/transactions_one"
   /services/haproxy/reloads:
     $ref: "paths/general.yaml#/reloads"
   /services/haproxy/reloads/{id}:
@@ -584,3 +632,23 @@ paths:
     $ref: "paths/storage.yaml#/ssl_certificates"
   /services/haproxy/storage/ssl_certificates/{name}:
     $ref: "paths/storage.yaml#/ssl_certificates_one"
+  /services/haproxy/spoe/spoe_files:
+    $ref: "paths/spoe.yaml#/spoe_files"
+  /services/haproxy/spoe/spoe_files/{name}:
+    $ref: "paths/spoe.yaml#/spoes_one"
+  /services/haproxy/spoe/spoe_scopes:
+    $ref: "paths/spoe.yaml#/spoe_scopes"
+  /services/haproxy/spoe/spoe_scopes/{name}:
+    $ref: "paths/spoe.yaml#/spoe_scopes_one"
+  /services/haproxy/spoe/spoe_agents:
+    $ref: "paths/spoe.yaml#/spoe_agents"
+  /services/haproxy/spoe/spoe_agents/{name}:
+    $ref: "paths/spoe.yaml#/spoe_agents_one"
+  /services/haproxy/spoe/spoe_messages:
+    $ref: "paths/spoe.yaml#/spoe_messages"
+  /services/haproxy/spoe/spoe_messages/{name}:
+    $ref: "paths/spoe.yaml#/spoe_messages_one"
+  /services/haproxy/spoe/spoe_groups:
+    $ref: "paths/spoe.yaml#/spoe_groups"
+  /services/haproxy/spoe/spoe_groups/{name}:
+    $ref: "paths/spoe.yaml#/spoe_groups_one"
