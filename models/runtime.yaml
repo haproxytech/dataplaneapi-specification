@@ -379,6 +379,8 @@ ssl_certificate:
   description: A file containing one or more SSL/TLS certificates and keys
   type: object
   properties:
+    file:
+      type: string
     storage_name:
       type: string
     description:

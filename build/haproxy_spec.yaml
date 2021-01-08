@@ -4525,6 +4525,8 @@ definitions:
       properties:
         description:
           type: string
+        file:
+          type: string
         storage_name:
           type: string
       title: SSL File
