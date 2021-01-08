@@ -4537,6 +4537,27 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/ssl_certificate"
+  acl_file:
+      description: ACL File
+      properties:
+        description:
+          type: string
+        id:
+          type: string
+        storage_name:
+          type: string
+      title: ACL File
+      type: object
+  acl_file_entry:
+      description: One ACL File Entry
+      properties:
+        id:
+          readOnly: true
+          type: string
+        value:
+          type: string
+      title: One ACL File Entry
+      type: object
   balance:
       properties:
         algorithm:

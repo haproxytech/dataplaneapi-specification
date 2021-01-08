@@ -260,6 +260,10 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/ssl_certificate"
+  acl_file:
+    $ref: "models/runtime.yaml#/acl_file"
+  acl_file_entry:
+    $ref: "models/runtime.yaml#/acl_file_entry"
   balance:
     $ref: "models/configuration.yaml#/balance"
   forwardfor:
