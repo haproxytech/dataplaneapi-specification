@@ -262,8 +262,20 @@ definitions:
       $ref: "#/definitions/ssl_certificate"
   acl_file:
     $ref: "models/runtime.yaml#/acl_file"
+  acl_files:
+    title: ACL Files Array
+    description: Array of runtime acl files
+    type: array
+    items:
+      $ref: "#/definitions/acl_file"
   acl_file_entry:
     $ref: "models/runtime.yaml#/acl_file_entry"
+  acl_files_entries:
+    title: ACL Files Entries
+    description: Array of entries of one runtime acl file
+    type: array
+    items:
+      $ref: "#/definitions/acl_file_entry"
   balance:
     $ref: "models/configuration.yaml#/balance"
   forwardfor:

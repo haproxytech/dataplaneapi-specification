@@ -4548,6 +4548,12 @@ definitions:
           type: string
       title: ACL File
       type: object
+  acl_files:
+    title: ACL Files Array
+    description: Array of runtime acl files
+    type: array
+    items:
+      $ref: "#/definitions/acl_file"
   acl_file_entry:
       description: One ACL File Entry
       properties:
@@ -4558,6 +4564,12 @@ definitions:
           type: string
       title: One ACL File Entry
       type: object
+  acl_files_entries:
+    title: ACL Files Entries
+    description: Array of entries of one runtime acl file
+    type: array
+    items:
+      $ref: "#/definitions/acl_file_entry"
   balance:
       properties:
         algorithm:
