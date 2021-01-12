@@ -10827,6 +10827,7 @@ paths:
           name: file_upload
           type: file
           x-mimetype: text/plain
+        - $ref: '#/parameters/force_reload'
         responses:
           "201":
             description: SSL certificate created
@@ -10898,6 +10899,7 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: '#/parameters/force_reload'
         produces:
         - application/json
         responses:

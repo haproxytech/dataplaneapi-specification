@@ -148,6 +148,7 @@ ssl_certificates:
         type: file
         description: The SSL certificate to upload
         x-mimetype: text/plain
+      - $ref: "#/parameters/force_reload"
     tags:
       - Storage
     responses:
@@ -223,6 +224,7 @@ ssl_certificates_one:
         required: true
         schema:
           type: string
+      - $ref: "#/parameters/force_reload"
     responses:
       '202':
         description: SSL certificate replaced

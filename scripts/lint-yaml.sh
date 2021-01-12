@@ -20,7 +20,7 @@ checkCamelCaseInNameField()
 
     if [ -n "$upperCased" ]; then
       # Add camel case names we want to support
-      local allowedCamelCaseNameFields=" HAProxy Support X-Runtime-Actions forceDelete forceSync"
+      local allowedCamelCaseNameFields=" HAProxy Support X-Runtime-Actions forceDelete"
 
       local allowed="$(echo "$allowedCamelCaseNameFields" | grep "$upperCased")"
       if [ -z "$allowed" ] ; then
