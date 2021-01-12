@@ -241,7 +241,7 @@ maps_one:
         in: query
         description: If true, deletes file from disk
         type: boolean
-      - name: forceSync
+      - name: force_sync
         in: query
         description: If true, immediately syncs changes to disk
         type: boolean
@@ -287,7 +287,7 @@ maps_entries:
         description: Mapfile attribute storage_name
         required: true
         type: string
-      - name: forceSync
+      - name: force_sync
         in: query
         description: If true, immediately syncs changes to disk
         type: boolean
@@ -354,7 +354,7 @@ maps_entries_one:
         description: Mapfile attribute storage_name
         required: true
         type: string
-      - name: forceSync
+      - name: force_sync
         in: query
         description: If true, immediately syncs changes to disk
         type: boolean
@@ -398,7 +398,7 @@ maps_entries_one:
         description: Mapfile attribute storage_name
         required: true
         type: string
-      - name: forceSync
+      - name: force_sync
         in: query
         description: If true, immediately syncs changes to disk
         type: boolean

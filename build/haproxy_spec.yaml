@@ -10473,7 +10473,7 @@ paths:
         - default: false
           description: If true, immediately syncs changes to disk
           in: query
-          name: forceSync
+          name: force_sync
           type: boolean
         responses:
           "204":
@@ -10540,7 +10540,7 @@ paths:
         - default: false
           description: If true, immediately syncs changes to disk
           in: query
-          name: forceSync
+          name: force_sync
           type: boolean
         - in: body
           name: data
@@ -10579,7 +10579,7 @@ paths:
         - default: false
           description: If true, immediately syncs changes to disk
           in: query
-          name: forceSync
+          name: force_sync
           type: boolean
         responses:
           "204":
@@ -10634,7 +10634,7 @@ paths:
         - default: false
           description: If true, immediately syncs changes to disk
           in: query
-          name: forceSync
+          name: force_sync
           type: boolean
         - in: body
           name: data
