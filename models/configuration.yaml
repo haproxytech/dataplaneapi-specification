@@ -1296,7 +1296,7 @@ http_request_rule:
       x-nullable: true
     type:
       type: string
-      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1, do-resolve, set-dst, set-dst-port, sc-set-gpt0, set-mark, set-nice, set-method, set-priority-class, set-priority-offset, set-src, set-src-por, wait-for-handshake, set-tos, silent-drop, unset-var, strict-mode, lua, use-service]
+      enum: [allow, deny, auth, redirect, tarpit, add-header, replace-header, replace-value, del-header, set-header, set-log-level, set-path, replace-path, set-query, set-uri, set-var, send-spoe-group, add-acl, del-acl, capture, track-sc0, track-sc1, track-sc2, set-map, del-map, cache-use, disable-l7-retry, early-hint, replace-uri, sc-inc-gpc0, sc-inc-gpc1, do-resolve, set-dst, set-dst-port, sc-set-gpt0, set-mark, set-nice, set-method, set-priority-class, set-priority-offset, set-src, set-src-por, wait-for-handshake, set-tos, silent-drop, unset-var, strict-mode, lua, use-service, return]
       x-nullable: false
     capture_sample:
       pattern: '^[^\s]+$'
@@ -1686,6 +1686,50 @@ http_request_rule:
       x-dependency:
         cond:
           required: true
+    return_status_code:
+      type: integer
+      minimum: 200
+      maximum: 599
+      x-dependency:
+        type:
+          value: return
+      x-display-name: Return Error Code
+      x-nullable: true
+    return_content_type:
+      type: string
+      x-dependency:
+        type:
+          value: return
+      x-display-name: Return content type
+      x-nullable: true
+    return_content_format:
+      type: string
+      enum: [default-errorfile, errorfile, errorfiles, file, lf-file, string, lf-string]
+      x-dependency:
+        type:
+          value: return
+    return_content:
+      type: string
+      x-dependency:
+        return_content_format:
+          value: [errofile, errorfiles, file, lf-file, string, lf-string]
+          required: true
+    return_hdrs:
+      type: array
+      x-go-name: ReturnHeaders
+      x-dependency:
+        return_content_format:
+          value: [file, lf-file, string, lf-string]
+      items:
+        type: object
+        required:
+          - name
+          - fmt
+        properties:
+          name:
+            type: string
+          fmt:
+            type: string
   additionalProperties: false
   example:
     index: 0
