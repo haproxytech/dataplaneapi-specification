@@ -11766,4 +11766,27 @@ paths:
         summary: Replace a SPOE groups
         tags:
         - Spoe
+  /services/haproxy/spoe/version:
+      get:
+        description: Returns SPOE configuration version.
+        operationId: getSpoeConfigurationVersion
+        parameters:
+        - $ref: '#/parameters/transaction_id'
+        - description: Spoe file name
+          in: query
+          name: spoe
+          required: true
+          type: string
+        responses:
+          "200":
+            description: SPOE configuration version
+            schema:
+              type: integer
+          "404":
+            $ref: '#/responses/NotFound'
+          default:
+            $ref: '#/responses/DefaultError'
+        summary: Return a SPOE configuration version
+        tags:
+        - Spoe
 

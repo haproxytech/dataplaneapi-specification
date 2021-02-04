@@ -668,3 +668,5 @@ paths:
     $ref: "paths/spoe.yaml#/spoe_groups"
   /services/haproxy/spoe/spoe_groups/{name}:
     $ref: "paths/spoe.yaml#/spoe_groups_one"
+  /services/haproxy/spoe/version:
+    $ref: "paths/spoe.yaml#/version"

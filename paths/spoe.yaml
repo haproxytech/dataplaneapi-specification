@@ -786,3 +786,26 @@ spoe_groups_one:
         $ref: '#/responses/NotFound'
       'default':
         $ref: '#/responses/DefaultError'
+version:
+  get:
+    summary: Return a SPOE configuration version
+    description: Returns SPOE configuration version.
+    operationId: getSpoeConfigurationVersion
+    tags:
+      - Spoe
+    parameters:
+      - $ref: "#/parameters/transaction_id"
+      - name: spoe
+        in: query
+        description: Spoe file name
+        required: true
+        type: string
+    responses:
+      '200':
+        description: SPOE configuration version
+        schema:
+          type: integer
+      '404':
+        $ref: '#/responses/NotFound'
+      'default':
+        $ref: '#/responses/DefaultError'
