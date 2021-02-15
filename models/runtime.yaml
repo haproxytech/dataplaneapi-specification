@@ -385,6 +385,61 @@ ssl_certificate:
       type: string
     description:
       type: string
+ssl_cert_entry:
+  title: One SSL Certificate Entry
+  description: One SSL/TLS certificate
+  type: object
+  properties:
+    storage_name:
+      type: string
+    status:
+      type: string
+    serial:
+      type: string
+    not_before:
+      type: string
+      format: date
+    not_after:
+      type: string
+      format: date
+    subject_alternative_names:
+      type: array
+      items:
+        type: string
+    algorithm:
+      type: string
+    sha1_finger_print:
+      type: string
+    subject:
+      type: string
+    issuer:
+      type: string
+    chain_subject:
+      type: string
+    chain_issuer:
+      type: string
+ssl_crt_list:
+  title: crt-list
+  description: One SSL/TLS certificate
+  type: object
+  properties:
+    file:
+      type: string
+ssl_crt_list_entry:
+  title: One crt-list Entry
+  description: One SSL/TLS certificate
+  type: object
+  properties:
+    line_number:
+      type: string
+    file:
+      type: string
+    ssl_bind_config:
+      type: string
+    sni_filters:
+      type: array
+      items:
+        type: string
 acl_file:
   title: ACL File
   description: ACL File
