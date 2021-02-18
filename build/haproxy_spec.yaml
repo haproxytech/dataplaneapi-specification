@@ -5139,6 +5139,79 @@ definitions:
       x-display-name: HTTP Check
   http-check:
       properties:
+        comment:
+          type: string
+          x-dependency:
+            type:
+              value:
+              - connect
+              - send
+              - expect
+          x-display-name: Comment
+        connect_addr:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect Address
+        connect_alpn:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect ALPN
+        connect_default:
+          type: boolean
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect Default
+        connect_linger:
+          type: boolean
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect Linger
+        connect_port:
+          type: integer
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect Port
+        connect_proto:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect Protocol
+        connect_send_proxy:
+          type: boolean
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect Send Proxy
+        connect_sni:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect SNI
+        connect_ssl:
+          type: boolean
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect SSL
+        connect_via_socks4:
+          type: boolean
+          x-dependency:
+            type:
+              value: connect
+          x-display-name: Connect Via SOCKS4
         exclamation_mark:
           type: boolean
           x-dependency:
@@ -5166,11 +5239,76 @@ definitions:
               required: true
               value: expect
           x-display-name: Expect Pattern
+        send_body:
+          type: string
+          x-dependency:
+            type:
+              value: send
+          x-display-name: Send Body
+        send_body_lf:
+          type: string
+          x-dependency:
+            type:
+              value: send
+          x-display-name: Send Body Format
+        send_headers:
+          items:
+            properties:
+              fmt:
+                type: string
+              name:
+                type: string
+            required:
+            - name
+            - fmt
+            type: object
+          type: array
+          x-dependency:
+            type:
+              value: send
+          x-display-name: Send Headers
+        send_method:
+          enum:
+          - HEAD
+          - PUT
+          - POST
+          - GET
+          - TRACE
+          - PATCH
+          - OPTIONS
+          type: string
+          x-dependency:
+            type:
+              value: send
+          x-display-name: Send Method
+        send_uri:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              value: send
+          x-display-name: Send URI
+        send_uri_lf:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              value: send
+          x-display-name: Send URI Format
+        send_version:
+          pattern: ^[^\s]+$
+          type: string
+          x-dependency:
+            type:
+              value: send
+          x-display-name: Send Version
         type:
           enum:
           - disable-on-404
           - expect
           - send-state
+          - send
+          - connect
           type: string
       required:
       - type
