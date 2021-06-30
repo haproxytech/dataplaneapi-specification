@@ -3105,7 +3105,7 @@ http-check:
   properties:
     type:
       type: string
-      enum: [disable-on-404, expect, send-state]
+      enum: [disable-on-404, expect, send-state, send, connect]
     exclamation_mark:
       type: boolean
       x-display-name: Expect Exclamation Mark
@@ -3129,6 +3129,132 @@ http-check:
         type:
           value: expect
           required: true
+    comment:
+      type: string
+      x-display-name: Comment
+      x-dependency:
+        type:
+          value: [connect, send, expect]
+    connect_default:
+      type: boolean
+      x-display-name: Connect Default
+      x-dependency:
+        type:
+          value: connect
+    connect_port:
+      type: integer
+      x-display-name: Connect Port
+      x-dependency:
+        type:
+          value: connect
+    connect_addr:
+      type: string
+      x-display-name: Connect Address
+      x-dependency:
+        type:
+          value: connect
+      pattern: '^[^\s]+$'
+    connect_send_proxy:
+      type: boolean
+      x-display-name: Connect Send Proxy
+      x-dependency:
+        type:
+          value: connect
+    connect_via_socks4:
+      type: boolean
+      x-display-name: Connect Via SOCKS4
+      x-dependency:
+        type:
+          value: connect
+    connect_ssl:
+      type: boolean
+      x-display-name: Connect SSL
+      x-dependency:
+        type:
+          value: connect
+    connect_sni:
+      type: string
+      x-display-name: Connect SNI
+      x-dependency:
+        type:
+          value: connect
+      pattern: '^[^\s]+$'
+    connect_alpn:
+      type: string
+      x-display-name: Connect ALPN
+      x-dependency:
+        type:
+          value: connect
+      pattern: '^[^\s]+$'
+    connect_proto:
+      type: string
+      x-display-name: Connect Protocol
+      x-dependency:
+        type:
+          value: connect
+      pattern: '^[^\s]+$'
+    connect_linger:
+      type: boolean
+      x-display-name: Connect Linger
+      x-dependency:
+        type:
+          value: connect
+    send_method:
+      type: string
+      x-display-name: Send Method
+      x-dependency:
+        type:
+          value: send
+      enum: [HEAD, PUT, POST, GET, TRACE, PATCH, OPTIONS]
+    send_uri:
+      type: string
+      x-display-name: Send URI
+      x-dependency:
+        type:
+          value: send
+      pattern: '^[^\s]+$'
+    send_uri_lf:
+      type: string
+      x-display-name: Send URI Format
+      x-dependency:
+        type:
+          value: send
+      pattern: '^[^\s]+$'
+    send_version:
+      type: string
+      x-display-name: Send Version
+      x-dependency:
+        type:
+          value: send
+      pattern: '^[^\s]+$'
+    send_headers:
+      type: array
+      x-display-name: Send Headers
+      x-dependency:
+        type:
+          value: send
+      items:
+        type: object
+        required:
+          - name
+          - fmt
+        properties:
+          name:
+            type: string
+          fmt:
+            type: string
+    send_body:
+      type: string
+      x-display-name: Send Body
+      x-dependency:
+        type:
+          value: send
+    send_body_lf:
+      type: string
+      x-display-name: Send Body Format
+      x-dependency:
+        type:
+          value: send
 stats_options:
   type: object
   properties:
